@@ -6,8 +6,8 @@ import Qrcode from "../../assets/images/frame.png"
 
 function Footer() {
   return (
-    <div className="div">
-      <div className="flex flex-wrap justify-around lg:px-40 md:px-4  px-[7px] py-2">
+    <div className="div ">
+      <div className="flex flex-wrap justify-around lg:px-40 md:px-4  px-[7px] py-2 ">
         <div className="account flex flex-col">
           <h1 className="font-bold text-xl mb-2 ">Account</h1>
           <div className="links flex-col  flex gap-3 font-semibold ">
