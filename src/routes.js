@@ -7,6 +7,7 @@ import Header from "./components/layout/Header";
 import Footer from "./components/layout/Footer";
 import ViewAll from '../src/components/product/ViewAll'
 import Categories from "../src/components/product/AllCategories";
+import ProductDetails from './components/product/ProductDetails'
 function routes() {
   return (
     <Router>
@@ -17,6 +18,7 @@ function routes() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/all-products" element={<ViewAll />} />
         <Route path="/all-Categories" element={<Categories />} />
+        <Route path="/ProductDetail" element={<ProductDetails/>}/>
       </Routes>
       <Footer />
     </Router>

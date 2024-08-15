@@ -51,7 +51,7 @@ export const ProductData = [
     discount_price: "",
   },
   {
-    id: "1540",
+    id: "1541",
     image: image,
     price: "1800ch",
     name: "Groceries",
@@ -85,7 +85,7 @@ export const ProductData = [
     discount_price: "",
   },
   {
-    id: "1540",
+    id: "1542",
     image: image2,
     price: "1800ch",
     name: "Arrack",
@@ -119,7 +119,7 @@ export const ProductData = [
     discount_price: "",
   },
   {
-    id: "1540",
+    id: "1543",
     image: image3,
     price: "1800ch",
     name: "Cake",
@@ -153,7 +153,7 @@ export const ProductData = [
     discount_price: "",
   },
   {
-    id: "1540",
+    id: "1544",
     image: image4,
     price: "1800ch",
     name: "Garlick",
@@ -187,7 +187,7 @@ export const ProductData = [
     discount_price: "",
   },
   {
-    id: "1540",
+    id: "1545",
     image: image5,
     price: "1800ch",
     name: "Chilli",
@@ -221,7 +221,7 @@ export const ProductData = [
     discount_price: "",
   },
   {
-    id: "1540",
+    id: "1546",
     image: image6,
     price: "1800ch",
     name: "Lemon",
@@ -255,7 +255,7 @@ export const ProductData = [
     discount_price: "",
   },
   {
-    id: "1540",
+    id: "1547",
     image: image7,
     price: "1800ch",
     name: "Carrot",
@@ -289,7 +289,7 @@ export const ProductData = [
     discount_price: "",
   },
   {
-    id: "1540",
+    id: "1548",
     image: image8,
     price: "1800ch",
     name: "Tomato",
@@ -323,7 +323,7 @@ export const ProductData = [
     discount_price: "",
   },
   {
-    id: "1540",
+    id: "1549",
     image: image9,
     price: "1800ch",
     name: "Beans",
@@ -357,7 +357,7 @@ export const ProductData = [
     discount_price: "",
   },
   {
-    id: "1540",
+    id: "1550",
     image: image11,
     price: "1800ch",
     name: "Bread",
@@ -391,7 +391,7 @@ export const ProductData = [
     discount_price: "",
   },
   {
-    id: "1540",
+    id: "1551",
     image: image12,
     price: "1800ch",
     name: "Meat",
@@ -425,7 +425,7 @@ export const ProductData = [
     discount_price: "",
   },
   {
-    id: "1540",
+    id: "154011",
     image: image12,
     price: "1800ch",
     name: "Meat",
@@ -459,7 +459,7 @@ export const ProductData = [
     discount_price: "",
   },
   {
-    id: "1540",
+    id: "154012",
     image: image8,
     price: "1800ch",
     name: "Meat",
@@ -493,7 +493,7 @@ export const ProductData = [
     discount_price: "",
   },
   {
-    id: "1540",
+    id: "154013",
     image: image7,
     price: "1800ch",
     name: "Meat",
