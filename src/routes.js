@@ -9,6 +9,9 @@ import ProductDetails from "./pages/product/ProductDetails";
 import Wishlist from './pages/user/wishlist';
 import Login from './pages/login'
 import Signup from "./pages/signup";
+import Contact from "./pages/user/contactpage";
+import Myaccount from "./pages/user/account"
+
 function routes() {
   return (
     <Router>
@@ -23,6 +26,8 @@ function routes() {
         <Route path="/wishlist" element={<Wishlist />} />
         <Route path="/sign-up" element={<Signup />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/my-account" element={<Myaccount />} />
         login
       </Routes>
       <Footer />
