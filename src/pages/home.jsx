@@ -1,21 +1,18 @@
-import React from 'react'
-import Carousal from "../components/product/ProductCarousal"
-import ProductCard from "../components/product/ProductCard"
-import OfferCard from "../components/product/OfferCard"
-import Categories from '../components/product/categories.jsx'
-
+import React from "react";
+import Carousal from "./product/ProductCarousal.jsx";
+import ProductCard from "./product/ProductCard.jsx";
+import OfferCard from "./product/OfferCard.jsx";
+import Categories from "./product/categories.jsx";
 
 function home() {
   return (
-    <div >
-      <Carousal />    
+    <div>
+      <Carousal />
       <ProductCard />
       <OfferCard />
-      <Categories/>
-      
-    
+      <Categories />
     </div>
-  )
+  );
 }
 
-export default home
+export default home;
