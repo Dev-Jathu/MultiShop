@@ -19,7 +19,7 @@ User Account Page
 Admin Dashboard (for managing products, orders, users)
 
 
-<------ Models ------>
+<------ Models, Routes, Controller ------>
 	User
 	Shop
 	Product
