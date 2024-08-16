@@ -1,55 +1,51 @@
-require('dotenv').config();
 const express = require('express');
-const mongoose = require('mongoose');
+const dotenv = require('dotenv');
+const connectDB = require('./config/db');
+const userRoutes = require('./routes/user');
+const productRoutes = require('./routes/product');
+const orderRoutes = require('./routes/order');
+const reviewRoutes = require('./routes/review');
+const paymentRoutes = require('./routes/payment');
+const cartRoutes = require('./routes/cart');
+const wishlistRoutes = require('./routes/whishlist');
+
+const { notFound, errorHandler } = require('./middlewares/error');
+
+dotenv.config();
 
 const app = express();
-const port = process.env.PORT || 5000;
 
 // Middleware
 app.use(express.json());
 
-// Import Routes
-const userRoutes = require('./routes/user');
+// Routes
+app.use('/api/users', userRoutes);
+app.use('/api/products', productRoutes);
+app.use('/api/orders', orderRoutes);
+app.use('/api/reviews', reviewRoutes);
+app.use('/api/payments', paymentRoutes);
+app.use('/api/cart', cartRoutes);
+app.use('/api/wishlist', wishlistRoutes);
 
-// Use Routes
-app.use('/users', userRoutes);
+// Error handling middleware
+app.use(notFound);
+app.use(errorHandler);
 
-// Route
-app.get('/', (req, res) => {
-  res.send('Welcome Back!');
-});
-
-// Connect to MongoDB
-const connectDB = async () => {
-  try {
-    await mongoose.connect(process.env.MONGO_URI, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
-    console.log('MongoDB connected');
-  } catch (err) {
-    console.error('Failed to connect to MongoDB', err);
-    process.exit(1);
-  }
-};
-
-// Start the server
+// Connect DB and Start Server
 const startServer = async () => {
   try {
-    // Start the Express server
-    app.listen(port, () => {
-      console.log(`Server running on port ${port}`);
+    // Connect to the database
+    await connectDB();
+
+    // Start the server 
+    const PORT = process.env.PORT || 5000;
+    app.listen(PORT, () => {
+      console.log(`Server running on port ${PORT}`);
     });
-  } catch (err) {
-    console.error('Failed to start server', err);
+  } catch (error) {
+    console.error(`Error: ${error.message}`);
     process.exit(1);
   }
 };
 
-// Initialize the app
-const initApp = async () => {
-  await connectDB();
-  await startServer();
-};
-
-initApp();
+startServer();
