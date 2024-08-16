@@ -35,7 +35,7 @@ const LimeCard = () => {
         {displayedProducts.map((product) => (
           <div
             key={product.id}
-            className="flex flex-col items-center bg-gray-100 p-4 rounded-lg shadow-lg transition-transform transform hover:scale-105 cursor-pointer"
+            className="flex flex-col items-center bg-gray-100 p-4 rounded-lg shadow-lg transition-transform  justify-betweentransform hover:scale-105 cursor-pointer"
             onClick={() => handleProductClick(product)}
           >
             <div className="w-[200px] h-[150px] bg-black rounded-t-lg overflow-hidden flex items-center justify-center">
@@ -67,3 +67,5 @@ const LimeCard = () => {
 };
 
 export default LimeCard;
+
+
