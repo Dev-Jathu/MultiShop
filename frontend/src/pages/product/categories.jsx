@@ -46,9 +46,9 @@ const ProductPage = () => {
   const displayedProducts = filteredProducts.slice(0, initialItemCount);
 
   return (
-    <div className="px-5 h-[70vh]" >
+    <div className="px-5 h-[80vh]" >
       <div className="font-bold text-[18px] flex justify-between pt-12">
-        <p>New Product</p>
+        <p>Categories</p>
         <div
           className="flex items-center gap-2 cursor-pointer"
           onClick={handleViewAllClick} // Handle view all click

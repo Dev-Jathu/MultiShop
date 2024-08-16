@@ -7,16 +7,14 @@ import logo from '../../assets/images/alfies-logo-dark 1.png'
 function Header() {
   return (
     <div>
-       <div className="main ">
+      <div className="main ">
         <div className=" fixed z-50 navbar  flex justify-center p-3 bg-black shadow-gray-50 text-white text-[18px] lg:px-60 px-[5px] w-full   ">
           <div className="  flex justify-between lg:gap-10 md:gap-[20px] gap-8 lg:text-base md:text-[14px] text-[10px] items-center  ">
             <p className="text-center md:text-left">
               Summer Sale For All Food Items And Free Express Delivery - OFF
               50%!
             </p>
-            <a href="/" className=" flex  font-bold underline">
-              Shop Now 
-            </a>
+            <Link to="">Shop Now</Link>
             <select className="bg-black text-white  border-none">
               <option>English</option>
               <option>Tamil</option>
@@ -27,10 +25,12 @@ function Header() {
           <div className="location   pt-14  flex lg:gap-2  md:gap-[45px] items-center justify-between  ">
             <div className="location logo text-black flex gap-3 items-center  hover:text-primary">
               <img src={location} alt="logo" className=" h-5 " />
-              <button >Your Address</button>
+              <button>Your Address</button>
             </div>
             <div className="user text-black  text-[22px] ">
-              <i class="fa-solid fa-user"></i>
+              <Link to="/login">
+                <i class="fa-solid fa-user"></i>
+              </Link>
             </div>
           </div>
           <div className="search flex items-center justify-between  pt-2 md:gap-5 sm:gap-5  ">
@@ -43,14 +43,20 @@ function Header() {
                 className="  px-4 bg-transparent focus:outline-none   md:w-[100%] lg:w-[100%] h-[45px] items-center "
               />
             </div>
-              <div className="dropdown lg:hidden md:hidden block text-[25px]">
-                <i class="fa-solid fa-caret-down"></i>
-              </div>
+            <div className="dropdown lg:hidden md:hidden block text-[25px]">
+              <i class="fa-solid fa-caret-down"></i>
+            </div>
 
             <div className="shop lg:text-[30px] md:text-[25px] hidden lg:blog  gap-12 md:gap-5  md:flex lg:flex">
-              <i class="fa-regular fa-heart cursor-pointer"></i>
-              <i class="fa-solid fa-list cursor-pointer"></i>
-              <i class="fa-solid fa-cart-shopping cursor-pointer"></i>
+              <Link to="/wishlist">
+                <i class="fa-regular fa-heart cursor-pointer"></i>
+              </Link>
+              <Link to="/all-Categories">
+                <i class="fa-solid fa-list cursor-pointer"></i>
+              </Link>
+              <Link to="/cart">
+                <i class="fa-solid fa-cart-shopping cursor-pointer"></i>
+              </Link>
             </div>
           </div>
         </div>
