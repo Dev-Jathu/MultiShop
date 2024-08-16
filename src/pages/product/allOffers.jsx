@@ -1,72 +1,23 @@
-
-import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import image from "../../assets/images/lime.png";
+import React from "react";
 import { ProductData } from "../../assets/data/product";
+import image from "../../assets/images/lime.png";
 
-const LimeCard = () => {
-  const navigate = useNavigate();
-  const [initialItemCount, setInitialItemCount] = useState(16); // Default for desktop
-
-  useEffect(() => {
-    const updateItemCount = () => {
-      if (window.innerWidth >= 768 && window.innerWidth < 1024) {
-        // Tablet mode
-        setInitialItemCount(6);
-      } else if (window.innerWidth < 768) {
-        // Mobile mode
-        setInitialItemCount(3);
-      } else {
-        // Desktop mode
-        setInitialItemCount(14);
-      }
-    };
-
-    updateItemCount(); // Initial check
-    window.addEventListener("resize", updateItemCount); // Update on resize
-
-    return () => {
-      window.removeEventListener("resize", updateItemCount); // Cleanup on unmount
-    };
-  }, []);
-
-  const handleViewAll = () => {
-    navigate("/all-Offers");
-  };
-
+const AllOffers = () => {
   // Calculate the discounted price
   const calculateDiscountPrice = (price, discount) => {
     if (!discount) return price;
-
     const discountValue = parseFloat(discount) / 100;
     const discountedPrice = price * (1 - discountValue);
     return discountedPrice.toFixed(2); // Convert to string with 2 decimal places
   };
 
-  const displayedOffers = ProductData.slice(0, initialItemCount);
-
   return (
-    <div className="lg:px-5 md:px-5 px-3">
+    <div className="lg:px-5 md:px-5 px-3 pt-[150px]">
       <div className="font-bold text-[18px] flex justify-between pt-12">
-        <p>Deals</p>
-        <div
-          className="flex items-center gap-2 cursor-pointer"
-          onClick={handleViewAll}
-        >
-          <p className="text-[18px]">View All</p>
-          <i className="fa fa-arrow-right" aria-hidden="true"></i>
-        </div>
+        <p>All Deals</p>
       </div>
-      <div
-        className={`flex ${
-          initialItemCount === 6
-            ? "flex-wrap md:grid md:grid-cols-3"
-            : initialItemCount === 3
-            ? "flex-col"
-            : "flex-wrap"
-        }  pt-5 gap-9`}
-      >
-        {displayedOffers.map((Offer) => (
+      <div className="flex flex-wrap pt-5 gap-9">
+        {ProductData.map((Offer) => (
           <div
             key={Offer.id}
             className="relative flex flex-col items-center bg-gray-100 p-4 rounded-lg shadow-lg transition-transform transform hover:scale-105"
@@ -87,7 +38,7 @@ const LimeCard = () => {
 
             {/* Offer Details */}
             <div className="w-[200px] pt-2 text-left">
-              <div className=" flex gap-5">
+              <div className="flex gap-5">
                 <p className="text-[18px] font-bold text-gray-800 bg-primary w-24 flex items-center text-center rounded-[5px] px-1">
                   {calculateDiscountPrice(
                     parseFloat(Offer.price),
@@ -120,4 +71,4 @@ const LimeCard = () => {
   );
 };
 
-export default LimeCard;
+export default AllOffers;
