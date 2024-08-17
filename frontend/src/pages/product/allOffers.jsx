@@ -15,13 +15,12 @@ const AllOffers = () => {
       <div className="font-bold text-[18px] flex justify-between pt-12">
         <p>All Deals</p>
       </div>
-      <div className="flex flex-wrap justify-center lg:justify-start pt-5 gap-5 lg:gap-9">
+      <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-4 pt-5">
         {ProductData.map((Offer) => (
           <div
             key={Offer.id}
-            className="relative flex flex-col items-center bg-gray-100 p-4 rounded-lg shadow-lg transition-transform transform hover:scale-105 w-[calc(50%-10px)] sm:w-[calc(33%-10px)] md:w-[calc(25%-15px)] lg:w-[calc(16.6%-15px)]"
+            className="relative flex flex-col items-center bg-gray-100 p-4 rounded-lg shadow-lg transition-transform transform hover:scale-105"
           >
-           
             <div className="absolute top-1 left-1 bg-green-600 text-white text-xs px-3 py-2 rounded-tr-md rounded-bl-md">
               {Offer.discount}
             </div>

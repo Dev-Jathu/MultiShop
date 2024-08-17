@@ -5,41 +5,21 @@ import { ProductData } from "../../assets/data/product";
 
 const LimeCard = () => {
   const navigate = useNavigate();
-  const [initialItemCount, setInitialItemCount] = useState(14); // Default for lg
+  const [displayedProducts, setDisplayedProducts] = useState([]);
 
   useEffect(() => {
-    const updateItemCount = () => {
-      if (window.innerWidth >= 1536) {
-        setInitialItemCount(12);
-      } else if (window.innerWidth >= 1280) {
-        setInitialItemCount(18);
-      } else if (window.innerWidth >= 1024) {
-        setInitialItemCount(14);
-      } else if (window.innerWidth >= 768) {
-        setInitialItemCount(6);
-      } else {
-        setInitialItemCount(15); 
-      }
-    };
-
-    updateItemCount();
-    window.addEventListener("resize", updateItemCount); 
-
-    return () => {
-      window.removeEventListener("resize", updateItemCount); 
-    };
+    const numberOfProducts = 16; // Total products to display
+    setDisplayedProducts(ProductData.slice(0, numberOfProducts));
   }, []);
 
   const handleProductClick = (product) => {
     const { rating, ...rest } = product;
     const serializedProduct = {
       ...rest,
-      rating: rating.length, 
+      rating: rating.length,
     };
     navigate("/ProductDetail", { state: { product: serializedProduct } });
   };
-
-  const displayedProducts = ProductData.slice(0, initialItemCount);
 
   return (
     <div className="lg:px-5 md:px-5 px-3">
@@ -54,79 +34,35 @@ const LimeCard = () => {
         </div>
       </div>
 
-      {window.innerWidth < 768 ? (
-        <div className="flex overflow-x-auto gap-4 py-5">
-          {displayedProducts.map((product) => (
-            <div
-              key={product.id}
-              className="flex-shrink-0 w-[200px] bg-gray-100 p-4 rounded-lg shadow-lg transition-transform transform hover:scale-105 cursor-pointer"
-              onClick={() => handleProductClick(product)}
-            >
-              <div className="w-full h-[150px] bg-black rounded-t-lg overflow-hidden flex items-center justify-center">
-                <img
-                  src={product.image || image}
-                  alt={product.name}
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <div className="mt-4">
-                <p className="text-lg font-semibold text-gray-800">
-                  {product.price}
-                </p>
-                <p className="text-lg text-gray-600 mt-1">{product.name}</p>
-              </div>
-              <div className="flex justify-between mt-3 text-[25px]">
-                <button className="text-gray-800 hover:text-green-500">
-                  <i className="fa-regular fa-heart"></i>
-                </button>
-                <button className="text-gray-800 hover:text-green-500">
-                  <i className="fa-solid fa-plus"></i>
-                </button>
-              </div>
+      <div className="flex overflow-x-auto gap-4 py-5 sm:gap-4 lg:grid lg:grid-cols-8 md:grid-cols-4 sm:grid-cols-2 lg:flex-none">
+        {displayedProducts.map((product) => (
+          <div
+            key={product.id}
+            className="bg-gray-100 p-4 rounded-lg shadow-lg transition-transform transform hover:scale-105 flex-shrink-0 lg:flex-shrink flex flex-col items-center cursor-pointer sm:w-auto w-[150px]"
+            onClick={() => handleProductClick(product)}
+          >
+            <div className="w-full h-[120px] lg:w-full lg:h-[150px] md:w-[200px] md:h-[150px] bg-black rounded-t-lg overflow-hidden flex items-center justify-center">
+              <img
+                src={product.image || image}
+                alt={product.name}
+                className="w-full h-full object-cover"
+              />
             </div>
-          ))}
-        </div>
-      ) : (
-        <div
-          className={`flex ${
-            initialItemCount === 6
-              ? "flex-wrap md:grid md:grid-cols-3"
-              : initialItemCount === 3
-              ? "flex-col"
-              : "flex-wrap"
-          } pt-5 gap-9 2xl:gap-4 `}
-        >
-          {displayedProducts.map((product) => (
-            <div
-              key={product.id}
-              className="flex flex-col items-center bg-gray-100 p-4 rounded-lg shadow-lg transition-transform transform hover:scale-105 cursor-pointer"
-              onClick={() => handleProductClick(product)}
-            >
-              <div className="w-[200px] h-[150px] bg-black rounded-t-lg overflow-hidden flex items-center justify-center">
-                <img
-                  src={product.image || image}
-                  alt={product.name}
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <div className="w-[200px] mt-4 text-center">
-                <p className="text-lg font-semibold text-gray-800">
-                  {product.price}
-                </p>
-                <p className="text-lg text-gray-600 mt-1">{product.name}</p>
-              </div>
-              <div className="flex justify-between mt-3 w-[200px] text-[25px]">
-                <button className="text-gray-800 hover:text-green-500">
-                  <i className="fa-regular fa-heart"></i>
-                </button>
-                <button className="text-gray-800 hover:text-green-500">
-                  <i className="fa-solid fa-plus"></i>
-                </button>
-              </div>
+            <div className="mt-4 text-center lg:text-lg text-[14px] md:text-lg">
+              <p className=" font-semibold text-gray-800">{product.price}</p>
+              <p className=" text-gray-600 mt-1">{product.name}</p>
             </div>
-          ))}
-        </div>
-      )}
+            <div className="flex justify-between mt-3 w-full text-[20px]">
+              <button className="text-gray-800 hover:text-green-500">
+                <i className="fa-regular fa-heart"></i>
+              </button>
+              <button className="text-gray-800 hover:text-green-500">
+                <i className="fa-solid fa-plus"></i>
+              </button>
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };

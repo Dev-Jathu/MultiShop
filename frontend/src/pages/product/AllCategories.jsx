@@ -1,47 +1,23 @@
-
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import image from "../../assets/images/lime.png";
 import { ProductData } from "../../assets/data/product";
 
 const ProductPage = () => {
   const [selectedCategory, setSelectedCategory] = useState("All");
-  const [initialItemCount, setInitialItemCount] = useState(18); 
-  const navigate = useNavigate(); 
-
-  useEffect(() => {
-    const updateItemCount = () => {
-      if (window.innerWidth >= 768 && window.innerWidth < 1024) {
-        setInitialItemCount(9);
-      } else if (window.innerWidth < 768) {
-        setInitialItemCount(6);
-      } else {
-        setInitialItemCount();
-      }
-    };
-
-    updateItemCount(); 
-    window.addEventListener("resize", updateItemCount); 
-
-    return () => {
-      window.removeEventListener("resize", updateItemCount); 
-    };
-  }, []);
+  const navigate = useNavigate();
 
   const handleCategoryClick = (category) => {
     setSelectedCategory(category);
   };
-
 
   const filteredProducts =
     selectedCategory === "All"
       ? ProductData
       : ProductData.filter((product) => product.category === selectedCategory);
 
-  const displayedProducts = filteredProducts.slice(0, initialItemCount);
-
   return (
-    <div className="px-5 ">
+    <div className="px-5">
       <div className="font-bold text-[18px] flex justify-between pt-[200px]">
         <p>Categories</p>
       </div>
@@ -59,13 +35,13 @@ const ProductPage = () => {
         ))}
       </div>
 
-      <div className="flex flex-wrap justify-center gap-7 px-1 pt-10">
-        {displayedProducts.map((product) => (
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-8 gap-4 px-1 pt-10">
+        {filteredProducts.map((product) => (
           <div
             key={product.id}
             className="flex flex-col items-center text-black"
           >
-            <div className="w-[180px] h-[150px] bg-black rounded-lg overflow-hidden flex-shrink-0">
+            <div className="w-full h-[150px] bg-black rounded-lg overflow-hidden flex-shrink-0">
               <img
                 src={product.image || image}
                 alt={product.name}
