@@ -2,9 +2,19 @@ import React, { useState } from "react";
 
 const UserProfile = () => {
   const [activeTab, setActiveTab] = useState("profile");
+  const [selectedImage, setSelectedImage] = useState(
+    "https://via.placeholder.com/200"
+  );
+  const handleImageUpload = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      const imageUrl = URL.createObjectURL(file);
+      setSelectedImage(imageUrl);
+    }
+  };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen p-6">
+    <div className="flex flex-col items-center justify-center lg:h-[100vh] md:h-[80vh] h-full lg:pt-2 md:pt-2 p-6">
       <div className="flex flex-col md:flex-row justify-center items-start space-y-6 md:space-y-0 md:space-x-10 w-full max-w-5xl">
         <div className="w-full md:w-1/4 bg-white shadow-md rounded-lg p-6">
           <h2 className="text-lg font-bold mb-4 text-center">
@@ -77,59 +87,60 @@ const UserProfile = () => {
         <div className="w-full md:w-3/4 bg-white shadow-md rounded-lg p-6">
           {activeTab === "profile" && (
             <>
-              <h2 className="text-xl font-semibold text-green-500 mb-4 text-center">
-                Edit Your Profile
-              </h2>
-              <form className="flex flex-col space-y-4">
+              <div className="flex justify-between items-center">
+                <h2 className="text-xl font-semibold text-green-500 mb-4 text-left">
+                  Edit Your Profile
+                </h2>
+                <div className="flex justify-center items-center">
+                  <div className="w-20 h-20 rounded-full overflow-hidden border-4 border-gray-300">
+                    <img
+                      className="w-full h-full object-cover cursor-pointer"
+                      src={selectedImage}
+                      alt="Profile"
+                      onClick={() =>
+                        document.getElementById("fileInput").click()
+                      }
+                    />
+                  </div>
+                  <input
+                    type="file"
+                    id="fileInput"
+                    className="hidden"
+                    accept="image/*"
+                    onChange={handleImageUpload}
+                  />
+                </div>
+              </div>
+
+              <form className="flex flex-col space-y-4 pt-5">
                 <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4">
                   <input
                     type="text"
                     placeholder="First Name"
                     className="border p-2 rounded flex-1"
-                    defaultValue="Md"
                   />
                   <input
                     type="text"
                     placeholder="Last Name"
                     className="border p-2 rounded flex-1"
-                    defaultValue="Rimel"
                   />
                 </div>
                 <input
                   type="email"
                   placeholder="Email"
                   className="border p-2 rounded"
-                  defaultValue="rimel1111@gmail.com"
                 />
-                <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4">
-                  <input
-                    type="password"
-                    placeholder="Current Password"
-                    className="border p-2 rounded flex-1"
-                  />
-                  <input
-                    type="password"
-                    placeholder="New Password"
-                    className="border p-2 rounded flex-1"
-                  />
-                  <input
-                    type="password"
-                    placeholder="Confirm New Password"
-                    className="border p-2 rounded flex-1"
-                  />
-                </div>
+                
                 <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4">
                   <input
                     type="text"
                     placeholder="Street Address*"
                     className="border p-2 rounded flex-1"
-                    defaultValue="Kingston, 5236, United States"
                   />
                   <input
                     type="text"
                     placeholder="Apartment, floor, etc. (optional)"
                     className="border p-2 rounded flex-1"
-                    defaultValue="Kingston, 5236, United States"
                   />
                 </div>
                 <input
@@ -137,6 +148,13 @@ const UserProfile = () => {
                   placeholder="City/Province"
                   className="border p-2 rounded"
                 />
+                <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4">
+                  <input
+                    type="password"
+                    placeholder="Password"
+                    className="border p-2 rounded flex-1"
+                  />
+                </div>
               </form>
             </>
           )}
@@ -179,7 +197,7 @@ const UserProfile = () => {
               <h2 className="text-xl font-semibold text-green-500 mb-4 text-center">
                 Extra Button
               </h2>
-              
+
               <p className="text-center text-gray-700">
                 Extra content goes here.
               </p>
