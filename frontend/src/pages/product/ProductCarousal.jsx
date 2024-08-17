@@ -9,23 +9,19 @@ const ImageSlider = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const totalIndicators = 5;
 
-  // Function to go to the next slide
   const nextSlide = () => {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
   };
 
-  // Function to go to the previous slide
   const prevSlide = () => {
     setCurrentIndex((prevIndex) => (prevIndex - 1 + images.length) % images.length);
   };
 
-  // Automatically change the slide every 5 seconds
   useEffect(() => {
-    const interval = setInterval(nextSlide, 5000); // 5000ms = 5 seconds
-    return () => clearInterval(interval); // Clear interval on component unmount
+    const interval = setInterval(nextSlide, 5000); 
+    return () => clearInterval(interval); 
   }, []);
 
-  // Handle indicator click
   const handleIndicatorClick = (index) => {
     setCurrentIndex(index % images.length);
   };
@@ -47,7 +43,6 @@ const ImageSlider = () => {
                 backgroundPosition: 'center',
               }}
             >
-              {/* For testing image visibility */}
               <img
                 src={image}
                 alt={`Slide ${index + 1}`}
@@ -57,7 +52,6 @@ const ImageSlider = () => {
           ))}
         </div>
       </div>
-      {/* Indicators */}
       <div className="absolute lg:bottom-16 w-full flex justify-center space-x-2 p-2">
         {Array.from({ length: totalIndicators }).map((_, index) => (
           <div

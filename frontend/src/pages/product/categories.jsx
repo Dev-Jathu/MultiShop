@@ -6,44 +6,40 @@ import { ProductData } from "../../assets/data/product";
 const ProductPage = () => {
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [displayedProducts, setDisplayedProducts] = useState([]);
-  const [itemCount, setItemCount] = useState(18); // Default item count for screen size
+  const [itemCount, setItemCount] = useState(18); 
   const navigate = useNavigate();
 
-  // Function to update the number of items to display based on screen size
   const updateItemCount = () => {
     if (window.innerWidth >= 1536) {
-      setItemCount(12); // 2XL screens
+      setItemCount(12); 
     } else if (window.innerWidth >= 1280) {
-      setItemCount(18); // XL screens
+      setItemCount(18); 
     } else if (window.innerWidth >= 1024) {
-      setItemCount(14); // LG screens
+      setItemCount(14); 
     } else if (window.innerWidth >= 768) {
-      setItemCount(9); // MD screens
+      setItemCount(9); 
     } else {
-      setItemCount(6); // Mobile screens
+      setItemCount(6); 
     }
   };
 
-  // Update item count on window resize
   useEffect(() => {
-    updateItemCount(); // Initial check
-    window.addEventListener("resize", updateItemCount); // Update on resize
+    updateItemCount(); 
+    window.addEventListener("resize", updateItemCount); 
     return () => {
-      window.removeEventListener("resize", updateItemCount); // Cleanup on unmount
+      window.removeEventListener("resize", updateItemCount);
     };
   }, []);
 
-  // Update displayed products when category or screen size changes
   useEffect(() => {
     const categoryItemCount = {
       All: itemCount,
-      Groceries: 12, // Example: Show 12 items for Groceries
+      Groceries: 12, 
       Meat: itemCount,
       Drinks: itemCount,
       Bread: itemCount,
     };
 
-    // Filter products by category
     const filteredProducts =
       selectedCategory === "All"
         ? ProductData
@@ -51,7 +47,6 @@ const ProductPage = () => {
             (product) => product.category === selectedCategory
           );
 
-    // Slice products based on the number of items to display
     setDisplayedProducts(
       filteredProducts.slice(
         0,

@@ -1,33 +1,30 @@
 
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom"; // Import useNavigate
+import { useNavigate } from "react-router-dom";
 import image from "../../assets/images/lime.png";
 import { ProductData } from "../../assets/data/product";
 
 const ProductPage = () => {
   const [selectedCategory, setSelectedCategory] = useState("All");
-  const [initialItemCount, setInitialItemCount] = useState(18); // Default for desktop
-  const navigate = useNavigate(); // Initialize useNavigate
+  const [initialItemCount, setInitialItemCount] = useState(18); 
+  const navigate = useNavigate(); 
 
   useEffect(() => {
     const updateItemCount = () => {
       if (window.innerWidth >= 768 && window.innerWidth < 1024) {
-        // Tablet mode
         setInitialItemCount(9);
       } else if (window.innerWidth < 768) {
-        // Mobile mode
         setInitialItemCount(6);
       } else {
-        // Desktop mode
         setInitialItemCount();
       }
     };
 
-    updateItemCount(); // Initial check
-    window.addEventListener("resize", updateItemCount); // Update on resize
+    updateItemCount(); 
+    window.addEventListener("resize", updateItemCount); 
 
     return () => {
-      window.removeEventListener("resize", updateItemCount); // Cleanup on unmount
+      window.removeEventListener("resize", updateItemCount); 
     };
   }, []);
 

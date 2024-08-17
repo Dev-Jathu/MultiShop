@@ -5,33 +5,27 @@ import { ProductData } from "../../assets/data/product";
 
 const LimeCard = () => {
   const navigate = useNavigate();
-  const [initialItemCount, setInitialItemCount] = useState(16); // Default for lg
-
+  const [initialItemCount, setInitialItemCount] = useState(16); 
   useEffect(() => {
     const updateItemCount = () => {
       if (window.innerWidth >= 1536) {
-        // 2XL screens
         setInitialItemCount(12);
       } else if (window.innerWidth >= 1280) {
-        // XL screens
         setInitialItemCount(18);
       } else if (window.innerWidth >= 1024) {
-        // LG screens
         setInitialItemCount(14);
       } else if (window.innerWidth >= 768) {
-        // MD screens
         setInitialItemCount(6);
       } else {
-        // Mobile screens
-        setInitialItemCount(15); // For mobile view, ensure 3 products per row
+        setInitialItemCount(15);
       }
     };
 
-    updateItemCount(); // Initial check
-    window.addEventListener("resize", updateItemCount); // Update on resize
+    updateItemCount(); 
+    window.addEventListener("resize", updateItemCount); 
 
     return () => {
-      window.removeEventListener("resize", updateItemCount); // Cleanup on unmount
+      window.removeEventListener("resize", updateItemCount); 
     };
   }, []);
 
@@ -39,13 +33,12 @@ const LimeCard = () => {
     navigate("/all-Offers");
   };
 
-  // Calculate the discounted price
   const calculateDiscountPrice = (price, discount) => {
     if (!discount) return price;
 
     const discountValue = parseFloat(discount) / 100;
     const discountedPrice = price * (1 - discountValue);
-    return discountedPrice.toFixed(2); // Convert to string with 2 decimal places
+    return discountedPrice.toFixed(2); 
   };
 
   const displayedOffers = ProductData.slice(0, initialItemCount);
@@ -70,12 +63,10 @@ const LimeCard = () => {
               key={Offer.id}
               className="flex-shrink-0 w-[200px] bg-gray-100 p-4 rounded-lg shadow-lg transition-transform transform hover:scale-105"
             >
-              {/* Discount Label */}
               <div className="absolute top-1 left-1 bg-green-600 text-white text-xs px-3 py-2 rounded-tr-md rounded-bl-md">
                 {Offer.discount}
               </div>
 
-              {/* Offer Image */}
               <div className="w-full h-[150px] bg-black rounded-t-lg overflow-hidden flex items-center justify-center">
                 <img
                   src={Offer.image || image}
@@ -84,7 +75,6 @@ const LimeCard = () => {
                 />
               </div>
 
-              {/* Offer Details */}
               <div className="pt-2 text-left">
                 <div className="flex gap-5">
                   <p className="text-[18px] font-bold text-gray-800 bg-primary w-24 flex items-center text-center rounded-[5px] px-1">
@@ -103,7 +93,6 @@ const LimeCard = () => {
                 <p className="text-sm text-gray-600 mt-1">{Offer.rating}</p>
               </div>
 
-              {/* Action Buttons */}
               <div className="flex justify-between mt-3 w-full text-[25px] px-2">
                 <button className="text-gray-800 hover:text-green-500">
                   <i className="fa-regular fa-heart"></i>
@@ -130,12 +119,10 @@ const LimeCard = () => {
               key={Offer.id}
               className="relative flex flex-col items-center bg-gray-100 p-4 rounded-lg shadow-lg transition-transform transform hover:scale-105"
             >
-              {/* Discount Label */}
               <div className="absolute top-1 left-1 bg-green-600 text-white text-xs px-3 py-2 rounded-tr-md rounded-bl-md">
                 {Offer.discount}
               </div>
 
-              {/* Offer Image */}
               <div className="w-[200px] h-[150px] bg-black rounded-t-lg overflow-hidden flex items-center justify-center">
                 <img
                   src={Offer.image || image}
@@ -144,7 +131,6 @@ const LimeCard = () => {
                 />
               </div>
 
-              {/* Offer Details */}
               <div className="w-[200px] pt-2 text-left">
                 <div className=" flex gap-5">
                   <p className="text-[18px] font-bold text-gray-800 bg-primary w-24 flex items-center text-center rounded-[5px] px-1">
@@ -163,7 +149,6 @@ const LimeCard = () => {
                 <p className="text-sm text-gray-600 mt-1">{Offer.rating}</p>
               </div>
 
-              {/* Action Buttons */}
               <div className="flex justify-between mt-3 w-full text-[25px] px-2">
                 <button className="text-gray-800 hover:text-green-500">
                   <i className="fa-regular fa-heart"></i>

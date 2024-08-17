@@ -10,12 +10,12 @@ const ProductDetail = () => {
 
   useEffect(() => {
     if (!product) {
-      navigate("/"); // Redirect to home if no product data
+      navigate("/"); 
     }
   }, [product, navigate]);
 
   if (!product) {
-    return null; // Fallback UI
+    return null; 
   }
 
   const increaseQuantity = () => {
