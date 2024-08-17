@@ -67,7 +67,7 @@ const loginUser = async (req, res) => {
       name: user.name,
       email: user.email,
       token,
-      message : 'Successfully Login'
+      message: 'Successfully Login',
     });
   } catch (err) {
     res.status(500).json({ error: 'Server Error' });

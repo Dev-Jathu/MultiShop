@@ -32,7 +32,6 @@ const LoginForm = () => {
     e.preventDefault();
 
     if (validateForm()) {
-      // Proceed with form submission logic
       console.log("Form submitted");
     }
   };
