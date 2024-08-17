@@ -10,28 +10,23 @@ const LimeCard = () => {
   useEffect(() => {
     const updateItemCount = () => {
       if (window.innerWidth >= 1536) {
-        // 2XL screens
         setInitialItemCount(12);
       } else if (window.innerWidth >= 1280) {
-        // XL screens
         setInitialItemCount(18);
       } else if (window.innerWidth >= 1024) {
-        // LG screens
         setInitialItemCount(14);
       } else if (window.innerWidth >= 768) {
-        // MD screens
         setInitialItemCount(6);
       } else {
-        // Mobile screens
-        setInitialItemCount(15); // For mobile view, ensure 3 products per row
+        setInitialItemCount(15); 
       }
     };
 
-    updateItemCount(); // Initial check
-    window.addEventListener("resize", updateItemCount); // Update on resize
+    updateItemCount();
+    window.addEventListener("resize", updateItemCount); 
 
     return () => {
-      window.removeEventListener("resize", updateItemCount); // Cleanup on unmount
+      window.removeEventListener("resize", updateItemCount); 
     };
   }, []);
 
@@ -39,7 +34,7 @@ const LimeCard = () => {
     const { rating, ...rest } = product;
     const serializedProduct = {
       ...rest,
-      rating: rating.length, // Convert rating array to a number
+      rating: rating.length, 
     };
     navigate("/ProductDetail", { state: { product: serializedProduct } });
   };

@@ -5,20 +5,17 @@ function cart() {
     <div>
       <div className="container mx-auto pt-[250px] p-4 h-[100vh]">
         <div className="grid grid-cols-5 gap-4 items-center bg-white p-4 rounded-lg shadow-md">
-          {/* Product Image and Name */}
           <div className="flex items-center">
             <img
-              src="path_to_image" // replace with your image path
+              src="path_to_image"
               alt="Leg piece"
               className="w-12 h-12 object-cover rounded-full mr-4"
             />
             <span className="text-lg font-medium">Leg piece</span>
           </div>
 
-          {/* Price */}
           <div className="text-lg font-semibold">$650</div>
 
-          {/* Amount Control */}
           <div className="flex items-center space-x-2">
             <button className="w-8 h-8 flex justify-center items-center bg-white border border-gray-300 text-gray-600 hover:bg-gray-100 rounded">
               –
@@ -31,10 +28,8 @@ function cart() {
             </button>
           </div>
 
-          {/* Total */}
           <div className="text-lg font-semibold">$650</div>
 
-          {/* Buy Button */}
           <div>
             <button className="px-4 py-2 bg-green-500 text-white font-semibold rounded hover:bg-green-600">
               Buy Now

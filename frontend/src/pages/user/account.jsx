@@ -6,7 +6,6 @@ const UserProfile = () => {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen p-6">
       <div className="flex flex-col md:flex-row justify-center items-start space-y-6 md:space-y-0 md:space-x-10 w-full max-w-5xl">
-        {/* Sidebar Menu */}
         <div className="w-full md:w-1/4 bg-white shadow-md rounded-lg p-6">
           <h2 className="text-lg font-bold mb-4 text-center">
             Manage My Account
@@ -75,7 +74,6 @@ const UserProfile = () => {
           </ul>
         </div>
 
-        {/* Profile Form */}
         <div className="w-full md:w-3/4 bg-white shadow-md rounded-lg p-6">
           {activeTab === "profile" && (
             <>
@@ -148,7 +146,6 @@ const UserProfile = () => {
               <h2 className="text-xl font-semibold text-green-500 mb-4 text-center">
                 My Payment Options
               </h2>
-              {/* Add content for My Payment Options */}
               <p className="text-center text-gray-700">
                 Payment options content goes here.
               </p>
@@ -160,7 +157,6 @@ const UserProfile = () => {
               <h2 className="text-xl font-semibold text-green-500 mb-4 text-center">
                 My Returns
               </h2>
-              {/* Add content for My Returns */}
               <p className="text-center text-gray-700">
                 Returns content goes here.
               </p>
@@ -172,7 +168,6 @@ const UserProfile = () => {
               <h2 className="text-xl font-semibold text-green-500 mb-4 text-center">
                 My Wishlist
               </h2>
-              {/* Add content for My Wishlist */}
               <p className="text-center text-gray-700">
                 Wishlist content goes here.
               </p>
@@ -184,7 +179,6 @@ const UserProfile = () => {
               <h2 className="text-xl font-semibold text-green-500 mb-4 text-center">
                 Extra Button
               </h2>
-              {/* Add content for Extra Button */}
               
               <p className="text-center text-gray-700">
                 Extra content goes here.
