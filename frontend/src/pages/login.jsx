@@ -45,7 +45,6 @@ const LoginForm = () => {
       } finally {
         setLoading(false);
       }
-      console.log("Form submitted");
     }
   };
 
