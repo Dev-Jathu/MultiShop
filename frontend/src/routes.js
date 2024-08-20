@@ -20,6 +20,7 @@ import Cart from "../src/pages/user/cart.jsx";
 import Alloffers from "./pages/product/allOffers.jsx";
 import Admin from "./pages/admin/dashboard.jsx";
 import Checkout from "./pages/product/Checkout.jsx";
+import Productlist from './pages/admin/productlist.jsx'
 
 function App() {
   return (
@@ -35,7 +36,7 @@ function RoutesComponent() {
 
   return (
     <>
-      {!isAdminRoute && <Header />}
+      {(!isAdminRoute && <Header />)}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
@@ -52,8 +53,9 @@ function RoutesComponent() {
         <Route path="/cart" element={<Cart />} />
         <Route path="/Admin" element={<Admin />} />
         <Route path="/checkout" element={<Checkout />} />
+        <Route path="/productlist" element={<Productlist />} />
       </Routes>
-      {!isAdminRoute && <Footer />}
+      {(!isAdminRoute && <Footer />)}
     </>
   );
 }

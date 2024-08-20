@@ -1,17 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faTachometerAlt,
   faShoppingCart,
   faUsers,
+  faUser ,
   faCog,
-  faFile,
-  faThLarge,
   faBell,
   faSignOutAlt,
   faUserCircle,
   faEdit,
   faBars,
+  faClipboardList, 
+  faImages, 
 } from "@fortawesome/free-solid-svg-icons";
 
 const AdminPanel = () => {
@@ -23,7 +24,6 @@ const AdminPanel = () => {
 
   return (
     <div className="flex h-screen bg-gray-100">
-      {/* Sidebar */}
       <aside
         className={`${
           isSidebarOpen ? "w-64" : "w-16"
@@ -42,24 +42,30 @@ const AdminPanel = () => {
           <SidebarItem
             icon={faShoppingCart}
             label="Ecommerce"
-            submenu={["Category", "Attributes", "Order"]}
+            submenu={["Add Product", "Product list"]}
           />
           <SidebarItem
             icon={faUsers}
-            label="User"
-            submenu={["Roles", "Gallery", "Report"]}
+            label="Categories"
+            submenu={["Category list", "Add New Product"]}
           />
           <SidebarItem
-            icon={faCog}
-            label="Setting"
-            submenu={["Location", "Setting"]}
+            icon={faClipboardList}
+            label="Order"
+            submenu={["Order list"]}
           />
-          <SidebarItem icon={faFile} label="Pages" />
-          <SidebarItem icon={faThLarge} label="Components" />
+          <SidebarItem
+            icon={faUser }
+            label="User"
+            submenu={["All user", "Add New User"]}
+          />
+          <SidebarItem icon={faImages} label="Gallery" />
+          <SidebarItem icon={faCog} label="Setting" />
         </nav>
       </aside>
 
       {/* Main Content */}
+
       <div className="flex-1 flex flex-col">
         <TopBar />
         <main className="flex-1 p-6 bg-gray-100">
@@ -125,23 +131,58 @@ const TopBar = () => (
 
 const Profile = () => {
   const [showMenu, setShowMenu] = useState(false);
+  const [profileImage, setProfileImage] = useState("");
+  const menuRef = useRef(null);
+  const fileInputRef = useRef(null);
 
   const handleProfileClick = () => {
     setShowMenu(!showMenu);
   };
 
-  const handleFileUpload = () => {
-    // Logic for handling file upload
+  const handleFileUpload = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setProfileImage(reader.result);
+      };
+      reader.readAsDataURL(file);
+    }
   };
 
+  const handleChangeProfileClick = () => {
+    fileInputRef.current.click();
+  };
+
+  const handleClickOutside = (event) => {
+    if (menuRef.current && !menuRef.current.contains(event.target)) {
+      setShowMenu(false);
+    }
+  };
+
+  useEffect(() => {
+    if (showMenu) {
+      document.addEventListener("mousedown", handleClickOutside);
+      window.addEventListener("scroll", () => setShowMenu(false));
+    } else {
+      document.removeEventListener("mousedown", handleClickOutside);
+      window.removeEventListener("scroll", () => setShowMenu(false));
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      window.removeEventListener("scroll", () => setShowMenu(false));
+    };
+  }, [showMenu]);
+
   return (
-    <div className="relative">
+    <div className="relative" ref={menuRef}>
       <div
         onClick={handleProfileClick}
         className="flex items-center cursor-pointer"
       >
         <img
-          src="/path-to-profile.jpg"
+          src={profileImage}
           alt="Profile"
           className="w-8 h-8 rounded-full"
         />
@@ -155,7 +196,7 @@ const Profile = () => {
           </button>
           <button
             className="w-full p-2 hover:bg-gray-200 flex items-center"
-            onClick={handleFileUpload}
+            onClick={handleChangeProfileClick}
           >
             <FontAwesomeIcon icon={faEdit} className="w-5 h-5 mr-2" />
             Change Profile
@@ -166,6 +207,13 @@ const Profile = () => {
           </button>
         </div>
       )}
+      <input
+        type="file"
+        ref={fileInputRef}
+        style={{ display: "none" }}
+        onChange={handleFileUpload}
+        accept="image/*"
+      />
     </div>
   );
 };
