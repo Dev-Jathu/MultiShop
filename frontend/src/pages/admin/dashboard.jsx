@@ -4,22 +4,81 @@ import {
   faTachometerAlt,
   faShoppingCart,
   faUsers,
-  faUser ,
+  faUser,
   faCog,
   faBell,
   faSignOutAlt,
   faUserCircle,
   faEdit,
   faBars,
-  faClipboardList, 
-  faImages, 
+  faClipboardList,
+  faImages,
+  faChevronDown,
 } from "@fortawesome/free-solid-svg-icons";
+import ProductTable from "./productlist";
 
 const AdminPanel = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const [activePage, setActivePage] = useState("Dashboard");
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
+  };
+
+  const renderActivePage = () => {
+    switch (activePage) {
+      case "Dashboard":
+        return (
+          <div>
+            Welcome to the Dashboard! Here, you can view your overall statistics
+            and recent activities.
+          </div>
+        );
+      case "ProductList":
+        return <ProductTable />;
+      case "Categories":
+        return (
+          <div>
+            Manage your Categories here. Add, edit, or remove categories to keep
+            your product list organized.
+          </div>
+        );
+      case "OrderList":
+        return (
+          <div>
+            View and manage all Orders from your customers. Keep track of order
+            statuses and details.
+          </div>
+        );
+      case "AllUsers":
+        return (
+          <div>
+            Manage your Users here. View the list of all registered users, and
+            manage their permissions.
+          </div>
+        );
+      case "Gallery":
+        return (
+          <div>
+            Welcome to the Gallery! Add and organize your images and media files
+            here.
+          </div>
+        );
+      case "Settings":
+        return (
+          <div>
+            Adjust your Settings here. Manage account settings, preferences, and
+            more.
+          </div>
+        );
+      default:
+        return (
+          <div>
+            Welcome to the Dashboard! Here, you can view your overall statistics
+            and recent activities.
+          </div>
+        );
+    }
   };
 
   return (
@@ -37,59 +96,101 @@ const AdminPanel = () => {
             <FontAwesomeIcon icon={faBars} />
           </button>
         </div>
-        <nav className={`mt-4 ${!isSidebarOpen && "hidden"}`}>
-          <SidebarItem icon={faTachometerAlt} label="Dashboard" />
+        <nav className="mt-4">
+          <SidebarItem
+            icon={faTachometerAlt}
+            label="Dashboard"
+            onClick={() => setActivePage("Dashboard")}
+          />
           <SidebarItem
             icon={faShoppingCart}
             label="Ecommerce"
-            submenu={["Add Product", "Product list"]}
+            submenu={[
+              {
+                label: "Add Product",
+                onClick: () => alert("Add Product Clicked!"),
+              },
+              {
+                label: "Product list",
+                onClick: () => setActivePage("ProductList"),
+              },
+            ]}
           />
           <SidebarItem
             icon={faUsers}
             label="Categories"
-            submenu={["Category list", "Add New Product"]}
+            submenu={[
+              {
+                label: "Category list",
+                onClick: () => setActivePage("Categories"),
+              },
+              {
+                label: "Add New Product",
+                onClick: () => alert("Add New Product Clicked!"),
+              },
+            ]}
           />
           <SidebarItem
             icon={faClipboardList}
             label="Order"
-            submenu={["Order list"]}
+            submenu={[
+              {
+                label: "Order list",
+                onClick: () => setActivePage("OrderList"),
+              },
+            ]}
           />
           <SidebarItem
-            icon={faUser }
+            icon={faUser}
             label="User"
-            submenu={["All user", "Add New User"]}
+            submenu={[
+              { label: "All user", onClick: () => setActivePage("AllUsers") },
+              {
+                label: "Add New User",
+                onClick: () => alert("Add New User Clicked!"),
+              },
+            ]}
           />
-          <SidebarItem icon={faImages} label="Gallery" />
-          <SidebarItem icon={faCog} label="Setting" />
+          <SidebarItem
+            icon={faImages}
+            label="Gallery"
+            onClick={() => setActivePage("Gallery")}
+          />
+          <SidebarItem
+            icon={faCog}
+            label="Setting"
+            onClick={() => setActivePage("Settings")}
+          />
         </nav>
       </aside>
 
-      {/* Main Content */}
-
       <div className="flex-1 flex flex-col">
         <TopBar />
-        <main className="flex-1 p-6 bg-gray-100">
-          {/* Your content goes here */}
+        <main className="flex-1 p-6 bg-gray-100 overflow-auto">
+          {renderActivePage()}
         </main>
       </div>
     </div>
   );
 };
 
-const SidebarItem = ({ icon, label, submenu }) => {
+const SidebarItem = ({ icon, label, submenu, onClick }) => {
   const [open, setOpen] = useState(false);
 
   return (
     <div>
       <div
         className="flex items-center p-4 text-gray-700 hover:bg-gray-200 cursor-pointer"
-        onClick={() => setOpen(!open)}
+        onClick={() => {
+          setOpen(!open);
+          if (onClick) onClick();
+        }}
       >
         <FontAwesomeIcon icon={icon} className="w-5 h-5" />
         <span className="ml-4">{label}</span>
         {submenu && (
           <FontAwesomeIcon
-            icon="chevron-down"
+            icon={faChevronDown}
             className={`w-4 h-4 ml-auto transition-transform ${
               open ? "transform rotate-180" : ""
             }`}
@@ -102,8 +203,9 @@ const SidebarItem = ({ icon, label, submenu }) => {
             <div
               key={index}
               className="p-2 text-gray-600 hover:bg-gray-200 cursor-pointer"
+              onClick={item.onClick}
             >
-              {item}
+              {item.label}
             </div>
           ))}
         </div>
@@ -199,21 +301,20 @@ const Profile = () => {
             onClick={handleChangeProfileClick}
           >
             <FontAwesomeIcon icon={faEdit} className="w-5 h-5 mr-2" />
-            Change Profile
+            Change Profile Picture
           </button>
+          <input
+            type="file"
+            ref={fileInputRef}
+            onChange={handleFileUpload}
+            style={{ display: "none" }}
+          />
           <button className="w-full p-2 hover:bg-gray-200 flex items-center">
             <FontAwesomeIcon icon={faSignOutAlt} className="w-5 h-5 mr-2" />
             Logout
           </button>
         </div>
       )}
-      <input
-        type="file"
-        ref={fileInputRef}
-        style={{ display: "none" }}
-        onChange={handleFileUpload}
-        accept="image/*"
-      />
     </div>
   );
 };

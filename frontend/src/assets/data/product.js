@@ -21,34 +21,16 @@ export const ProductData = [
     image: image1,
     price: "1800ch",
     name: "Vegetable",
-    rating: [
-      <i class="fa fa-star" aria-hidden="true"></i>,
-      <i class="fa fa-star" aria-hidden="true"></i>,
-      <i class="fa fa-star" aria-hidden="true"></i>,
-      <i class="fa fa-star" aria-hidden="true"></i>,
-      <i class="fa fa-star" aria-hidden="true"></i>,
-    ],
+   
     description:
       "This product is a lemon, very energetic and refreshing. Perfect for adding a zesty flavor to your dishes or drinks.",
     category: "Groceries",
-    stock: 100,
     supplier: "Fresh Farms",
-    reviews: [
-      {
-        user: "JohnDoe",
-        comment: "Amazing quality! The lemons were fresh and juicy.",
-        rating: 5,
-      },
-      {
-        user: "JaneSmith",
-        comment: "A bit too sour for my taste, but still good quality.",
-        rating: 4,
-      },
-    ],
-    discount: "10%",
+    
+  
 
     tags: ["Citrus", "Fresh", "Organic"],
-    discount_price: "",
+  
   },
   {
     id: "1541",
