@@ -13,6 +13,8 @@ import Contact from "./pages/user/contactpage";
 import Myaccount from "./pages/user/account"
 import Cart from '../src/pages/user/cart.jsx'
 import Alloffers from './pages/product/allOffers.jsx'
+import Admin from "./pages/admin/dashboard.jsx";
+import Checkout from "./pages/product/Checkout.jsx";
 function routes() {
   return (
     <Router>
@@ -31,6 +33,8 @@ function routes() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/my-account" element={<Myaccount />} />
         <Route path="/cart" element={<Cart />} />
+        <Route path="/admin" element={<Admin />} />
+        <Route path="/checkout" element={<Checkout />} />
       </Routes>
       <Footer />
     </Router>

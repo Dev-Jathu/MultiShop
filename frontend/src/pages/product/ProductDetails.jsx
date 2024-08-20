@@ -7,15 +7,16 @@ const ProductDetail = () => {
   const product = location.state?.product;
 
   const [quantity, setQuantity] = useState(1);
+  const [cart, setCart] = useState([]);
 
   useEffect(() => {
     if (!product) {
-      navigate("/"); 
+      navigate("/");
     }
   }, [product, navigate]);
 
   if (!product) {
-    return null; 
+    return null;
   }
 
   const increaseQuantity = () => {
@@ -26,6 +27,12 @@ const ProductDetail = () => {
     if (quantity > 1) {
       setQuantity(quantity - 1);
     }
+  };
+
+  const handleBuyNow = () => {
+    const newCartItem = { ...product, quantity };
+    setCart([...cart, newCartItem]);
+    navigate("/checkout", { state: { cart: [...cart, newCartItem] } });
   };
 
   return (
@@ -75,7 +82,10 @@ const ProductDetail = () => {
             >
               +
             </button>
-            <button className="bg-green-600 text-white px-4 py-2 rounded-lg">
+            <button
+              onClick={handleBuyNow}
+              className="bg-green-600 text-white px-4 py-2 rounded-lg"
+            >
               Buy Now
             </button>
           </div>

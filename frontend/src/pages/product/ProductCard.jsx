@@ -8,7 +8,7 @@ const LimeCard = () => {
   const [displayedProducts, setDisplayedProducts] = useState([]);
 
   useEffect(() => {
-    const numberOfProducts = 16; // Total products to display
+    const numberOfProducts = 14; // Total products to display
     setDisplayedProducts(ProductData.slice(0, numberOfProducts));
   }, []);
 
@@ -34,7 +34,7 @@ const LimeCard = () => {
         </div>
       </div>
 
-      <div className="flex overflow-x-auto gap-4 py-5 sm:gap-4 lg:grid lg:grid-cols-8 md:grid-cols-4 sm:grid-cols-2 lg:flex-none">
+      <div className="flex overflow-x-auto gap-4 py-5 sm:gap-4 lg:grid lg:grid-cols-7 md:grid-cols-4 sm:grid-cols-2 lg:flex-none">
         {displayedProducts.map((product) => (
           <div
             key={product.id}

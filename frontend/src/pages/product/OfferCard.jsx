@@ -10,7 +10,7 @@ const LimeCard = () => {
   useEffect(() => {
     const updateItemCount = () => {
       if (window.innerWidth >= 1536) {
-        setInitialItemCount(16);
+        setInitialItemCount(14);
       } else if (window.innerWidth >= 1280) {
         setInitialItemCount(16);
       } else if (window.innerWidth >= 1024) {
@@ -62,7 +62,7 @@ const LimeCard = () => {
           window.innerWidth < 768
             ? "flex overflow-x-auto gap-4 py-5"
             : "grid gap-4 pt-5"
-        } grid-cols-1 sm:grid-cols-3 lg:grid-cols-8`}
+        } grid-cols-1 sm:grid-cols-3 lg:grid-cols-7`}
       >
         {displayedOffers.map((Offer) => (
           <div
