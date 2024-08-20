@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import Google from '../assets/images/Google.png';
-import useAuth from '../hooks/useAuth';
 
 const SignUpForm = () => {
   const [name, setName] = useState('');
@@ -12,7 +11,6 @@ const SignUpForm = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [errors, setErrors] = useState({ password: '', confirmPassword: '' });
   const [passwordValid, setPasswordValid] = useState(false);
-  const { register } = useAuth();
 
   const validatePassword = (password) => {
     return /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])/.test(password);
@@ -58,7 +56,6 @@ const SignUpForm = () => {
       confirmPassword
     ) {
       try {
-        await register({ name, email, password });
         console.log('Registration successful');
       } catch (err) {
         console.error('Registration failed:', err);

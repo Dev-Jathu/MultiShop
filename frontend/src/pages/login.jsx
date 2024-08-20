@@ -1,13 +1,11 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import  useAuth  from '../hooks/useAuth';
 
 const LoginForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState({ email: '', password: '' });
   const [loading, setLoading] = useState(false);
-  const { login } = useAuth();
   const navigate = useNavigate();
 
   const validateEmail = (email) => {
@@ -38,7 +36,6 @@ const LoginForm = () => {
     if (validateForm()) {
       try {
         setLoading(true);
-        await login(email, password);
         navigate('/');
       } catch (error) {
         setErrors({ ...errors, email: 'Login failed. Please try again.' });
