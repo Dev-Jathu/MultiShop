@@ -1,61 +1,75 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import { BASE_URL } from '../config';
 import Google from '../assets/images/Google.png';
 
 const SignUpForm = () => {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    password: '',
+    confirmPassword: '',
+  });
   const [showPassword, setShowPassword] = useState(false);
   const [errors, setErrors] = useState({ password: '', confirmPassword: '' });
   const [passwordValid, setPasswordValid] = useState(false);
 
+  const navigate = useNavigate();
+
+  // Password Validation
   const validatePassword = (password) => {
     return /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])/.test(password);
   };
 
-  const handlePasswordChange = (e) => {
-    const newPassword = e.target.value;
-    setPassword(newPassword);
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
 
-    if (validatePassword(newPassword)) {
-      setErrors((prevErrors) => ({ ...prevErrors, password: '' }));
-      setPasswordValid(true);
-    } else {
-      setErrors((prevErrors) => ({
-        ...prevErrors,
-        password:
-          'Password must include capital letters, numbers, and symbols.',
-      }));
-      setPasswordValid(false);
+    if (name === 'password') {
+      if (validatePassword(value)) {
+        setErrors((prevErrors) => ({ ...prevErrors, password: '' }));
+        setPasswordValid(true);
+      } else {
+        setErrors((prevErrors) => ({
+          ...prevErrors,
+          password:
+            'Password must include capital letters, numbers, and symbols.',
+        }));
+        setPasswordValid(false);
+      }
     }
-  };
 
-  const handleConfirmPasswordChange = (e) => {
-    const newConfirmPassword = e.target.value;
-    setConfirmPassword(newConfirmPassword);
-
-    if (newConfirmPassword !== password) {
-      setErrors((prevErrors) => ({
-        ...prevErrors,
-        confirmPassword: 'Passwords do not match.',
-      }));
-    } else {
-      setErrors((prevErrors) => ({ ...prevErrors, confirmPassword: '' }));
+    if (name === 'confirmPassword') {
+      if (value !== formData.password) {
+        setErrors((prevErrors) => ({
+          ...prevErrors,
+          confirmPassword: 'Passwords do not match.',
+        }));
+      } else {
+        setErrors((prevErrors) => ({ ...prevErrors, confirmPassword: '' }));
+      }
     }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (
-      !errors.password &&
-      !errors.confirmPassword &&
-      password &&
-      confirmPassword
-    ) {
+    if (!errors.password && !errors.confirmPassword && passwordValid) {
       try {
+        const response = await fetch(`${BASE_URL}/users/register`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(formData),
+        });
+
+        if (!response.ok) {
+          const { message } = await response.json();
+          throw new Error(message);
+        }
+
+        navigate('/my-account');
         console.log('Registration successful');
       } catch (err) {
         console.error('Registration failed:', err);
@@ -71,17 +85,19 @@ const SignUpForm = () => {
         <form onSubmit={handleSubmit}>
           <input
             type='text'
+            name='name'
             placeholder='Name'
-            value={name}
-            onChange={(e) => setName(e.target.value)}
+            value={formData.name}
+            onChange={handleChange}
             className='w-full p-2 mb-4 border border-gray-300 rounded'
             required
           />
           <input
             type='email'
+            name='email'
             placeholder='Email or Phone Number'
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            value={formData.email}
+            onChange={handleChange}
             className='w-full p-2 mb-4 border border-gray-300 rounded'
             required
           />
@@ -89,9 +105,10 @@ const SignUpForm = () => {
           <div className='relative mb-4'>
             <input
               type={showPassword ? 'text' : 'password'}
+              name='password'
               placeholder='Password'
-              value={password}
-              onChange={handlePasswordChange}
+              value={formData.password}
+              onChange={handleChange}
               className='w-full p-2 border border-gray-300 rounded'
               required
             />
@@ -109,9 +126,10 @@ const SignUpForm = () => {
           <div className='relative mb-6'>
             <input
               type={showPassword ? 'text' : 'password'}
+              name='confirmPassword'
               placeholder='Retype Password'
-              value={confirmPassword}
-              onChange={handleConfirmPasswordChange}
+              value={formData.confirmPassword}
+              onChange={handleChange}
               disabled={!passwordValid}
               className={`w-full p-2 border border-gray-300 rounded ${
                 !passwordValid ? 'cursor-not-allowed' : ''
@@ -140,7 +158,10 @@ const SignUpForm = () => {
           </button>
         </form>
         <div className='flex items-center justify-center mt-4'>
-          <button className='w-full flex items-center justify-center border border-gray-300 py-2 rounded-lg'>
+          <button
+            type='submit'
+            className='w-full flex items-center justify-center border border-gray-300 py-2 rounded-lg'
+          >
             <img
               src={Google}
               alt='Google Icon'

@@ -25,7 +25,7 @@ const productSchema = new mongoose.Schema(
       enum: ['yes', 'no'],
       default: ['no'],
     },
-    ingrdients: {
+    ingredients: {
       type: [String],
       required: true,
     },
