@@ -16,6 +16,7 @@ import {
   faChevronDown,
 } from "@fortawesome/free-solid-svg-icons";
 import ProductTable from "./productlist";
+import Addproduct from './Addproduct'
 
 const AdminPanel = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
@@ -36,13 +37,10 @@ const AdminPanel = () => {
         );
       case "ProductList":
         return <ProductTable />;
+      case "Addproduct":
+        return <Addproduct />;
       case "Categories":
-        return (
-          <div>
-            Manage your Categories here. Add, edit, or remove categories to keep
-            your product list organized.
-          </div>
-        );
+        return;
       case "OrderList":
         return (
           <div>
@@ -108,7 +106,7 @@ const AdminPanel = () => {
             submenu={[
               {
                 label: "Add Product",
-                onClick: () => alert("Add Product Clicked!"),
+                onClick: () => setActivePage("Addproduct"),
               },
               {
                 label: "Product list",

@@ -11,8 +11,7 @@ import image8 from "../images/products (8).png"
 import image9 from "../images/products (9).png"
 import image11 from "../images/category (1).png"
 import image12 from "../images/category (2).png"
-import image13 from "../images/category (3).png";
-import image14 from "../images/Chicken.png";
+
 
 
 export const ProductData = [
@@ -47,7 +46,6 @@ export const ProductData = [
     description:
       "This product is a lemon, very energetic and refreshing. Perfect for adding a zesty flavor to your dishes or drinks.",
     category: "Fruits",
-    stock: 100,
     supplier: "Fresh Farms",
     reviews: [
       {
@@ -81,7 +79,7 @@ export const ProductData = [
     description:
       "This product is a lemon, very energetic and refreshing. Perfect for adding a zesty flavor to your dishes or drinks.",
     category: "Drinks",
-    stock: 100,
+    stock: 0,
     supplier: "Fresh Farms",
     reviews: [
       {
