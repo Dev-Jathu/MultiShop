@@ -1,33 +1,34 @@
-import { useNavigate } from 'react-router-dom';
-import { useReducer, createContext, useEffect } from 'react';
+import { useNavigate } from "react-router-dom";
+import { useReducer, createContext, useEffect } from "react";
 
 const initialState = {
-  user: localStorage.getItem('user')
-    ? JSON.parse(localStorage.getItem('user'))
+  user: localStorage.getItem("user")
+    ? localStorage.getItem("user") !== "undefined" &&
+      JSON.parse(localStorage.getItem("user"))
     : null,
-  role: localStorage.getItem('role') || null,
-  token: localStorage.getItem('token') || null,
+  role: localStorage.getItem("role") || null,
+  token: localStorage.getItem("token") || null,
 };
 
 export const authContext = createContext(initialState);
 
 const authReducer = (state, action) => {
   switch (action.type) {
-    case 'LOGIN_START':
+    case "LOGIN_START":
       return {
         ...state,
         user: null,
         role: null,
         token: null,
       };
-    case 'LOGIN_SUCCESS':
+    case "LOGIN_SUCCESS":
       return {
         ...state,
         user: action.payload.user,
         role: action.payload.role,
         token: action.payload.token,
       };
-    case 'LOGOUT':
+    case "LOGOUT":
       return {
         ...state,
         user: null,
@@ -44,24 +45,24 @@ export const AuthContextProvider = ({ children }) => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    localStorage.setItem('user', JSON.stringify(state.user));
-    localStorage.setItem('role', state.role);
-    localStorage.setItem('token', state.token);
+    localStorage.setItem("user", JSON.stringify(state.user));
+    localStorage.setItem("role", state.role);
+    localStorage.setItem("token", state.token);
   }, [state]);
 
   const logout = () => {
     // Clear localStorage
-    localStorage.removeItem('user');
-    localStorage.removeItem('role');
-    localStorage.removeItem('token');
+    localStorage.removeItem("user");
+    localStorage.removeItem("role");
+    localStorage.removeItem("token");
 
     // Clear state
-    dispatch({ type: 'LOGOUT' });
+    dispatch({ type: "LOGOUT" });
 
     // Redirect to home page
-    navigate('/home');
+    navigate("/home");
     // Dispatch logout action
-    dispatch({ type: 'LOGOUT' });
+    dispatch({ type: "LOGOUT" });
   };
 
   return (

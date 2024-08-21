@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import { useState, useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { authContext } from '../context/authContext.js';
 import { BASE_URL } from '../config';
@@ -34,9 +34,9 @@ const LoginForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (validateForm()) {
+      setLoading(true);
       try {
-        setLoading(true);
-        const res = await fetch(`${BASE_URL}/auth/login`, {
+        const res = await fetch(`${BASE_URL}/users/login`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter , Route, Routes } from 'react-router-dom';
 import Home from '../pages/home.jsx';
 import Header from '../components/layout/Header.jsx';
 import Footer from '../components/layout/Footer.jsx';
@@ -19,7 +19,7 @@ import ProtectedRoute from './protectedRoutes.js';
 
 function routes() {
   return (
-    <Router>
+    <BrowserRouter>
       <Header />
       <Routes>
         <Route
@@ -82,7 +82,7 @@ function routes() {
         <Route
           path='/admin'
           element={
-            <ProtectedRoute alloedRoles={['admin']}>
+            <ProtectedRoute allowedRoles={['admin']}>
               {' '}
               <Admin />
             </ProtectedRoute>
@@ -94,7 +94,7 @@ function routes() {
         />
       </Routes>
       <Footer />
-    </Router>
+    </BrowserRouter>
   );
 }
 

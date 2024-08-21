@@ -1,14 +1,25 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import '.tConinert/index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import App from "./App";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { AuthContextProvider } from "./context/authContext.js";
+import { BrowserRouter } from "react-router-dom";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
+ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <App />
+    <BrowserRouter>
+      <AuthContextProvider>
+        <ToastContainer
+          theme="dark"
+          position="top-right"
+          autoClose={5000}
+          closeOnClick
+          pauseOnHover={false}
+        />
+        <App />
+      </AuthContextProvider>
+    </BrowserRouter>
   </React.StrictMode>
 );
-
-reportWebVitals();
