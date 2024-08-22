@@ -43,7 +43,6 @@ const Dashboard = () => {
         </div>
       </div>
 
-      {/* Top Selling Products & Orders */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
         <div className="bg-white p-4 rounded-lg shadow">
           <div className="flex justify-between items-center mb-4">
@@ -53,7 +52,6 @@ const Dashboard = () => {
             </a>
           </div>
           <div>
-            {/* Repeat this block for each product */}
             <div className="flex items-center justify-between mb-4">
               <div className="flex items-center">
                 <img
@@ -80,7 +78,6 @@ const Dashboard = () => {
             </a>
           </div>
           <div>
-            {/* Repeat this block for each order */}
             <div className="flex items-center justify-between mb-4">
               <div className="flex items-center">
                 <img
@@ -101,7 +98,6 @@ const Dashboard = () => {
         </div>
       </div>
 
-      {/* Group of Potential Customers & Top Countries By Sales */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <div className="bg-white p-4 rounded-lg shadow">
           <div className="flex justify-between items-center mb-4">
@@ -113,7 +109,6 @@ const Dashboard = () => {
             </a>
           </div>
           <div>
-            {/* Repeat this block for each customer group */}
             <div className="flex items-center justify-between mb-4">
               <div>
                 <h5 className="text-gray-700 font-medium">18-22</h5>
@@ -129,12 +124,12 @@ const Dashboard = () => {
             <h4 className="text-gray-700 font-semibold">
               Top Countries By Sales
             </h4>
-            <a href="#" className="text-blue-500 text-sm">
+            <a href="" className="text-blue-500 text-sm">
+           
               View all
             </a>
           </div>
           <div>
-            {/* Repeat this block for each country */}
             <div className="flex items-center justify-between mb-4">
               <div className="flex items-center">
                 <img

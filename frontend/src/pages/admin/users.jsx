@@ -13,8 +13,6 @@ const UserTable = () => {
               <th className="p-4">Email</th>
               <th className="p-4">Phone</th>
               <th className="p-4">Address</th>
-              <th className="p-4">Company</th>
-              <th className="p-4">DOB</th>
               <th className="p-4">Action</th>
             </tr>
           </thead>
@@ -34,19 +32,12 @@ const UserTable = () => {
                 <td className="p-4">{userItem.Email}</td>
                 <td className="p-4">{userItem.Phone}</td>
                 <td className="p-4">{userItem.Address}</td>
-                <td className="p-4">{userItem.Company}</td>
-                <td className="p-4">{userItem.DOB}</td>
                 <td className="p-4">
                   <div className="flex justify-center space-x-2">
                     <button className="text-blue-500">
                       <i className="fas fa-eye"></i>
                     </button>
-                    <button className="text-green-500">
-                      <i className="fas fa-edit"></i>
-                    </button>
-                    <button className="text-red-500">
-                      <i className="fas fa-trash"></i>
-                    </button>
+                   
                   </div>
                 </td>
               </tr>
