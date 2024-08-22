@@ -24,7 +24,7 @@ const ProductTable = () => {
       <div className="min-w-screen bg-white flex items-center justify-center">
         <div className="w-full lg:w-4/5">
           <div className="overflow-x-auto bg-white shadow-md rounded my-6">
-            <table className="min-w-max w-full table-auto">
+            <table className="min-w-max w-[100%] table-auto">
               <thead>
                 <tr className="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
                   <th className="py-3 px-6 text-left">Product</th>
@@ -85,19 +85,19 @@ const ProductTable = () => {
                           {product.stock > 0 ? "In stock" : "Out of stock"}
                         </span>
                       </td>
-                      <td className="py-3 px-6 text-center">
-                        <button
-                          className="w-4 mr-2 transform hover:text-blue-500 hover:scale-110"
-                          onClick={() => handleEyeClick(product.id)}
-                        >
-                          <i className="fas fa-eye"></i>
-                        </button>
-                        <button className="w-4 mr-2 transform hover:text-red-500 hover:scale-110">
-                          <i className="fas fa-trash-alt"></i>
-                        </button>
-                        <button className="w-4 transform hover:text-purple-500 hover:scale-110">
-                          <i className="fas fa-edit"></i>
-                        </button>
+
+                      <td className="p-4">
+                        <div className="flex justify-center space-x-2">
+                          <button className="text-blue-500">
+                            <i className="fas fa-eye"></i>
+                          </button>
+                          <button className="text-green-500">
+                            <i className="fas fa-edit"></i>
+                          </button>
+                          <button className="text-red-500">
+                            <i className="fas fa-trash"></i>
+                          </button>
+                        </div>
                       </td>
                     </tr>
                     {visibleDetails === product.id && (
@@ -132,4 +132,3 @@ const ProductTable = () => {
 };
 
 export default ProductTable;
- 

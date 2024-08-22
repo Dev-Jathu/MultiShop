@@ -22,9 +22,9 @@ const ProductForm = () => {
   };
 
   return (
-    <div className='mx-auto p-10 w-[95%] bg-white rounded-lg shadow-md h-[85vh]'>
+    <div className='mx-auto p-4 w-[95%] bg-white rounded-lg shadow-md h-[90vh]'>
       <form onSubmit={handleSubmit}>
-        <div className='grid grid-cols-2 gap-6 p-2 pt-10'>
+        <div className='grid grid-cols-2 gap-6 '>
           <div className='space-y-4'>
             <div>
               <label className='block text-sm font-medium text-black-700'>

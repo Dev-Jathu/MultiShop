@@ -1,15 +1,16 @@
-import image1 from '../../assets/images/category (1).png';
-import image2 from '../../assets/images/category (2).png';
-import image3 from '../../assets/images/category (3).png';
-import image4 from '../../assets/images/category (4).png';
-import image5 from '../../assets/images/category (5).png';
-import image6 from '../../assets/images/category (6).png';
-import image7 from '../../assets/images/category (7).png';
-import image8 from '../../assets/images/category (8).png';
-import image9 from '../../assets/images/category (9).png';
-import image10 from '../../assets/images/category (10).png';
+import image1 from "../../assets/images/person (1).jpg";
+import image2 from "../../assets/images/person (2).jpg";
+import image3 from "../../assets/images/person (3).jpg";
+import image4 from "../../assets/images/person (2).jpg";
+import image5 from "../../assets/images/person (3).jpg";
+import image6 from "../../assets/images/person (1).jpg";
+import image7 from "../../assets/images/person (2).jpg";
+import image8 from "../../assets/images/person (1).jpg";
+import image9 from "../../assets/images/person (3).jpg";
+import image10 from "../../assets/images/person (1).jpg";
 
-export const ProductData = [
+
+export const User = [
   {
     Name: 'John Doe',
     image: image1,
