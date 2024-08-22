@@ -1,4 +1,7 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useContext, useRef } from "react";
+import { toast } from "react-toastify";
+import { authContext } from "../../context/authContext";
+import { Link, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faTachometerAlt,
@@ -35,7 +38,7 @@ const AdminPanel = () => {
   const renderActivePage = () => {
     switch (activePage) {
       case "Dashboard":
-        return <Maindashboard/>;
+        return <Maindashboard />;
       case "ProductList":
         return <ProductTable />;
       case "Addproduct":
@@ -83,7 +86,7 @@ const AdminPanel = () => {
       >
         <div className="p-4 flex items-center justify-between">
           <span className={`font-bold text-xl ${!isSidebarOpen && "hidden"}`}>
-            Remos
+            <Link to='/'>Alfies</Link>
           </span>
           <button className="text-gray-600" onClick={toggleSidebar}>
             <FontAwesomeIcon icon={faBars} />
@@ -236,23 +239,11 @@ const TopBar = () => (
 
 const Profile = () => {
   const [showMenu, setShowMenu] = useState(false);
-  const [profileImage, setProfileImage] = useState("");
   const menuRef = useRef(null);
   const fileInputRef = useRef(null);
 
   const handleProfileClick = () => {
     setShowMenu(!showMenu);
-  };
-
-  const handleFileUpload = (event) => {
-    const file = event.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setProfileImage(reader.result);
-      };
-      reader.readAsDataURL(file);
-    }
   };
 
   const handleChangeProfileClick = () => {
@@ -280,14 +271,32 @@ const Profile = () => {
     };
   }, [showMenu]);
 
+  // --------- Log-Out Logics ----------
+  const { dispatch } = useContext(authContext);
+  const { user } = useContext(authContext);
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    dispatch({ type: "LOGOUT" });
+    sessionStorage.clear();
+    // Clear state
+    localStorage.removeItem("user");
+    localStorage.removeItem("role");
+    localStorage.removeItem("token");
+
+    navigate("/");
+    toast.success("Logged out successfully");
+  };
+
   return (
     <div className="relative" ref={menuRef}>
       <div
         onClick={handleProfileClick}
-        className="flex items-center cursor-pointer"
+        className="flex items-center gap-4 cursor-pointer"
       >
+        <p>{user.name}</p>
         <img
-          src={profileImage}
+          src={user.photo || "http://www.gravatar.com/avatar/?d=mp"}
           alt="Profile"
           className="w-8 h-8 rounded-full"
         />
@@ -309,16 +318,11 @@ const Profile = () => {
           >
             <FontAwesomeIcon icon={faEdit} className="mr-2" />
             Change Profile
-            <input
-              type="file"
-              ref={fileInputRef}
-              onChange={handleFileUpload}
-              className="hidden"
-            />
+            <input type="file" ref={fileInputRef} className="hidden" />
           </div>
           <div className="p-2 text-gray-600 hover:bg-gray-100 cursor-pointer">
             <FontAwesomeIcon icon={faSignOutAlt} className="mr-2" />
-            Sign Out
+            <button onClick={handleLogout}>Sign Out</button>
           </div>
         </div>
       )}

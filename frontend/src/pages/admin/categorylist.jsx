@@ -4,6 +4,7 @@ import { ProductData } from '../../assets/data/product';
 const ProductTable = () => {
   const [visibleDetails, setVisibleDetails] = useState(null);
 
+
   useEffect(() => {
     const handleScroll = () => {
       setVisibleDetails(null);
