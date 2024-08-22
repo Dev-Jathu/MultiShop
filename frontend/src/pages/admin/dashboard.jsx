@@ -22,6 +22,7 @@ import NewCategory from "./NewCategory";
 import Orderdetails from "./orderdetails";
 import Users from "./users";
 import Addusers from "./Adduser";
+import Maindashboard from "./maindashboard";
 
 const AdminPanel = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
@@ -34,12 +35,7 @@ const AdminPanel = () => {
   const renderActivePage = () => {
     switch (activePage) {
       case "Dashboard":
-        return (
-          <div>
-            Welcome to the Dashboard! Here, you can view your overall statistics
-            and recent activities.
-          </div>
-        );
+        return <Maindashboard/>;
       case "ProductList":
         return <ProductTable />;
       case "Addproduct":

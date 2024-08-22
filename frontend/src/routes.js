@@ -27,6 +27,7 @@ import NewCategory from "./pages/admin/NewCategory.jsx";
 import OrderDetails from "./pages/admin/orderdetails.jsx";
 import Userdetails from "./pages/admin/users.jsx";
 import Adduser from "./pages/admin/Adduser.jsx";
+import Maindashboard from "./pages/admin/maindashboard.jsx";
 
 function App() {
   return (
@@ -67,6 +68,7 @@ function RoutesComponent() {
         <Route path="/orderdetails" element={<OrderDetails />} />
         <Route path="/userdetails" element={<Userdetails />} />
         <Route path="/adduser" element={<Adduser />} />
+        <Route path="/maindashboard" element={<Maindashboard />} />
       </Routes>
       {!isAdminRoute && <Footer />}
     </>
