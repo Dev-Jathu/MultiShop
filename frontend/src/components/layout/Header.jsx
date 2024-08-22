@@ -1,11 +1,14 @@
-import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { authContext } from "../../context/authContext.js";
+import { useState, useEffect, useContext } from "react";
 import location from "../../../src/assets/images/location.png";
 import logo from "../../assets/images/alfies-logo-dark 1.png";
 import Categories from "../../assets/images/categories.png";
 
 function Header() {
   const [showLinks, setShowLinks] = useState(false);
+  const { user, role, token } = useContext(authContext);
+  const { name, photo } = user || {};
 
   const toggleLinks = () => {
     setShowLinks(!showLinks);
@@ -51,14 +54,39 @@ function Header() {
               <img src={location} alt="logo" className="h-5" />
               <button>Your Address</button>
             </div>
-            <div className="user text-black text-[22px]">
-              <Link to="/login">
-                <i className="fa-solid fa-user"></i>
-              </Link>
+            <div>
+              {token && user ? (
+                <div className="user text-black ">
+                  <Link
+                    to={`${
+                      role === "customer"
+                        ? "/my-account"
+                        : role === "admin"
+                        ? "/admin"
+                        : "/home"
+                    }`}
+                    className="flex gap-4 items-center"
+                  >
+                    <p className="text-[16px] font-bold">{name}</p>
+                    <img
+                      src={photo || "http://www.gravatar.com/avatar/?d=mp"}
+                      alt="profile"
+                      className="rounded-full w-12"
+                    />
+                  </Link>
+                </div>
+              ) : (
+                <Link to="/login">
+                  <button className="bg-primary px-6 py-2 text-white font-semibold rounded-md">Login</button>
+                </Link>
+              )}
             </div>
           </div>
           <div className="search flex items-center justify-between pt-2 md:gap-5 sm:gap-5">
-            <img src={logo} alt="logo" className="lg:h-10 md:h-10 h-[25px]" />
+            <Link to="/">
+              {" "}
+              <img src={logo} alt="logo" className="lg:h-10 md:h-10 h-[25px]" />
+            </Link>
             <div className="rounded-md px-4 bg-gray-100 label lg:w-[85%] md:w-[70%] border-none items-center flex justify-between">
               <i className="fa-solid fa-magnifying-glass"></i>
               <input

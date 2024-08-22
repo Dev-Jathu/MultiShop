@@ -1,12 +1,12 @@
-const User = require('../models/User');
-const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
-const crypto = require('crypto');
+const User = require("../models/User");
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
+const crypto = require("crypto");
 
 // Utility function to generate JWT token
 const generateToken = (id) => {
   return jwt.sign({ id }, process.env.JWT_SECRET, {
-    expiresIn: '1h', // Token expires in 1 hour
+    expiresIn: "1h", // Token expires in 1 hour
   });
 };
 
@@ -18,7 +18,7 @@ const registerUser = async (req, res) => {
     const userExists = await User.findOne({ email });
 
     if (userExists) {
-      return res.status(400).json({ message: 'User already exists' });
+      return res.status(400).json({ message: "User already exists" });
     }
 
     const salt = await bcrypt.genSalt(10);
@@ -39,7 +39,7 @@ const registerUser = async (req, res) => {
       token,
     });
   } catch (err) {
-    res.status(500).json({ error: 'Server Error' });
+    res.status(500).json({ error: "Server Error" });
   }
 };
 
@@ -51,13 +51,13 @@ const loginUser = async (req, res) => {
     const user = await User.findOne({ email });
 
     if (!user) {
-      return res.status(400).json({ message: 'Invalid email or password' });
+      return res.status(400).json({ message: "Invalid email or password" });
     }
 
     const isMatch = await bcrypt.compare(password, user.password);
 
     if (!isMatch) {
-      return res.status(400).json({ message: 'Invalid email or password' });
+      return res.status(400).json({ message: "Invalid email or password" });
     }
 
     const token = generateToken(user._id);
@@ -67,10 +67,12 @@ const loginUser = async (req, res) => {
       name: user.name,
       email: user.email,
       token,
-      message: 'Successfully Login',
+      role: user.role,
+      user,
+      message: "Successfully Login",
     });
   } catch (err) {
-    res.status(500).json({ error: 'Server Error' });
+    res.status(500).json({ error: "Server Error" });
   }
 };
 
@@ -82,36 +84,36 @@ const resetPasswordToken = async (req, res) => {
     const user = await User.findOne({ email });
 
     if (!user) {
-      return res.status(404).json({ message: 'User not found' });
+      return res.status(404).json({ message: "User not found" });
     }
 
-    const resetToken = crypto.randomBytes(20).toString('hex');
+    const resetToken = crypto.randomBytes(20).toString("hex");
 
     user.resetPasswordToken = crypto
-      .createHash('sha256')
+      .createHash("sha256")
       .update(resetToken)
-      .digest('hex');
+      .digest("hex");
     user.resetPasswordExpires = Date.now() + 10 * 60 * 1000; // 10 minutes
 
     await user.save();
 
     // Send resetToken via email in a real-world app
-    res.json({ message: 'Password reset token generated', resetToken });
+    res.json({ message: "Password reset token generated", resetToken });
   } catch (err) {
-    res.status(500).json({ error: 'Server Error' });
+    res.status(500).json({ error: "Server Error" });
   }
 };
 
 // Get current user profile
 const getUserProfile = async (req, res) => {
   try {
-    const user = await User.findById(req.user.id).select('-password');
+    const user = await User.findById(req.user.id).select("-password");
     if (!user) {
-      return res.status(404).json({ message: 'User not found' });
+      return res.status(404).json({ message: "User not found" });
     }
     res.json(user);
   } catch (err) {
-    res.status(500).json({ error: 'Server Error' });
+    res.status(500).json({ error: "Server Error" });
   }
 };
 
@@ -123,7 +125,7 @@ const updateUserProfile = async (req, res) => {
     const user = await User.findById(req.user.id);
 
     if (!user) {
-      return res.status(404).json({ message: 'User not found' });
+      return res.status(404).json({ message: "User not found" });
     }
 
     user.name = name || user.name;
@@ -143,7 +145,7 @@ const updateUserProfile = async (req, res) => {
       token: generateToken(updatedUser._id),
     });
   } catch (err) {
-    res.status(500).json({ error: 'Server Error' });
+    res.status(500).json({ error: "Server Error" });
   }
 };
 

@@ -1,4 +1,7 @@
-import React, { useState } from "react";
+import { toast } from "react-toastify";
+import { authContext } from "../../context/authContext";
+import { useNavigate } from "react-router-dom";
+import { useContext, useState } from "react";
 
 const UserProfile = () => {
   const [activeTab, setActiveTab] = useState("profile");
@@ -13,14 +16,27 @@ const UserProfile = () => {
     }
   };
 
+  const { dispatch } = useContext(authContext);
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    dispatch({ type: "LOGOUT" });
+    sessionStorage.clear();
+    // Clear state
+    localStorage.removeItem("user");
+    localStorage.removeItem("role");
+    localStorage.removeItem("token");
+
+    navigate("/");
+    toast.success("Logged out successfully");
+  };
+
   return (
     <div className="flex flex-col items-center justify-center lg:h-[100vh] md:h-[80vh] h-full lg:pt-[150px] md:pt-2 p-6">
       <div className="flex flex-col md:flex-row justify-center items-start space-y-6 md:space-y-0 md:space-x-10 w-full max-w-5xl">
         <div className="w-full md:w-1/4 bg-white shadow-md rounded-lg p-6 h-[400px]">
-          <h2 className="text-lg font-bold mb-4 text-center">
-            Manage My Account
-          </h2>
-          <ul className="space-y-2 text-center">
+          <h2 className="text-lg font-bold mb-4 ">Manage My Account</h2>
+          <ul className="">
             <li>
               <button
                 className={`font-semibold ${
@@ -52,7 +68,7 @@ const UserProfile = () => {
               </button>
             </li>
           </ul>
-          <ul className="space-y-2 text-center">
+          <ul className="">
             <li>
               <button
                 className={`font-semibold ${
@@ -64,18 +80,14 @@ const UserProfile = () => {
               </button>
             </li>
           </ul>
-          <h2 className="text-lg font-bold mt-6 mb-4 text-center">
-            Additional Options
-          </h2>
-          <ul className="space-y-2 text-left">
+          <h2 className="text-lg font-bold mt-6 mb-4">Additional Options</h2>
+          <ul className="">
             <li>
               <button
-                className={`font-semibold ${
-                  activeTab === "extra" ? "text-green-500" : "text-gray-700"
-                }`}
-                onClick={() => setActiveTab("extra")}
+                onClick={handleLogout}
+                className="bg-red-600 hover:bg-red-700 text-white font-semibold px-6 py-2 rounded-md"
               >
-                Extra Button
+                Log-out
               </button>
             </li>
           </ul>
