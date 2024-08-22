@@ -44,6 +44,7 @@ const Dashboard = () => {
         </div>
       </div>
 
+      {/* Top Selling Products & Orders */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
         <div className="bg-white p-4 rounded-lg shadow">
           <div className="flex justify-between items-center mb-4">
@@ -53,6 +54,7 @@ const Dashboard = () => {
             </Link>
           </div>
           <div>
+            {/* Repeat this block for each product */}
             <div className="flex items-center justify-between mb-4">
               <div className="flex items-center">
                 <img
@@ -79,6 +81,7 @@ const Dashboard = () => {
             </Link>
           </div>
           <div>
+            {/* Repeat this block for each order */}
             <div className="flex items-center justify-between mb-4">
               <div className="flex items-center">
                 <img
@@ -99,6 +102,7 @@ const Dashboard = () => {
         </div>
       </div>
 
+      {/* Group of Potential Customers & Top Countries By Sales */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <div className="bg-white p-4 rounded-lg shadow">
           <div className="flex justify-between items-center mb-4">
@@ -110,6 +114,7 @@ const Dashboard = () => {
             </Link>
           </div>
           <div>
+            {/* Repeat this block for each customer group */}
             <div className="flex items-center justify-between mb-4">
               <div>
                 <h5 className="text-gray-700 font-medium">18-22</h5>
@@ -130,6 +135,7 @@ const Dashboard = () => {
             </Link>
           </div>
           <div>
+            {/* Repeat this block for each country */}
             <div className="flex items-center justify-between mb-4">
               <div className="flex items-center">
                 <img
