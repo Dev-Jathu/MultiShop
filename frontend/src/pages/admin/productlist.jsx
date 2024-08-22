@@ -18,7 +18,7 @@ const ProductTable = () => {
 
   return (
     <div className="overflow-x-auto">
-      <div className="min-w-screen bg-white flex items-center justify-center">
+      <div className="min-w-screen  flex items-center justify-center">
         <div className="w-full lg:w-4/5">
           <div className="overflow-x-auto bg-white shadow-md rounded my-6">
             <table className="min-w-max w-[100%] table-auto">

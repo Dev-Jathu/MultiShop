@@ -26,6 +26,7 @@ import Orderdetails from "./orderdetails";
 import Users from "./users";
 import Addusers from "./Adduser";
 import Maindashboard from "./maindashboard";
+import AdminProfile from './profile'
 
 const AdminPanel = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
@@ -61,12 +62,7 @@ const AdminPanel = () => {
           </div>
         );
       case "Settings":
-        return (
-          <div>
-            Adjust your Settings here. Manage account settings, preferences, and
-            more.
-          </div>
-        );
+        return <AdminProfile/>;
       default:
         return (
           <div>
@@ -78,53 +74,56 @@ const AdminPanel = () => {
   };
 
   return (
-    <div className="flex h-screen bg-gray-100">
+    <div className='flex h-screen bg-gray-100'>
       <aside
         className={`${
-          isSidebarOpen ? "w-64" : "w-16"
+          isSidebarOpen ? 'w-64' : 'w-16'
         } bg-white shadow-md transition-all duration-300`}
       >
-        <div className="p-4 flex items-center justify-between">
-          <span className={`font-bold text-xl ${!isSidebarOpen && "hidden"}`}>
+        <div className='p-4 flex items-center justify-between'>
+          <span className={`font-bold text-xl ${!isSidebarOpen && 'hidden'}`}>
             <Link to='/'>Alfies</Link>
           </span>
-          <button className="text-gray-600" onClick={toggleSidebar}>
+          <button
+            className='text-gray-600'
+            onClick={toggleSidebar}
+          >
             <FontAwesomeIcon icon={faBars} />
           </button>
         </div>
-        <nav className="mt-4">
+        <nav className='mt-4'>
           <SidebarItem
             icon={faTachometerAlt}
-            label="Dashboard"
-            onClick={() => setActivePage("Dashboard")}
+            label='Dashboard'
+            onClick={() => setActivePage('Dashboard')}
             isSidebarOpen={isSidebarOpen}
           />
           <SidebarItem
             icon={faShoppingCart}
-            label="Ecommerce"
+            label='Ecommerce'
             submenu={[
               {
-                label: "Add Product",
-                onClick: () => setActivePage("Addproduct"),
+                label: 'Add Product',
+                onClick: () => setActivePage('Addproduct'),
               },
               {
-                label: "Product list",
-                onClick: () => setActivePage("ProductList"),
+                label: 'Product list',
+                onClick: () => setActivePage('ProductList'),
               },
             ]}
             isSidebarOpen={isSidebarOpen}
           />
           <SidebarItem
             icon={faUsers}
-            label="Categories"
+            label='Categories'
             submenu={[
               {
-                label: "Category list",
-                onClick: () => setActivePage("Categories"),
+                label: 'Category list',
+                onClick: () => setActivePage('Categories'),
               },
               {
-                label: "New Category",
-                onClick: () => setActivePage("NewCategory"),
+                label: 'New Category',
+                onClick: () => setActivePage('NewCategory'),
               },
             ]}
             isSidebarOpen={isSidebarOpen}
@@ -132,45 +131,46 @@ const AdminPanel = () => {
 
           <SidebarItem
             icon={faClipboardList}
-            label="Order"
+            label='Order'
             submenu={[
               {
-                label: "Order list",
-                onClick: () => setActivePage("OrderList"),
+                label: 'Order list',
+                onClick: () => setActivePage('OrderList'),
               },
             ]}
             isSidebarOpen={isSidebarOpen}
           />
           <SidebarItem
             icon={faUser}
-            label="User"
+            label='User'
             submenu={[
-              { label: "All user", onClick: () => setActivePage("AllUsers") },
+              { label: 'All user', onClick: () => setActivePage('AllUsers') },
               {
-                label: "Add New User",
-                onClick: () => setActivePage("Addusers"),
+                label: 'Add New User',
+                onClick: () => setActivePage('Addusers'),
               },
             ]}
             isSidebarOpen={isSidebarOpen}
           />
           <SidebarItem
             icon={faImages}
-            label="Gallery"
-            onClick={() => setActivePage("Gallery")}
+            label='Gallery'
+            onClick={() => setActivePage('Gallery')}
             isSidebarOpen={isSidebarOpen}
           />
           <SidebarItem
             icon={faCog}
-            label="Setting"
-            onClick={() => setActivePage("Settings")}
+            label='Setting'
+            onClick={() => setActivePage('Settings')}
             isSidebarOpen={isSidebarOpen}
           />
+          
         </nav>
       </aside>
 
-      <div className="flex-1 flex flex-col">
+      <div className='flex-1 flex flex-col'>
         <TopBar />
-        <main className="flex-1 p-6 bg-gray-100 overflow-auto">
+        <main className='flex-1 p-6 bg-gray-100 overflow-auto'>
           {renderActivePage()}
         </main>
       </div>

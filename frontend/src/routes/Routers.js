@@ -13,14 +13,6 @@ import Cart from "../pages/user/cart.jsx";
 import Alloffers from "../pages/product/allOffers.jsx";
 import Admin from "../pages/admin/dashboard.jsx";
 import Checkout from "../pages/product/Checkout.jsx";
-import Productlist from "../pages/admin/productlist.jsx";
-import AddProduct from "../pages/admin/Addproduct.jsx";
-import Categorylist from "../pages/admin/categorylist.jsx";
-import NewCategory from "../pages/admin/NewCategory.jsx";
-import OrderDetails from "../pages/admin/orderdetails.jsx";
-import Userdetails from "../pages/admin/users.jsx";
-import Adduser from "../pages/admin/Adduser.jsx";
-import Maindashboard from "../pages/admin/maindashboard.jsx";
 import ProtectedRoute from "./protectedRoutes.js";
 
 function App() {
@@ -39,15 +31,7 @@ function App() {
       <Route path="/contact" element={<Contact />} />
       <Route path="/cart" element={<Cart />} />
       <Route path="/checkout" element={<Checkout />} />
-      <Route path="/productlist" element={<Productlist />} />
-      <Route path="/addproduct" element={<AddProduct />} />
-      <Route path="/categorylist" element={<Categorylist />} />
-      <Route path="/newcategory" element={<NewCategory />} />{" "}
-      <Route path="/newcategory" element={<NewCategory />} />
-      <Route path="/orderdetails" element={<OrderDetails />} />
-      <Route path="/userdetails" element={<Userdetails />} />
-      <Route path="/adduser" element={<Adduser />} />
-      <Route path="/maindashboard" element={<Maindashboard />} />
+     
       {/* ---------Protected Routes--------- */}
       <Route
         path="/admin"
