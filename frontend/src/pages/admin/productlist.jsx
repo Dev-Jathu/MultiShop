@@ -4,9 +4,6 @@ import { ProductData } from "../../assets/data/product";
 const ProductTable = () => {
   const [visibleDetails, setVisibleDetails] = useState(null);
 
-  const handleEyeClick = (id) => {
-    setVisibleDetails((prev) => (prev === id ? null : id));
-  };
 
   useEffect(() => {
     const handleScroll = () => {

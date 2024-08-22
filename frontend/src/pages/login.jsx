@@ -1,12 +1,12 @@
-import { useState, useContext } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { authContext } from '../context/authContext.js';
-import { BASE_URL } from '../config';
-import { toast } from 'react-toastify';
+import { useState, useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { authContext } from "../context/authContext.js";
+import { BASE_URL } from "../config";
+import { toast } from "react-toastify";
 
 const LoginForm = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
   const { dispatch } = useContext(authContext);
@@ -18,13 +18,13 @@ const LoginForm = () => {
     const errors = {};
 
     if (!validateEmail(email)) {
-      errors.email = 'Please enter a valid email address.';
-      toast.error('Please enter a valid email address.');
+      errors.email = "Please enter a valid email address.";
+      toast.error("Please enter a valid email address.");
     }
 
     if (password.length < 6) {
-      errors.password = 'Password must be at least 6 characters.';
-      toast.error('Password must be at least 6 characters.');
+      errors.password = "Password must be at least 6 characters.";
+      toast.error("Password must be at least 6 characters.");
     }
 
     setErrors(errors);
@@ -37,9 +37,9 @@ const LoginForm = () => {
       setLoading(true);
       try {
         const res = await fetch(`${BASE_URL}/users/login`, {
-          method: 'POST',
+          method: "POST",
           headers: {
-            'Content-Type': 'application/json',
+            "Content-Type": "application/json",
           },
           body: JSON.stringify({ email, password }),
         });
@@ -50,10 +50,10 @@ const LoginForm = () => {
           throw new Error(result.message);
         }
 
-        toast.success('Welcome Back!');
+        toast.success("Welcome Back!");
 
         dispatch({
-          type: 'LOGIN_SUCCESS',
+          type: "LOGIN_SUCCESS",
           payload: {
             user: result.user,
             role: result.role,
@@ -61,78 +61,72 @@ const LoginForm = () => {
           },
         });
 
-        localStorage.setItem('user', JSON.stringify(result.user));
-        localStorage.setItem('role', result.role);
-        localStorage.setItem('token', result.token);
+        localStorage.setItem("user", JSON.stringify(result.user));
+        localStorage.setItem("role", result.role);
+        localStorage.setItem("token", result.token);
 
-        setEmail('');
-        setPassword('');
+        setEmail("");
+        setPassword("");
         setLoading(false);
 
-        if (result.role === 'admin') {
-          navigate('/admin/dashboard');
+        if (result.role === "admin") {
+          navigate("/admin");
         } else {
-          navigate('/my-account');
+          navigate("/my-account");
         }
       } catch (error) {
-        setErrors({ email: 'Login failed. Please try again.' });
-        toast.error('Login failed. Please try again');
+        setErrors({ email: "Login failed. Please try again." });
+        toast.error("Login failed. Please try again");
         setLoading(false);
       }
     }
   };
 
   return (
-    <div className='flex items-center justify-center min-h-screen bg-gray-100'>
-      <div className='bg-white p-8 rounded-lg shadow-lg max-w-sm w-full'>
-        <h2 className='text-2xl font-bold mb-4'>Log in to Exclusive</h2>
-        <p className='text-gray-600 mb-6'>Enter your details below</p>
+    <div className="flex items-center justify-center min-h-screen bg-gray-100">
+      <div className="bg-white p-8 rounded-lg shadow-lg max-w-sm w-full">
+        <h2 className="text-2xl font-bold mb-4">Log in to Exclusive</h2>
+        <p className="text-gray-600 mb-6">Enter your details below</p>
         <form onSubmit={handleSubmit}>
           <input
-            type='email'
-            placeholder='Email or Phone Number'
+            type="email"
+            placeholder="Email or Phone Number"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className='w-full p-2 mb-4 border border-gray-300 rounded'
+            className="w-full p-2 mb-4 border border-gray-300 rounded"
             required
           />
           {errors.email && (
-            <p className='text-red-500 text-sm mb-2'>{errors.email}</p>
+            <p className="text-red-500 text-sm mb-2">{errors.email}</p>
           )}
           <input
-            type='password'
-            placeholder='Password'
+            type="password"
+            placeholder="Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            className='w-full p-2 mb-4 border border-gray-300 rounded'
+            className="w-full p-2 mb-4 border border-gray-300 rounded"
             required
           />
           {errors.password && (
-            <p className='text-red-500 text-sm mb-2'>{errors.password}</p>
+            <p className="text-red-500 text-sm mb-2">{errors.password}</p>
           )}
           <button
-            type='submit'
-            className='w-full bg-green-500 text-white py-2 rounded-lg font-bold'
+            type="submit"
+            className="w-full bg-green-500 text-white py-2 rounded-lg font-bold"
             disabled={loading}
           >
-            {loading ? 'Logging in...' : 'Log In'}
+            {loading ? "Logging in..." : "Log In"}
           </button>
         </form>
-        <div className='flex justify-between mt-4'>
-          <Link
-            to='/forgot-password'
-            className='text-gray-600 font-semibold'
-          >
+        <div className="flex justify-between mt-4">
+          <Link to="/forgot-password" className="text-gray-600 font-semibold">
             Forgot Password?
           </Link>
         </div>
-        <div className='mt-6 text-center'>
-          <p className='text-gray-600'>
-            Dont have an account?{' '}
-            <Link
-              to='/sign-up'
-              className='text-black font-semibold'
-            >
+        <div className="mt-6 text-center">
+          <p className="text-gray-600">
+            Dont have an account?{" "}
+            <Link to="/sign-up" className="text-black font-semibold">
               Sign up
             </Link>
           </p>

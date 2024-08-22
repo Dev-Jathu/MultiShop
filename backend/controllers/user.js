@@ -119,7 +119,7 @@ const getUserProfile = async (req, res) => {
 
 // Update user profile
 const updateUserProfile = async (req, res) => {
-  const { name, email, password } = req.body;
+  const { name, email, password, role } = req.body;
 
   try {
     const user = await User.findById(req.user.id);
@@ -130,6 +130,7 @@ const updateUserProfile = async (req, res) => {
 
     user.name = name || user.name;
     user.email = email || user.email;
+    user.role = role || user.role;
 
     if (password) {
       const salt = await bcrypt.genSalt(10);
@@ -142,7 +143,9 @@ const updateUserProfile = async (req, res) => {
       _id: updatedUser._id,
       name: updatedUser.name,
       email: updatedUser.email,
+      role: updatedUser.role,
       token: generateToken(updatedUser._id),
+      message: "User Update Successfully",
     });
   } catch (err) {
     res.status(500).json({ error: "Server Error" });

@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Dashboard = () => {
   return (
@@ -48,9 +49,9 @@ const Dashboard = () => {
         <div className="bg-white p-4 rounded-lg shadow">
           <div className="flex justify-between items-center mb-4">
             <h4 className="text-gray-700 font-semibold">Top Selling Product</h4>
-            <a href="#" className="text-blue-500 text-sm">
+            <Link to="/" className="text-blue-500 text-sm">
               View all
-            </a>
+            </Link>
           </div>
           <div>
             {/* Repeat this block for each product */}
@@ -75,9 +76,9 @@ const Dashboard = () => {
         <div className="bg-white p-4 rounded-lg shadow">
           <div className="flex justify-between items-center mb-4">
             <h4 className="text-gray-700 font-semibold">Orders</h4>
-            <a href="#" className="text-blue-500 text-sm">
+            <Link to="/" className="text-blue-500 text-sm">
               ...
-            </a>
+            </Link>
           </div>
           <div>
             {/* Repeat this block for each order */}
@@ -108,9 +109,9 @@ const Dashboard = () => {
             <h4 className="text-gray-700 font-semibold">
               Group of Potential Customers
             </h4>
-            <a href="#" className="text-blue-500 text-sm">
+            <Link to="/" className="text-blue-500 text-sm">
               ...
-            </a>
+            </Link>
           </div>
           <div>
             {/* Repeat this block for each customer group */}
@@ -129,9 +130,9 @@ const Dashboard = () => {
             <h4 className="text-gray-700 font-semibold">
               Top Countries By Sales
             </h4>
-            <a href="#" className="text-blue-500 text-sm">
+            <Link to="/" className="text-blue-500 text-sm">
               View all
-            </a>
+            </Link>
           </div>
           <div>
             {/* Repeat this block for each country */}
