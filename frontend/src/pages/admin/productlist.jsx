@@ -26,7 +26,7 @@ const ProductTable = () => {
           <div className="overflow-x-auto bg-white shadow-md rounded my-6">
             <table className="min-w-max w-full table-auto">
               <thead>
-                <tr className="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
+                <tr className=" border h-[70px] text-gray-600 uppercase text-sm leading-normal">
                   <th className="py-3 px-6 text-left">Product</th>
                   <th className="py-3 px-6 text-left hidden md:table-cell">
                     Product ID
