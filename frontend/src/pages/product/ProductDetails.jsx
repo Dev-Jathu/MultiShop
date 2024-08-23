@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 const ProductDetail = () => {
   const location = useLocation();
@@ -106,9 +106,9 @@ const ProductDetail = () => {
                 <p>Return Delivery</p>
                 <p className="text-sm text-gray-500">
                   Free 30 Days Delivery Returns.
-                  <a href="#" className="underline">
+                  <Link to="/" className="underline">
                     Details
-                  </a>
+                  </Link>
                 </p>
               </div>
             </div>

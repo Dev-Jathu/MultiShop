@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const productSchema = new mongoose.Schema(
   {
@@ -15,6 +15,15 @@ const productSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    expiredDate: {
+      type: Date,
+      required: true,
+      required: true,
+    },
+    ingredients: {
+      type: String,
+      required: true,
+    },
     category: String,
     stock: {
       type: Number,
@@ -22,16 +31,12 @@ const productSchema = new mongoose.Schema(
     },
     deals: {
       type: String,
-      enum: ['yes', 'no'],
-      default: ['no'],
-    },
-    ingredients: {
-      type: [String],
-      required: true,
+      enum: ["yes", "no"],
+      default: ["no"],
     },
     images: [String],
   },
   { timestamps: true }
 );
 
-module.exports = mongoose.model('Product', productSchema);
+module.exports = mongoose.model("Product", productSchema);
