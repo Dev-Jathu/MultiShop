@@ -17,7 +17,7 @@ function Footer() {
             <Link to="/login">Login</Link>
             <Link to="/cart">Cart</Link>
             <Link to="/wishlist">Wish List</Link>
-            <Link to="/shop">Shop</Link>
+            <Link to="/">Shop</Link>
           </div>
         </div>
         <div className="support flex flex-col">

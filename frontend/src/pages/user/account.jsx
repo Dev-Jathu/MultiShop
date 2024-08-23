@@ -1,84 +1,78 @@
-import { useState } from 'react';
-import { toast } from 'react-toastify';
-import { useNavigate } from 'react-router-dom';
-import { useContext } from 'react';
-import { authContext } from '../../context/authContext';
-import Profile from './userprofile';
-import Payment from './userpayment';
-import Returns from './userreturns';
-import Wishlist from './userwishlist';
+import { useState } from "react";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { authContext } from "../../context/authContext";
+import Profile from "./userprofile";
+import Payment from "./userpayment";
+import Returns from "./userreturns";
+import Wishlist from "./userwishlist";
 
 const AdminPage = () => {
-  const [activeTab, setActiveTab] = useState('profile');
+  const [activeTab, setActiveTab] = useState("profile");
   const { dispatch } = useContext(authContext);
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    dispatch({ type: 'LOGOUT' });
+    dispatch({ type: "LOGOUT" });
     sessionStorage.clear();
-    localStorage.removeItem('user');
-    localStorage.removeItem('role');
-    localStorage.removeItem('token');
-    navigate('/');
-    toast.success('Logged out successfully');
+    localStorage.removeItem("user");
+    localStorage.removeItem("role");
+    localStorage.removeItem("token");
+    navigate("/");
+    toast.success("Logged out successfully");
   };
 
   return (
-    <div className='flex h-screen pt-[160px] '>
-      {/* Sidebar */}
-      <div className='lg:text-2xl md:text-2xl text-[15px] lg:w-64 md:w-52 w-32 bg-white-300 text-black h-[83vh] p-4 flex flex-col '>
-        <h2 className='lg:text-2xl md:text-2xl text-[15px] font-bold mb-8'>
-          My Account
-        </h2>
-        <ul className='space-y-4'>
+    <div className="flex flex-col lg:flex-row h-screen pt-[180px]">
+      {/* Sidebar/Topbar */}
+      <div className="lg:w-64 w-full h-auto p-4 bg-white-300 text-black flex lg:flex-col md:flex-row sm:flex-row md:gap-[140px] gap-3">
+        <ul className="flex lg:flex-col flex-row justify-between  w-full lg:w-auto md:text-[26px] lg:text-[18px]  md:gap-10 lg:gap-5 gap-3">
           <li>
             <button
               className={`${
-                activeTab === 'profile' ? 'text-green-500' : ''
-              } font-semibold w-full text-left`}
-              onClick={() => setActiveTab('profile')}
+                activeTab === "profile" ? "text-green-500" : ""
+              } font-semibold`}
+              onClick={() => setActiveTab("profile")}
             >
-              <div className='flex items-center gap-4'>
-              
-                My Profile
-              </div>
+              Profile
             </button>
           </li>
           <li>
             <button
               className={`${
-                activeTab === 'payment' ? 'text-green-500' : ''
-              } font-semibold w-full text-left`}
-              onClick={() => setActiveTab('payment')}
+                activeTab === "payment" ? "text-green-500" : ""
+              } font-semibold`}
+              onClick={() => setActiveTab("payment")}
             >
-              My Payment Options
+              Payment
             </button>
           </li>
           <li>
             <button
               className={`${
-                activeTab === 'returns' ? 'text-green-500' : ''
-              } font-semibold w-full text-left`}
-              onClick={() => setActiveTab('returns')}
+                activeTab === "returns" ? "text-green-500" : ""
+              } font-semibold`}
+              onClick={() => setActiveTab("returns")}
             >
-              My Returns
+              Returns
             </button>
           </li>
           <li>
             <button
               className={`${
-                activeTab === 'wishlist' ? 'text-green-500' : ''
-              } font-semibold w-full text-left`}
-              onClick={() => setActiveTab('wishlist')}
+                activeTab === "wishlist" ? "text-green-500" : ""
+              } font-semibold`}
+              onClick={() => setActiveTab("wishlist")}
             >
-              My Wishlist
+              Wishlist
             </button>
           </li>
         </ul>
-        <div className='mt-auto'>
+        <div className="  lg:w-full w-full lg:pt-[110px] md:pt-0 ">
           <button
             onClick={handleLogout}
-            className='bg-red-600 hover:bg-red-700 text-white font-semibold px-6 py-2 rounded-md w-full'
+            className="bg-red-600 hover:bg-red-700 text-white font-semibold px-6 py-2 rounded-md md:text-[24px] "
           >
             Log-out
           </button>
@@ -86,11 +80,11 @@ const AdminPage = () => {
       </div>
 
       {/* Content */}
-      <div className='flex-1 bg-white p-8 '>
-        {activeTab === 'profile' && <Profile />}
-        {activeTab === 'payment' && <Payment />}
-        {activeTab === 'returns' && <Returns />}
-        {activeTab === 'wishlist' && <Wishlist />}
+      <div className="flex-1 bg-white">
+        {activeTab === "profile" && <Profile />}
+        {activeTab === "payment" && <Payment />}
+        {activeTab === "returns" && <Returns />}
+        {activeTab === "wishlist" && <Wishlist />}
       </div>
     </div>
   );
