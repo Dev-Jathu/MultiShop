@@ -1,8 +1,7 @@
 import { Link } from "react-router-dom";
 import { authContext } from "../../context/authContext.js";
 import { useState, useEffect, useContext } from "react";
-import location from "../../../src/assets/images/location.png";
-import logo from "../../assets/images/alfies-logo-dark 1.png";
+
 import Categories from "../../assets/images/categories.png";
 
 function Header() {

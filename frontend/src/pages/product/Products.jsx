@@ -1,26 +1,20 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
 import { ProductData } from '../../assets/data/product';
 import ProductCard from '../../components/products/ProductCard';
 
 const Products = () => {
-  const navigate = useNavigate();
-
-  const filteredProducts = ProductData.filter(
-    (product) => product.deals === 'yes'
+   const filteredProducts = ProductData.filter(
+     (product) => product.deals === 'no'
   );
+  
   const displayedProducts = filteredProducts.slice(0, 14);
 
-    const handleViewAll = () => {
-      navigate('/all-Offers');
-    };
   return (
     <div>
-      <div className='p-4 font-bold text-[24px] flex justify-between pt-12'>
-        <p>Deals</p>
+      <div className=' p-4 font-bold text-[24px] flex justify-between pt-12'>
+        <p>New product</p>
         <div
           className='flex items-center gap-2 cursor-pointer'
-          onClick={handleViewAll}
         >
           <p className='text-[18px]'>View All</p>
           <i
@@ -29,6 +23,7 @@ const Products = () => {
           ></i>
         </div>
       </div>
+
       <div className='flex flex-wrap justify-center gap-4'>
         {displayedProducts.map((product) => (
           <ProductCard

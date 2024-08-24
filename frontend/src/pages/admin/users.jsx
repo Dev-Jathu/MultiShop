@@ -13,7 +13,7 @@ const UserTable = () => {
       <div className="overflow-x-auto">
         <table className="min-w-full bg-white rounded-lg shadow-md">
           <thead>
-            <tr className="text-center bg-gray-100">
+            <tr className="text-center bg-white">
               <th className="p-4">Image</th>
               <th className="p-4">Name</th>
               <th className="p-4 hidden lg:table-cell">Email</th>
