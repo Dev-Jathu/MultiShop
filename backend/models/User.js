@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
 const userSchema = new Schema(
@@ -21,8 +21,8 @@ const userSchema = new Schema(
     },
     role: {
       type: String,
-      enum: ['customer', 'vendor', 'admin'],
-      default: 'customer',
+      enum: ["customer", "vendor", "admin"],
+      default: "customer",
     },
     isActive: {
       type: Boolean,
@@ -43,19 +43,19 @@ const userSchema = new Schema(
     shops: [
       {
         type: Schema.Types.ObjectId,
-        ref: 'Shop',
+        ref: "Shop",
       },
     ],
     orderHistory: [
       {
         type: Schema.Types.ObjectId,
-        ref: 'Order',
+        ref: "Order",
       },
     ],
     wishlist: [
       {
         type: Schema.Types.ObjectId,
-        ref: 'Product',
+        ref: "Product",
       },
     ],
     resetPasswordToken: {
@@ -66,12 +66,15 @@ const userSchema = new Schema(
       type: Date,
       required: false,
     },
+    image: {
+      type: String,
+    },
   },
   {
     timestamps: true,
   }
 );
 
-const User = mongoose.model('User', userSchema);
+const User = mongoose.model("User", userSchema);
 
 module.exports = User;
