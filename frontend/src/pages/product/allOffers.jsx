@@ -29,7 +29,7 @@ const AllOffers = () => {
               <img
                 src={Offer.image || image}
                 alt="Lime"
-                className="w-full h-full object-cover"
+                className="w-full h-full object-contain"
               />
             </div>
 

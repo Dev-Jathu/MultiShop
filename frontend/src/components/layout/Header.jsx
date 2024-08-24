@@ -50,10 +50,7 @@ function Header() {
         </div>
         <div className="header fixed z-10 w-full h-40 bg-white shadow-md lg:px-5 md:px-5 px-3">
           <div className="location pt-14 flex lg:gap-2 md:gap-[45px] items-center justify-between">
-            <div className="location-logo text-black flex gap-3 items-center hover:text-primary">
-              <img src={location} alt="logo" className="h-5" />
-              <button>Your Address</button>
-            </div>
+            <div className="location-logo text-black flex gap-3 items-center hover:text-primary"></div>
             <div>
               {token && user ? (
                 <div className="user text-black ">
@@ -67,7 +64,6 @@ function Header() {
                     }`}
                     className="flex gap-4 items-center"
                   >
-                    <p className="text-[16px] font-bold">{name}</p>
                     <img
                       src={photo || "http://www.gravatar.com/avatar/?d=mp"}
                       alt="profile"
@@ -77,16 +73,15 @@ function Header() {
                 </div>
               ) : (
                 <Link to="/login">
-                  <button className="bg-primary px-6 py-2 text-white font-semibold rounded-md">Login</button>
+                  <button className="bg-primary px-6 py-2 text-white font-semibold rounded-md">
+                    Login
+                  </button>
                 </Link>
               )}
             </div>
           </div>
           <div className="search flex items-center justify-between pt-2 md:gap-5 sm:gap-5">
-            <Link to="/">
-              {" "}
-              <img src={logo} alt="logo" className="lg:h-10 md:h-10 h-[25px]" />
-            </Link>
+            <Link to="/" className="w-[170px] text-2xl font-bold"> Liquor House </Link>
             <div className="rounded-md px-4 bg-gray-100 label lg:w-[85%] md:w-[70%] border-none items-center flex justify-between">
               <i className="fa-solid fa-magnifying-glass"></i>
               <input

@@ -8,8 +8,8 @@ function home() {
   return (
     <div>
       <Carousal />
-      <ProductCard />
       <OfferCard />
+      <ProductCard />
       <Categories />
     </div>
   );
