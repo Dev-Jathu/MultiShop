@@ -1,6 +1,6 @@
 import React from "react";
 import Carousal from "./product/ProductCarousal.jsx";
-import ProductCard from "./product/ProductCard.jsx";
+import Products from "./product/Products";
 import OfferCard from "./product/OfferCard.jsx";
 import Categories from "./product/categories.jsx";
 
@@ -9,7 +9,7 @@ function home() {
     <div>
       <Carousal />
       <OfferCard />
-      <ProductCard />
+      <Products />
       <Categories />
     </div>
   );
