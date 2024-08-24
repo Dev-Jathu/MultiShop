@@ -45,7 +45,7 @@ const LimeCard = () => {
               <img
                 src={product.image || image}
                 alt={product.name}
-                className="w-full h-full object-cover"
+                className="w-full h-full object-contain"
               />
             </div>
             <div className="mt-4 text-center lg:text-lg text-[14px] md:text-lg">

@@ -42,7 +42,7 @@ const ProductDetail = () => {
           <img
             src={product.image}
             alt={product.name}
-            className="max-w-full h-auto object-contain"
+            className="max-w-full h-[400px] object-contain"
           />
         </div>
 

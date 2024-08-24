@@ -1,73 +1,60 @@
-
-import image from "../images/lime.png"
-import image1 from "../images/products (1).png"
-import image2 from "../images/products (2).png"
-import image3 from "../images/products (3).png"
-import image4 from "../images/products (4).png"
-import image5 from "../images/products (5).png"
-import image6 from "../images/products (6).png"
-import image7 from "../images/products (7).png"
-import image8 from "../images/products (8).png"
-import image9 from "../images/products (9).png"
-import image11 from "../images/category (1).png"
-import image12 from "../images/category (2).png"
-
-
+import image1 from "../Productimage/product (1).png";
+import image2 from "../Productimage/product (2).png";
+import image3 from "../Productimage/product (3).png";
+import image4 from "../Productimage/product (4).png";
+import image5 from "../Productimage/product (5).png";
+import image6 from "../Productimage/product (6).png";
+import image7 from "../Productimage/product (7).png";
+import image8 from "../Productimage/product (8).png";
+import image9 from "../Productimage/product (9).png";
+import image10 from "../Productimage/product (10).png";
+import image11 from "../Productimage/product (11).png";
+import image12 from "../Productimage/product (12).png";
+import image13 from "../Productimage/product (13).png";
+import image14 from "../Productimage/product (14).png";
+import image15 from "../Productimage/product (15).png";
+import image16 from "../Productimage/product (16).png";
+import image17 from "../Productimage/product (17).png";
+import image18 from "../Productimage/product (18).png";
+import image19 from "../Productimage/product (19).png";
+import image20 from "../Productimage/product (20).png";
 
 export const ProductData = [
   {
-    id: "1540",
+    id: "1001",
     image: image1,
-    price: "1800ch",
-    name: "Vegetable",
-   
-    description:
-      "This product is a lemon, very energetic and refreshing. Perfect for adding a zesty flavor to your dishes or drinks.",
-    category: "Groceries",
-    supplier: "Fresh Farms",
-    
-  
-
-    tags: ["Citrus", "Fresh", "Organic"],
-  
-  },
-  {
-    id: "1541",
-    image: image,
-    price: "1800ch",
-    name: "Groceries",
+    price: "500ch",
+    name: "Light Beer",
     rating: [
       <i class="fa fa-star" aria-hidden="true"></i>,
       <i class="fa fa-star" aria-hidden="true"></i>,
       <i class="fa fa-star" aria-hidden="true"></i>,
       <i class="fa fa-star" aria-hidden="true"></i>,
-      <i class="fa fa-star" aria-hidden="true"></i>,
     ],
-    description:
-      "This product is a lemon, very energetic and refreshing. Perfect for adding a zesty flavor to your dishes or drinks.",
-    category: "Fruits",
-    supplier: "Fresh Farms",
+    description: "Refreshing light beer with a crisp taste.",
+    category: "Beer",
+    stock: 25,
+    supplier: "Brewery Co.",
     reviews: [
       {
-        user: "JohnDoe",
-        comment: "Amazing quality! The lemons were fresh and juicy.",
-        rating: 5,
-      },
-      {
-        user: "JaneSmith",
-        comment: "A bit too sour for my taste, but still good quality.",
+        user: "Tom",
+        comment: "Perfect for a casual drink.",
         rating: 4,
       },
+      {
+        user: "Sara",
+        comment: "Not strong enough for my taste.",
+        rating: 3,
+      },
     ],
-    discount: "10%",
-
-    tags: ["Citrus", "Fresh", "Organic"],
+    discount: "5%",
+    tags: ["Beer", "Light", "Refreshing"],
     discount_price: "",
   },
   {
-    id: "1542",
+    id: "1002",
     image: image2,
-    price: "1800ch",
+    price: "1200ch",
     name: "Arrack",
     rating: [
       <i class="fa fa-star" aria-hidden="true"></i>,
@@ -76,101 +63,93 @@ export const ProductData = [
       <i class="fa fa-star" aria-hidden="true"></i>,
       <i class="fa fa-star" aria-hidden="true"></i>,
     ],
-    description:
-      "This product is a lemon, very energetic and refreshing. Perfect for adding a zesty flavor to your dishes or drinks.",
+    description: "Strong and flavorful alcoholic beverage.",
     category: "Drinks",
     stock: 0,
-    supplier: "Fresh Farms",
+    supplier: "Beverage Co.",
     reviews: [
       {
         user: "JohnDoe",
-        comment: "Amazing quality! The lemons were fresh and juicy.",
+        comment: "Rich and smooth taste.",
         rating: 5,
       },
       {
         user: "JaneSmith",
-        comment: "A bit too sour for my taste, but still good quality.",
-        rating: 4,
+        comment: "Too strong for my preference.",
+        rating: 3,
       },
     ],
-    discount: "10%",
-
-    tags: ["Citrus", "Fresh", "Organic"],
+    discount: "5%",
+    tags: ["Alcohol", "Premium", "Strong"],
     discount_price: "",
   },
   {
-    id: "1543",
+    id: "1003",
     image: image3,
-    price: "1800ch",
-    name: "Cake",
+    price: "800ch",
+    name: "Pale Ale",
     rating: [
       <i class="fa fa-star" aria-hidden="true"></i>,
       <i class="fa fa-star" aria-hidden="true"></i>,
       <i class="fa fa-star" aria-hidden="true"></i>,
       <i class="fa fa-star" aria-hidden="true"></i>,
-      <i class="fa fa-star" aria-hidden="true"></i>,
     ],
-    description:
-      "This product is a lemon, very energetic and refreshing. Perfect for adding a zesty flavor to your dishes or drinks.",
-    category: "Bread",
-    stock: 100,
-    supplier: "Fresh Farms",
+    description: "Crisp and hoppy pale ale.",
+    category: "Beer",
+    stock: 18,
+    supplier: "AleWorks",
     reviews: [
       {
-        user: "JohnDoe",
-        comment: "Amazing quality! The lemons were fresh and juicy.",
-        rating: 5,
+        user: "Anna",
+        comment: "Great balance of hops and malt.",
+        rating: 4,
       },
       {
-        user: "JaneSmith",
-        comment: "A bit too sour for my taste, but still good quality.",
-        rating: 4,
+        user: "Mark",
+        comment: "A bit too bitter for my taste.",
+        rating: 3,
       },
     ],
     discount: "10%",
-
-    tags: ["Citrus", "Fresh", "Organic"],
+    tags: ["Beer", "Craft", "Hoppy"],
     discount_price: "",
   },
   {
-    id: "1544",
+    id: "1004",
     image: image4,
-    price: "1800ch",
-    name: "Garlick",
+    price: "800ch",
+    name: "Craft Beer",
     rating: [
       <i class="fa fa-star" aria-hidden="true"></i>,
       <i class="fa fa-star" aria-hidden="true"></i>,
       <i class="fa fa-star" aria-hidden="true"></i>,
       <i class="fa fa-star" aria-hidden="true"></i>,
-      <i class="fa fa-star" aria-hidden="true"></i>,
     ],
-    description:
-      "This product is a lemon, very energetic and refreshing. Perfect for adding a zesty flavor to your dishes or drinks.",
-    category: "Groceries",
-    stock: 100,
-    supplier: "Fresh Farms",
+    description: "Artisan craft beer with a unique flavor.",
+    category: "Beverages",
+    stock: 20,
+    supplier: "Brewmasters",
     reviews: [
       {
-        user: "JohnDoe",
-        comment: "Amazing quality! The lemons were fresh and juicy.",
-        rating: 5,
+        user: "Alice",
+        comment: "Excellent taste and quality.",
+        rating: 4,
       },
       {
-        user: "JaneSmith",
-        comment: "A bit too sour for my taste, but still good quality.",
-        rating: 4,
+        user: "Bob",
+        comment: "A bit too hoppy for my taste.",
+        rating: 3,
       },
     ],
     discount: "10%",
-
-    tags: ["Citrus", "Fresh", "Organic"],
+    tags: ["Beer", "Craft", "Artisan"],
     discount_price: "",
   },
   {
-    id: "1545",
+    id: "1005",
     image: image5,
-    price: "1800ch",
-    name: "Chilli",
+    price: "1500ch",
+    name: "Premium Whiskey",
     rating: [
       <i class="fa fa-star" aria-hidden="true"></i>,
       <i class="fa fa-star" aria-hidden="true"></i>,
@@ -178,135 +157,124 @@ export const ProductData = [
       <i class="fa fa-star" aria-hidden="true"></i>,
       <i class="fa fa-star" aria-hidden="true"></i>,
     ],
-    description:
-      "This product is a lemon, very energetic and refreshing. Perfect for adding a zesty flavor to your dishes or drinks.",
-    category: "Groceries",
-    stock: 100,
-    supplier: "Fresh Farms",
+    description: "Smooth and rich premium whiskey.",
+    category: "Spirits",
+    stock: 15,
+    supplier: "Whiskey Distillers",
     reviews: [
       {
-        user: "JohnDoe",
-        comment: "Amazing quality! The lemons were fresh and juicy.",
+        user: "Charlie",
+        comment: "Exceptional quality, worth the price.",
         rating: 5,
       },
       {
-        user: "JaneSmith",
-        comment: "A bit too sour for my taste, but still good quality.",
+        user: "Daisy",
+        comment: "Very smooth and enjoyable.",
         rating: 4,
       },
     ],
-    discount: "10%",
-
-    tags: ["Citrus", "Fresh", "Organic"],
+    discount: "8%",
+    tags: ["Whiskey", "Premium", "Smooth"],
     discount_price: "",
   },
   {
-    id: "1546",
+    id: "1006",
     image: image6,
-    price: "1800ch",
-    name: "Lemon",
+    price: "600ch",
+    name: "Beer Pack",
     rating: [
       <i class="fa fa-star" aria-hidden="true"></i>,
       <i class="fa fa-star" aria-hidden="true"></i>,
       <i class="fa fa-star" aria-hidden="true"></i>,
       <i class="fa fa-star" aria-hidden="true"></i>,
-      <i class="fa fa-star" aria-hidden="true"></i>,
     ],
-    description:
-      "This product is a lemon, very energetic and refreshing. Perfect for adding a zesty flavor to your dishes or drinks.",
-    category: "Fruits",
-    stock: 100,
-    supplier: "Fresh Farms",
+    description: "Pack of assorted craft beers.",
+    category: "Beverages",
+    stock: 30,
+    supplier: "Brewmasters",
     reviews: [
       {
-        user: "JohnDoe",
-        comment: "Amazing quality! The lemons were fresh and juicy.",
-        rating: 5,
+        user: "Eve",
+        comment: "Great variety and value for money.",
+        rating: 4,
       },
       {
-        user: "JaneSmith",
-        comment: "A bit too sour for my taste, but still good quality.",
+        user: "Frank",
+        comment: "Good selection of craft beers.",
         rating: 4,
       },
     ],
-    discount: "10%",
-
-    tags: ["Citrus", "Fresh", "Organic"],
+    discount: "12%",
+    tags: ["Beer", "Assorted", "Craft"],
     discount_price: "",
   },
   {
-    id: "1547",
+    id: "1007",
     image: image7,
-    price: "1800ch",
-    name: "Carrot",
+    price: "950ch",
+    name: "IPA Beer",
     rating: [
       <i class="fa fa-star" aria-hidden="true"></i>,
       <i class="fa fa-star" aria-hidden="true"></i>,
       <i class="fa fa-star" aria-hidden="true"></i>,
       <i class="fa fa-star" aria-hidden="true"></i>,
-      <i class="fa fa-star" aria-hidden="true"></i>,
     ],
-    description:
-      "This product is a lemon, very energetic and refreshing. Perfect for adding a zesty flavor to your dishes or drinks.",
-    category: "Groceries",
-    stock: 100,
-    supplier: "Fresh Farms",
+    description: "Intense hop flavor with a strong finish.",
+    category: "Beer",
+    stock: 22,
+    supplier: "HopWorks",
     reviews: [
       {
-        user: "JohnDoe",
-        comment: "Amazing quality! The lemons were fresh and juicy.",
-        rating: 5,
-      },
-      {
-        user: "JaneSmith",
-        comment: "A bit too sour for my taste, but still good quality.",
+        user: "Leo",
+        comment: "Bold flavor with a hoppy kick.",
         rating: 4,
       },
+      {
+        user: "Nina",
+        comment: "A bit too intense for me.",
+        rating: 3,
+      },
     ],
-    discount: "10%",
-
-    tags: ["Citrus", "Fresh", "Organic"],
+    discount: "7%",
+    tags: ["Beer", "IPA", "Hoppy"],
     discount_price: "",
   },
   {
-    id: "1548",
+    id: "1008",
     image: image8,
-    price: "1800ch",
-    name: "Tomato",
+    price: "1000ch",
+    name: "Dark Ale",
     rating: [
       <i class="fa fa-star" aria-hidden="true"></i>,
       <i class="fa fa-star" aria-hidden="true"></i>,
       <i class="fa fa-star" aria-hidden="true"></i>,
       <i class="fa fa-star" aria-hidden="true"></i>,
-      <i class="fa fa-star" aria-hidden="true"></i>,
     ],
-    description:
-      "This product is a lemon, very energetic and refreshing. Perfect for adding a zesty flavor to your dishes or drinks.",
-    category: "Groceries",
-    stock: 100,
-    supplier: "Fresh Farms",
+    description: "Rich and malty dark ale.",
+    category: "Beer",
+    stock: 12,
+    supplier: "AleMasters",
     reviews: [
       {
-        user: "JohnDoe",
-        comment: "Amazing quality! The lemons were fresh and juicy.",
+        user: "George",
+        comment: "Rich and full-bodied flavor.",
         rating: 5,
       },
       {
-        user: "JaneSmith",
-        comment: "A bit too sour for my taste, but still good quality.",
-        rating: 4,
+        user: "Linda",
+        comment: "Too heavy for a light drinker.",
+        rating: 3,
       },
     ],
-    discount: "10%",
-
-    tags: ["Citrus", "Fresh", "Organic"],
+    discount: "6%",
+    tags: ["Beer", "Dark", "Malty"],
     discount_price: "",
   },
   {
-    id: "1549",
+    id: "1009",
     image: image9,
-    price: "1800ch",
-    name: "Beans",
+    price: "1300ch",
+    name: "Scotch Whiskey",
     rating: [
       <i class="fa fa-star" aria-hidden="true"></i>,
       <i class="fa fa-star" aria-hidden="true"></i>,
@@ -314,67 +282,93 @@ export const ProductData = [
       <i class="fa fa-star" aria-hidden="true"></i>,
       <i class="fa fa-star" aria-hidden="true"></i>,
     ],
-    description:
-      "This product is a lemon, very energetic and refreshing. Perfect for adding a zesty flavor to your dishes or drinks.",
-    category: "Groceries",
-    stock: 100,
-    supplier: "Fresh Farms",
+    description: "Classic and refined Scotch whiskey.",
+    category: "Spirits",
+    stock: 10,
+    supplier: "Scotch Distillers",
     reviews: [
       {
-        user: "JohnDoe",
-        comment: "Amazing quality! The lemons were fresh and juicy.",
+        user: "Oscar",
+        comment: "Smooth and sophisticated.",
         rating: 5,
       },
       {
-        user: "JaneSmith",
-        comment: "A bit too sour for my taste, but still good quality.",
+        user: "Paula",
+        comment: "A bit expensive but worth it.",
         rating: 4,
       },
     ],
     discount: "10%",
-
-    tags: ["Citrus", "Fresh", "Organic"],
+    tags: ["Whiskey", "Scotch", "Refined"],
     discount_price: "",
   },
   {
-    id: "1550",
+    id: "1010",
+    image: image10,
+    price: "550ch",
+    name: "Seasonal Beer",
+    rating: [
+      <i class="fa fa-star" aria-hidden="true"></i>,
+      <i class="fa fa-star" aria-hidden="true"></i>,
+      <i class="fa fa-star" aria-hidden="true"></i>,
+      <i class="fa fa-star" aria-hidden="true"></i>,
+    ],
+    description: "Limited edition seasonal beer.",
+    category: "Beer",
+    stock: 8,
+    supplier: "Seasonal Brews",
+    reviews: [
+      {
+        user: "Jack",
+        comment: "Perfect for the season!",
+        rating: 4,
+      },
+      {
+        user: "Emily",
+        comment: "Interesting flavors.",
+        rating: 4,
+      },
+    ],
+    discount: "15%",
+    tags: ["Beer", "Seasonal", "Limited Edition"],
+    discount_price: "",
+  },
+  {
+    id: "1011",
     image: image11,
-    price: "1800ch",
-    name: "Bread",
+    price: "850ch",
+    name: "Ale Variety Pack",
     rating: [
       <i class="fa fa-star" aria-hidden="true"></i>,
       <i class="fa fa-star" aria-hidden="true"></i>,
       <i class="fa fa-star" aria-hidden="true"></i>,
       <i class="fa fa-star" aria-hidden="true"></i>,
-      <i class="fa fa-star" aria-hidden="true"></i>,
     ],
-    description:
-      "This product is a lemon, very energetic and refreshing. Perfect for adding a zesty flavor to your dishes or drinks.",
-    category: "Bread",
-    stock: 100,
-    supplier: "Fresh Farms",
+    description: "Selection of assorted ales.",
+    category: "Beer",
+    stock: 20,
+    supplier: "AleWorks",
     reviews: [
       {
-        user: "JohnDoe",
-        comment: "Amazing quality! The lemons were fresh and juicy.",
-        rating: 5,
-      },
-      {
-        user: "JaneSmith",
-        comment: "A bit too sour for my taste, but still good quality.",
+        user: "Mike",
+        comment: "Great selection of different ales.",
         rating: 4,
       },
+      {
+        user: "Hannah",
+        comment: "Nice variety but a bit pricey.",
+        rating: 3,
+      },
     ],
-    discount: "10%",
-
-    tags: ["Citrus", "Fresh", "Organic"],
+    discount: "12%",
+    tags: ["Beer", "Variety", "Assorted"],
     discount_price: "",
   },
   {
-    id: "1551",
+    id: "1012",
     image: image12,
-    price: "1800ch",
-    name: "Meat",
+    price: "1100ch",
+    name: "Belgian Ale",
     rating: [
       <i class="fa fa-star" aria-hidden="true"></i>,
       <i class="fa fa-star" aria-hidden="true"></i>,
@@ -382,101 +376,155 @@ export const ProductData = [
       <i class="fa fa-star" aria-hidden="true"></i>,
       <i class="fa fa-star" aria-hidden="true"></i>,
     ],
-    description:
-      "This product is a lemon, very energetic and refreshing. Perfect for adding a zesty flavor to your dishes or drinks.",
-    category: "Meat",
-    stock: 100,
-    supplier: "Fresh Farms",
+    description: "Classic Belgian ale with a rich flavor.",
+    category: "Beer",
+    stock: 5,
+    supplier: "Belgian Brewers",
     reviews: [
       {
-        user: "JohnDoe",
-        comment: "Amazing quality! The lemons were fresh and juicy.",
+        user: "Paul",
+        comment: "Amazing taste and quality.",
         rating: 5,
       },
       {
-        user: "JaneSmith",
-        comment: "A bit too sour for my taste, but still good quality.",
+        user: "Sophie",
+        comment: "A bit too strong for me.",
         rating: 4,
       },
     ],
-    discount: "10%",
-
-    tags: ["Citrus", "Fresh", "Organic"],
+    discount: "7%",
+    tags: ["Beer", "Belgian", "Rich"],
     discount_price: "",
   },
   {
-    id: "154011",
-    image: image12,
-    price: "1800ch",
-    name: "Meat",
+    id: "1013",
+    image: image13,
+    price: "950ch",
+    name: "Amber Ale",
     rating: [
       <i class="fa fa-star" aria-hidden="true"></i>,
       <i class="fa fa-star" aria-hidden="true"></i>,
       <i class="fa fa-star" aria-hidden="true"></i>,
       <i class="fa fa-star" aria-hidden="true"></i>,
-      <i class="fa fa-star" aria-hidden="true"></i>,
     ],
-    description:
-      "This product is a lemon, very energetic and refreshing. Perfect for adding a zesty flavor to your dishes or drinks.",
-    category: "Meat",
-    stock: 100,
-    supplier: "Fresh Farms",
+    description: "Smooth amber ale with a hint of caramel.",
+    category: "Beer",
+    stock: 15,
+    supplier: "Amber Brews",
     reviews: [
       {
-        user: "JohnDoe",
-        comment: "Amazing quality! The lemons were fresh and juicy.",
-        rating: 5,
+        user: "Tina",
+        comment: "Delicious and smooth.",
+        rating: 4,
       },
       {
-        user: "JaneSmith",
-        comment: "A bit too sour for my taste, but still good quality.",
+        user: "Evan",
+        comment: "Nice caramel notes.",
         rating: 4,
       },
     ],
-    discount: "10%",
-
-    tags: ["Citrus", "Fresh", "Organic"],
+    discount: "8%",
+    tags: ["Beer", "Amber", "Smooth"],
     discount_price: "",
   },
   {
-    id: "154012",
-    image: image8,
-    price: "1800ch",
-    name: "Meat",
+    id: "1014",
+    image: image14,
+    price: "1000ch",
+    name: "Barrel-Aged Stout",
     rating: [
       <i class="fa fa-star" aria-hidden="true"></i>,
       <i class="fa fa-star" aria-hidden="true"></i>,
       <i class="fa fa-star" aria-hidden="true"></i>,
       <i class="fa fa-star" aria-hidden="true"></i>,
-      <i class="fa fa-star" aria-hidden="true"></i>,
     ],
-    description:
-      "This product is a lemon, very energetic and refreshing. Perfect for adding a zesty flavor to your dishes or drinks.",
-    category: "Meat",
-    stock: 100,
-    supplier: "Fresh Farms",
+    description: "Rich stout aged in barrels for added depth.",
+    category: "SoftDrinks",
+    stock: 7,
+    supplier: "Stout Makers",
     reviews: [
       {
-        user: "JohnDoe",
-        comment: "Amazing quality! The lemons were fresh and juicy.",
+        user: "Chris",
+        comment: "Incredible depth of flavor.",
         rating: 5,
       },
       {
-        user: "JaneSmith",
-        comment: "A bit too sour for my taste, but still good quality.",
+        user: "Kate",
+        comment: "A bit too strong for me.",
         rating: 4,
       },
     ],
-    discount: "10%",
-
-    tags: ["Citrus", "Fresh", "Organic"],
+    discount: "6%",
+    tags: ["Beer", "Stout", "Aged"],
     discount_price: "",
   },
   {
-    id: "154013",
-    image: image7,
-    price: "1800ch",
-    name: "Meat",
+    id: "1015",
+    image: image15,
+    price: "1200ch",
+    name: "Spiced Rum",
+    rating: [
+      <i class="fa fa-star" aria-hidden="true"></i>,
+      <i class="fa fa-star" aria-hidden="true"></i>,
+      <i class="fa fa-star" aria-hidden="true"></i>,
+      <i class="fa fa-star" aria-hidden="true"></i>,
+    ],
+    description: "Rum with a blend of spices for added flavor.",
+    category: "Spirits",
+    stock: 20,
+    supplier: "Rum Distillers",
+    reviews: [
+      {
+        user: "Liam",
+        comment: "Perfect blend of spices.",
+        rating: 4,
+      },
+      {
+        user: "Olivia",
+        comment: "Great for cocktails.",
+        rating: 4,
+      },
+    ],
+    discount: "10%",
+    tags: ["Rum", "Spiced", "Flavored"],
+    discount_price: "",
+  },
+  {
+    id: "1016",
+    image: image16,
+    price: "1500ch",
+    name: "Gin",
+    rating: [
+      <i class="fa fa-star" aria-hidden="true"></i>,
+      <i class="fa fa-star" aria-hidden="true"></i>,
+      <i class="fa fa-star" aria-hidden="true"></i>,
+      <i class="fa fa-star" aria-hidden="true"></i>,
+    ],
+    description: "Classic gin with a smooth finish.",
+    category: "Spirits",
+    stock: 12,
+    supplier: "Gin Masters",
+    reviews: [
+      {
+        user: "Nathan",
+        comment: "Classic and smooth gin.",
+        rating: 4,
+      },
+      {
+        user: "Emma",
+        comment: "Great for cocktails.",
+        rating: 4,
+      },
+    ],
+    discount: "5%",
+    tags: ["Gin", "Classic", "Smooth"],
+    discount_price: "",
+  },
+  {
+    id: "1017",
+    image: image17,
+    price: "1300ch",
+    name: "Vodka",
     rating: [
       <i class="fa fa-star" aria-hidden="true"></i>,
       <i class="fa fa-star" aria-hidden="true"></i>,
@@ -484,27 +532,118 @@ export const ProductData = [
       <i class="fa fa-star" aria-hidden="true"></i>,
       <i class="fa fa-star" aria-hidden="true"></i>,
     ],
-    description:
-      "This product is a lemon, very energetic and refreshing. Perfect for adding a zesty flavor to your dishes or drinks.",
-    category: "Meat",
-    stock: 100,
-    supplier: "Fresh Farms",
+    description: "Premium vodka with a smooth finish.",
+    category: "Spirits",
+    stock: 8,
+    supplier: "Vodka Distillers",
     reviews: [
       {
-        user: "JohnDoe",
-        comment: "Amazing quality! The lemons were fresh and juicy.",
+        user: "Sophia",
+        comment: "Very smooth and high quality.",
         rating: 5,
       },
       {
-        user: "JaneSmith",
-        comment: "A bit too sour for my taste, but still good quality.",
+        user: "Daniel",
+        comment: "Great value for the price.",
         rating: 4,
       },
     ],
-    discount: "10%",
-
-    tags: ["Citrus", "Fresh", "Organic"],
+    discount: "8%",
+    tags: ["Vodka", "Premium", "Smooth"],
     discount_price: "",
   },
-
+  {
+    id: "1018",
+    image: image18,
+    price: "700ch",
+    name: "Red Wine",
+    rating: [
+      <i class="fa fa-star" aria-hidden="true"></i>,
+      <i class="fa fa-star" aria-hidden="true"></i>,
+      <i class="fa fa-star" aria-hidden="true"></i>,
+      <i class="fa fa-star" aria-hidden="true"></i>,
+    ],
+    description: "Rich and full-bodied red wine.",
+    category: "Wines",
+    stock: 15,
+    supplier: "Wine Makers",
+    reviews: [
+      {
+        user: "James",
+        comment: "Great wine with dinner.",
+        rating: 4,
+      },
+      {
+        user: "Charlotte",
+        comment: "Nice taste but a bit dry.",
+        rating: 3,
+      },
+    ],
+    discount: "7%",
+    tags: ["Wine", "Red", "Full-bodied"],
+    discount_price: "",
+  },
+  {
+    id: "1019",
+    image: image19,
+    price: "800ch",
+    name: "White Wine",
+    rating: [
+      <i class="fa fa-star" aria-hidden="true"></i>,
+      <i class="fa fa-star" aria-hidden="true"></i>,
+      <i class="fa fa-star" aria-hidden="true"></i>,
+      <i class="fa fa-star" aria-hidden="true"></i>,
+    ],
+    description: "Crisp and refreshing white wine.",
+    category: "Wines",
+    stock: 10,
+    supplier: "Vineyard Co.",
+    reviews: [
+      {
+        user: "William",
+        comment: "Perfect for a summer day.",
+        rating: 4,
+      },
+      {
+        user: "Olivia",
+        comment: "Good quality for the price.",
+        rating: 4,
+      },
+    ],
+    discount: "5%",
+    tags: ["Wine", "White", "Refreshing"],
+    discount_price: "",
+  },
+  {
+    id: "1020",
+    image: image20,
+    price: "950ch",
+    name: "Champagne",
+    rating: [
+      <i class="fa fa-star" aria-hidden="true"></i>,
+      <i class="fa fa-star" aria-hidden="true"></i>,
+      <i class="fa fa-star" aria-hidden="true"></i>,
+      <i class="fa fa-star" aria-hidden="true"></i>,
+      <i class="fa fa-star" aria-hidden="true"></i>,
+    ],
+    description: "Luxurious champagne with a smooth finish.",
+    category: "Wines",
+    stock: 5,
+    supplier: "Champagne House",
+    reviews: [
+      {
+        user: "Lucas",
+        comment: "Perfect for celebrations.",
+        rating: 5,
+      },
+      {
+        user: "Mia",
+        comment: "Delicious and elegant.",
+        rating: 5,
+      },
+    ],
+    discount: "10%",
+    tags: ["Champagne", "Luxury", "Celebration"],
+    discount_price: "",
+  },
 ];

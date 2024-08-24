@@ -31,7 +31,7 @@ const AllProductsPage = () => {
               <img
                 src={product.image || image}
                 alt={product.name || "Product Image"}
-                className="w-full h-full object-cover"
+                className="w-full h-full object-contain" 
               />
             </div>
             <div className="w-full mt-4">

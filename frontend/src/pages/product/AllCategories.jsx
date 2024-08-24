@@ -15,7 +15,7 @@ const ProductPage = () => {
       : ProductData.filter((product) => product.category === selectedCategory);
 
   return (
-    <div className='px-5'>
+    <div className='px-5 h-[100vh]'>
       <div className='font-bold text-[18px] flex justify-between pt-[200px]'>
         <p>Categories</p>
       </div>
@@ -43,7 +43,7 @@ const ProductPage = () => {
               <img
                 src={product.image || image}
                 alt={product.name}
-                className='w-full h-full object-cover'
+                className='w-full h-full object-contain'
               />
             </div>
             <p className='mt-2 text-center'>{product.name}</p>
