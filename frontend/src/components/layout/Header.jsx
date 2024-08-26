@@ -1,8 +1,7 @@
 import { Link } from "react-router-dom";
 import { authContext } from "../../context/authContext.js";
 import { useState, useEffect, useContext } from "react";
-import location from "../../../src/assets/images/location.png";
-import logo from "../../assets/images/alfies-logo-dark 1.png";
+
 import Categories from "../../assets/images/categories.png";
 
 function Header() {
@@ -34,7 +33,7 @@ function Header() {
 
   return (
     <div>
-      <div className="main">
+      <div className="main ">
         <div className="fixed z-50 navbar flex justify-center p-3 bg-black shadow-gray-50 text-white text-[18px] lg:px-60 px-[5px] w-full">
           <div className="flex justify-between lg:gap-10 md:gap-[20px] gap-8 lg:text-base md:text-[14px] text-[10px] items-center">
             <p className="text-center md:text-left">
@@ -50,10 +49,7 @@ function Header() {
         </div>
         <div className="header fixed z-10 w-full h-40 bg-white shadow-md lg:px-5 md:px-5 px-3">
           <div className="location pt-14 flex lg:gap-2 md:gap-[45px] items-center justify-between">
-            <div className="location-logo text-black flex gap-3 items-center hover:text-primary">
-              <img src={location} alt="logo" className="h-5" />
-              <button>Your Address</button>
-            </div>
+            <div className="location-logo text-black flex gap-3 items-center hover:text-primary"></div>
             <div>
               {token && user ? (
                 <div className="user text-black ">
@@ -67,7 +63,6 @@ function Header() {
                     }`}
                     className="flex gap-4 items-center"
                   >
-                    <p className="text-[16px] font-bold">{name}</p>
                     <img
                       src={photo || "http://www.gravatar.com/avatar/?d=mp"}
                       alt="profile"
@@ -77,15 +72,17 @@ function Header() {
                 </div>
               ) : (
                 <Link to="/login">
-                  <button className="bg-primary px-6 py-2 text-white font-semibold rounded-md">Login</button>
+                  <button className="bg-primary px-6 py-2 text-white font-semibold rounded-md">
+                    Login
+                  </button>
                 </Link>
               )}
             </div>
           </div>
           <div className="search flex items-center justify-between pt-2 md:gap-5 sm:gap-5">
-            <Link to="/">
+            <Link to="/" className="w-[170px] text-2xl font-bold">
               {" "}
-              <img src={logo} alt="logo" className="lg:h-10 md:h-10 h-[25px]" />
+              Liquor House{" "}
             </Link>
             <div className="rounded-md px-4 bg-gray-100 label lg:w-[85%] md:w-[70%] border-none items-center flex justify-between">
               <i className="fa-solid fa-magnifying-glass"></i>
@@ -106,10 +103,10 @@ function Header() {
               <Link to="/wishlist">
                 <i className="fa-regular fa-heart cursor-pointer"></i>
               </Link>
-              <Link to="/all-Categories">
+              <Link to="/category">
                 <img
                   src={Categories}
-                  className=" md:h-[30px] h-[58px] lg:h-[35px] lg:pt-2 md:pt-1"
+                  className=" md:h-[30px] md:w-[40px] h-[58px] lg:h-[35px] lg:pt-2 md:pt-1"
                   alt="categories"
                 />
               </Link>
@@ -123,7 +120,7 @@ function Header() {
               <Link to="/wishlist" onClick={handleLinkClick}>
                 Wishlist
               </Link>
-              <Link to="/all-Categories" onClick={handleLinkClick}>
+              <Link to="/category" onClick={handleLinkClick}>
                 All Categories
               </Link>
               <Link to="/cart" onClick={handleLinkClick}>

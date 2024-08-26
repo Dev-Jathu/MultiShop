@@ -70,7 +70,7 @@ const ProductForm = () => {
   };
 
   return (
-    <div className="mx-auto p-4 w-full sm:w-[95%] bg-white rounded-lg shadow-md sm:h-[90vh]">
+    <div className="mx-auto p-8 w-full sm:w-[95%] bg-white rounded-lg shadow-md sm:h-[90vh]">
       <form onSubmit={handleSubmit}>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
           {/* Left column */}
@@ -241,14 +241,16 @@ const ProductForm = () => {
           </div>
         </div>
 
-        {/* Submit Button */}
-        <div className="pt-5 flex gap-5 flex-col sm:flex-row">
+
+        {/* Buttons */}
+        <div className="pt-8 flex gap-5 flex-col sm:flex-row">
           <button
             type="submit"
-            className="w-full sm:w-auto px-6 py-3 bg-primary text-white rounded-md shadow-sm hover:bg-green-700"
+            className="lg:w-[49%] sm:w-auto px-6 py-3 bg-primary text-white rounded-md shadow-sm hover:bg-green-700"
           >
             Add product
           </button>
+          
         </div>
       </form>
     </div>
