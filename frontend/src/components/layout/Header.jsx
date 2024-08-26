@@ -33,7 +33,7 @@ function Header() {
 
   return (
     <div>
-      <div className="main">
+      <div className="main ">
         <div className="fixed z-50 navbar flex justify-center p-3 bg-black shadow-gray-50 text-white text-[18px] lg:px-60 px-[5px] w-full">
           <div className="flex justify-between lg:gap-10 md:gap-[20px] gap-8 lg:text-base md:text-[14px] text-[10px] items-center">
             <p className="text-center md:text-left">
@@ -80,7 +80,10 @@ function Header() {
             </div>
           </div>
           <div className="search flex items-center justify-between pt-2 md:gap-5 sm:gap-5">
-            <Link to="/" className="w-[170px] text-2xl font-bold"> Liquor House </Link>
+            <Link to="/" className="w-[170px] text-2xl font-bold">
+              {" "}
+              Liquor House{" "}
+            </Link>
             <div className="rounded-md px-4 bg-gray-100 label lg:w-[85%] md:w-[70%] border-none items-center flex justify-between">
               <i className="fa-solid fa-magnifying-glass"></i>
               <input
@@ -100,10 +103,10 @@ function Header() {
               <Link to="/wishlist">
                 <i className="fa-regular fa-heart cursor-pointer"></i>
               </Link>
-              <Link to="/all-Categories">
+              <Link to="/category">
                 <img
                   src={Categories}
-                  className=" md:h-[30px] h-[58px] lg:h-[35px] lg:pt-2 md:pt-1"
+                  className=" md:h-[30px] md:w-[40px] h-[58px] lg:h-[35px] lg:pt-2 md:pt-1"
                   alt="categories"
                 />
               </Link>
@@ -117,7 +120,7 @@ function Header() {
               <Link to="/wishlist" onClick={handleLinkClick}>
                 Wishlist
               </Link>
-              <Link to="/all-Categories" onClick={handleLinkClick}>
+              <Link to="/category" onClick={handleLinkClick}>
                 All Categories
               </Link>
               <Link to="/cart" onClick={handleLinkClick}>

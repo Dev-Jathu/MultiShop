@@ -1,40 +1,35 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import { ProductData } from '../../assets/data/product';
-import ProductCard from '../../components/products/ProductCard';
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import { ProductData } from "../../assets/data/product";
+import ProductCard from "../../components/products/ProductCard";
 
 const Products = () => {
   const navigate = useNavigate();
 
   const filteredProducts = ProductData.filter(
-    (product) => product.deals === 'yes'
+    (product) => product.deals === "yes"
   );
-  const displayedProducts = filteredProducts.slice(0, 14);
+  const displayedProducts = filteredProducts.slice(0, 10);
 
-    const handleViewAll = () => {
-      navigate('/all-Offers');
-    };
+const handleViewAll = (dealType) => {
+  navigate("/view-all", { state: { dealType:"yes" } });
+};
+
   return (
     <div>
-      <div className='p-4 font-bold text-[24px] flex justify-between pt-12'>
+      <div className="p-4 font-bold text-[24px] flex justify-between pt-12">
         <p>Deals</p>
         <div
-          className='flex items-center gap-2 cursor-pointer'
+          className="flex items-center gap-2 cursor-pointer"
           onClick={handleViewAll}
         >
-          <p className='text-[18px]'>View All</p>
-          <i
-            className='fa fa-arrow-right'
-            aria-hidden='true'
-          ></i>
+          <p className="text-[18px]">View All</p>
+          <i className="fa fa-arrow-right" aria-hidden="true"></i>
         </div>
       </div>
-      <div className='flex flex-wrap justify-center gap-4'>
+      <div className="flex lg:flex-wrap md:flex-wrap justify-center gap-4 overflow-x-auto scrollbar-hide sm:overflow-x-visible">
         {displayedProducts.map((product) => (
-          <ProductCard
-            key={product.id}
-            product={product}
-          />
+          <ProductCard key={product.id} product={product} />
         ))}
       </div>
     </div>

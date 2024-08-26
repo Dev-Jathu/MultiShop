@@ -1,7 +1,7 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 import Home from "../pages/home.jsx";
-import ProductDetails from "../pages/product/ProductDetails";
+import ProductDetails from "../components/products/ProductDetails.jsx";
 import Wishlist from "../pages/user/wishlist";
 import Login from "../pages/login";
 import Signup from "../pages/signup";
@@ -11,6 +11,8 @@ import Cart from "../pages/user/cart.jsx";
 import Admin from "../pages/admin/dashboard.jsx";
 import Checkout from "../pages/product/Checkout.jsx";
 import ProtectedRoute from "./protectedRoutes.js";
+import ViewAll from "../components/products/ViewAll.jsx"
+import Category from '../pages/product/categories.jsx'
 
 function App() {
   return (
@@ -18,14 +20,16 @@ function App() {
       <Route path="/" element={<Home />} />
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
-      <Route path="/ProductDetail" element={<ProductDetails />} />
+      <Route path="/product/:id" element={<ProductDetails />} />
       <Route path="/wishlist" element={<Wishlist />} />
       <Route path="/sign-up" element={<Signup />} />
       <Route path="/login" element={<Login />} />
       <Route path="/contact" element={<Contact />} />
       <Route path="/cart" element={<Cart />} />
       <Route path="/checkout" element={<Checkout />} />
-     
+      <Route path="/view-all" element={<ViewAll />} />
+      <Route path="/category" element={<Category />} />
+
       {/* ---------Protected Routes--------- */}
       <Route
         path="/admin"
