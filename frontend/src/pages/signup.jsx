@@ -15,7 +15,7 @@ const SignUpForm = () => {
   const [errors, setErrors] = useState({ password: '', confirmPassword: '' });
   const [passwordValid, setPasswordValid] = useState(false);
 
-  const navigate = useNavigate();
+  const Navigate = useNavigate();
 
   // Password Validation
   const validatePassword = (password) => {
@@ -69,13 +69,26 @@ const SignUpForm = () => {
           throw new Error(message);
         }
 
-        navigate('/my-account');
+        Navigate('/my-account');
         console.log('Registration successful');
       } catch (err) {
         console.error('Registration failed:', err);
       }
     }
   };
+
+  // google authentication
+  function navigate(url) {
+    window.location.href = url;
+  }
+
+  async function auth() {
+    const response = await fetch(`http://localhost:5000/request`, {
+      method: 'POST',
+    });
+    const data = await response.json();
+    navigate(data.url);
+  }
 
   return (
     <div className='flex items-center justify-center min-h-screen bg-gray-100'>
@@ -159,6 +172,7 @@ const SignUpForm = () => {
         </form>
         <div className='flex items-center justify-center mt-4'>
           <button
+            onClick={() => auth()}
             type='submit'
             className='w-full flex items-center justify-center border border-gray-300 py-2 rounded-lg'
           >
