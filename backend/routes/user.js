@@ -4,7 +4,7 @@ const {
   registerUser,
   loginUser,
   resetPasswordToken,
-  getUserProfile,
+  getUserProfile, 
   updateUserProfile,
 } = require('../controllers/user');
 const { protect, restrict } = require('../middlewares/auth');
