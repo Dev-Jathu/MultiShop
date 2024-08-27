@@ -7,7 +7,7 @@ import Categories from "../../assets/images/categories.png";
 function Header() {
   const [showLinks, setShowLinks] = useState(false);
   const { user, role, token } = useContext(authContext);
-  const { name, photo } = user || {};
+  const {  photo } = user || {};
 
   const toggleLinks = () => {
     setShowLinks(!showLinks);
@@ -81,8 +81,7 @@ function Header() {
           </div>
           <div className="search flex items-center justify-between pt-2 md:gap-5 sm:gap-5">
             <Link to="/" className="w-[170px] text-2xl font-bold">
-              {" "}
-              Liquor House{" "}
+              Liquor House
             </Link>
             <div className="rounded-md px-4 bg-gray-100 label lg:w-[85%] md:w-[70%] border-none items-center flex justify-between">
               <i className="fa-solid fa-magnifying-glass"></i>

@@ -1,4 +1,3 @@
-import image1 from '../Productimage/product (1).png';
 import image2 from '../Productimage/product (2).png';
 import image3 from '../Productimage/product (3).png';
 import image4 from '../Productimage/product (4).png';
@@ -30,16 +29,6 @@ import image29 from '../Productimage/product (29).png';
 import image30 from '../Productimage/product (30).png';
 
 export const ProductData = [
-  {
-    id: 1,
-    image: image1,
-    name: "Product 1",
-    price: 100.0,
-    discount: 20,
-    rating: 4.5,
-    deals: "yes",
-    category: "Electronics",
-  },
   {
     id: "1002",
     image: image2,

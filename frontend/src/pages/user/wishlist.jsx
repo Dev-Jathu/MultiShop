@@ -1,5 +1,4 @@
 import React from 'react';
-import image from '../../assets/images/products (4).png';
 
 const Wishlist = () => {
   return (

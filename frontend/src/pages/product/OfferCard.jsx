@@ -9,7 +9,7 @@ const Products = () => {
   const filteredProducts = ProductData.filter(
     (product) => product.deals === "yes"
   );
-  const displayedProducts = filteredProducts.slice(0, 10);
+  const displayedProducts = filteredProducts.slice(0, 14);
 
 const handleViewAll = (dealType) => {
   navigate("/view-all", { state: { dealType:"yes" } });
