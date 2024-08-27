@@ -6,7 +6,6 @@ const userRoutes = require("./routes/user");
 const cartRoutes = require("./routes/cart");
 const orderRoutes = require("./routes/order");
 const reviewRoutes = require("./routes/review");
-const requestRoutes = require("./routes/request");
 const paymentRoutes = require("./routes/payment");
 const productRoutes = require("./routes/product");
 const categoryRoutes = require("./routes/category");
@@ -39,7 +38,6 @@ app.use("/api/reviews", reviewRoutes);
 app.use("/api/payments", paymentRoutes);
 app.use("/api/cart", cartRoutes);
 app.use("/api/auth", authRoutes);
-app.use("/request", requestRoutes);
 app.use("/api/wishlist", wishlistRoutes);
 app.use("/api/category", categoryRoutes);
 

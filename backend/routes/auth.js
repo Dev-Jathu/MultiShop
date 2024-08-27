@@ -1,39 +1,34 @@
 const express = require("express");
-const router = express.Router();
-const dotenv = require("dotenv");
-dotenv.config();
+const { googleSignIn } = require("../controllers/auth");
 const { OAuth2Client } = require("google-auth-library");
+const dotenv = require("dotenv");
 
-async function getUserData(access_token) {
-  const response = await fetch(
-    `https://www.googleapis.com/oauth2/v3/userinfo?access_token${access_token} `
-  );
-  const data = await response.json();
-  console.log("data", data);
-}
+dotenv.config();
 
-// Routes
-router.get("/", async function (req, res, next) {
-  const code = req.query.code;
-  try {
-    const redirectUrl = "http://127.0.0.1:3000/oauth";
-    const oAuth2Client = new OAuth2Client(
-      process.env.CLIENT_ID,
-      process.env.CLIENT_SECRET,
-      redirectUrl
-    );
-    const res = await oAuth2Client.getToken(code);
+const router = express.Router();
 
-    await oAuth2Client.setCredentials9res(res.tokens);
-    console.log("Token Acquired");
+// Initialize the OAuth2Client
+const oAuth2Client = new OAuth2Client(
+  process.env.CLIENT_ID,
+  process.env.CLIENT_SECRET,
+  "http://127.0.0.1:3000/oauth"
+);
 
-    const user = oAuth2Client.credentials;
-    console.log("user : ", user);
+// Route to generate the Google OAuth authorization URL
+router.post("/google", (req, res) => {
+  const authorizeUrl = oAuth2Client.generateAuthUrl({
+    access_type: "offline",
+    scope: [
+      "https://www.googleapis.com/auth/userinfo.profile",
+      "https://www.googleapis.com/auth/userinfo.email",
+    ],
+    prompt: "consent",
+  });
 
-    await getUserData(user.access_token);
-  } catch (error) {
-    console.log(error);
-  }
+  res.json({ url: authorizeUrl });
 });
+
+// Callback route for Google OAuth
+router.get("/oauth", googleSignIn);
 
 module.exports = router;
