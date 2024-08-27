@@ -138,6 +138,7 @@
 
 // export default LoginForm;
 
+// Testing
 import React from "react";
 import { BASE_URL } from "../config";
 
@@ -146,20 +147,37 @@ function navigate(url) {
 }
 
 async function auth() {
-  const response = await fetch(`http://localhost:5000/request`, { method: "POST" });
-  const data = await response.json();
-  navigate(data.url);
+  try {
+    const response = await fetch(`http://127.0.0.1:5000/api/auth/google`, {
+      method: "POST",
+    });
+    const data = await response.json();
+    navigate(data.url);
+  } catch (error) {
+    console.error("Error during authentication:", error);
+  }
 }
 
-function login() {
+function AuthPage() {
   return (
     <div className="h-[100vh] flex flex-col justify-center items-center">
-      <div className="text-xl text-center">login</div>
-      {/* <button type="button" onClick={() => auth()}>
-        Login
-      </button> */}
+      <div className="text-xl text-center mb-4">Welcome</div>
+      <button
+        type="button"
+        onClick={() => auth()}
+        className="px-4 py-2 bg-blue-500 text-white rounded mb-2"
+      >
+        Login with Google
+      </button>
+      <button
+        type="button"
+        onClick={() => auth()}
+        className="px-4 py-2 bg-green-500 text-white rounded"
+      >
+        Sign up with Google
+      </button>
     </div>
   );
 }
 
-export default login;
+export default AuthPage;
