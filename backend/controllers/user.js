@@ -6,7 +6,7 @@ const crypto = require("crypto");
 // Utility function to generate JWT token
 const generateToken = (id) => {
   return jwt.sign({ id }, process.env.JWT_SECRET, {
-    expiresIn: "1h", // Token expires in 1 hour
+    expiresIn: "1d", // Token expires in 1 hour
   });
 };
 

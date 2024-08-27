@@ -16,9 +16,9 @@ const ProductForm = () => {
 
       try {
         const uploadData = await uploadImage(file);
-        console.log("Uploaded Image Data:", uploadData); // Log the upload data
+        console.log("Uploaded Image Data:", uploadData);
         if (uploadData && uploadData.url) {
-          setUploadedImageUrl(uploadData.url);
+          setUploadedImageUrl(uploadData.url) ;
         } else {
           throw new Error("Image URL not received from Cloudinary.");
         }

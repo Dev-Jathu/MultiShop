@@ -1,13 +1,15 @@
 require("dotenv").config();
 const express = require("express");
 const connectDB = require("./config/db");
+const authRoutes = require("./routes/auth");
 const userRoutes = require("./routes/user");
 const cartRoutes = require("./routes/cart");
 const orderRoutes = require("./routes/order");
-const category = require("./routes/category");
 const reviewRoutes = require("./routes/review");
+const requestRoutes = require("./routes/request");
 const paymentRoutes = require("./routes/payment");
 const productRoutes = require("./routes/product");
+const categoryRoutes = require("./routes/category");
 const wishlistRoutes = require("./routes/whishlist");
 const { notFound, errorHandler } = require("./middlewares/error");
 
@@ -36,8 +38,10 @@ app.use("/api/orders", orderRoutes);
 app.use("/api/reviews", reviewRoutes);
 app.use("/api/payments", paymentRoutes);
 app.use("/api/cart", cartRoutes);
+app.use("/api/auth", authRoutes);
+app.use("/request", requestRoutes);
 app.use("/api/wishlist", wishlistRoutes);
-app.use("/api/category", category);
+app.use("/api/category", categoryRoutes);
 
 // Error handling middleware
 app.use(notFound);

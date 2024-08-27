@@ -1,208 +1,246 @@
 import React, { useState, useRef } from "react";
 import UplodPicture from "../../assets/images/uplod (1).png";
+import uploadImage from "../../utils/cloudinary";
+import { toast } from "react-toastify";
+import { BASE_URL, token } from "../../config";
 
 const ProductForm = () => {
-  const [images, setImages] = useState([]);
   const fileInputRef = useRef(null);
+  const [uploadedImageUrl, setUploadedImageUrl] = useState(null);
+  const [formData, setFormData] = useState({
+    name: "",
+    price: "",
+    description: "",
+    weight: "",
+    expiredDate: "",
+    ingredients: "",
+    category: "",
+    stock: "",
+    deals: "",
+    images: null,
+  });
 
-  const handleImageUpload = (event) => {
-    const files = Array.from(event.target.files);
-    const newImages = files.map((file) => URL.createObjectURL(file));
-    const updatedImages = [...images, ...newImages].slice(0, 6);
-    setImages(updatedImages);
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      [name]: value,
+    }));
+  };
+
+  const handleImageUpload = async (event) => {
+    const files = event.target.files[0];
+    if (!files) return;
+
+    try {
+      const data = await uploadImage(files);
+      setUploadedImageUrl(data.url);
+      setFormData((prevFormData) => ({
+        ...prevFormData,
+        images: data.url,
+      }));
+    } catch (error) {
+      toast.error("Image upload failed");
+    }
   };
 
   const handleBrowseClick = () => {
     fileInputRef.current.click();
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    // Add your form submission logic here
+    try {
+      const res = await fetch(`${BASE_URL}/products`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const { message } = await res.json();
+      if (!res.ok) throw new Error(message);
+
+      toast.success("Product added successfully!");
+    } catch (error) {
+      toast.error("Something went wrong: " + error.message);
+    }
   };
 
   return (
     <div className="mx-auto p-8 w-full sm:w-[95%] bg-white rounded-lg shadow-md sm:h-[90vh]">
       <form onSubmit={handleSubmit}>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          {/* Left column */}
           <div className="space-y-4">
-            {/* Product Name */}
-            <div>
-              <label className="block text-sm font-medium text-black-700">
-                Product Name
-              </label>
-              <input
-                type="text"
-                placeholder="Product Name"
-                className="mt-1 block w-full h-12 rounded-md border-black-300 shadow-sm sm:text-sm bg-gray-100 p-2"
-              />
-            </div>
-
-            {/* Price */}
-            <div>
-              <label className="block text-sm font-medium text-black-700">
-                Price
-              </label>
-              <input
-                type="number"
-                placeholder="Price"
-                className="mt-1 block w-full h-12 rounded-md border-black-300 shadow-sm sm:text-sm bg-gray-100 p-2"
-              />
-            </div>
-
-            {/* Description */}
-            <div>
-              <label className="block text-sm font-medium text-black-700">
-                Description
-              </label>
-              <textarea
-                placeholder="Description"
-                rows="3"
-                className="mt-1 block w-full rounded-md border-black-300 shadow-sm sm:text-sm bg-gray-100 p-2"
-              ></textarea>
-            </div>
-
-            {/* Weight */}
-            <div>
-              <label className="block text-sm font-medium text-black-700">
-                Weight
-              </label>
-              <input
-                type="text"
-                placeholder="Weight"
-                className="mt-1 block w-full h-12 rounded-md border-black-300 shadow-sm sm:text-sm bg-gray-100 p-2"
-              />
-            </div>
-
-            {/* Category */}
-            <div>
-              <label className="block text-sm font-medium text-black-700">
-                Category
-              </label>
-              <input
-                type="text"
-                placeholder="Category"
-                className="mt-1 block w-full h-12 rounded-md border-black-300 shadow-sm sm:text-sm bg-gray-100 p-2"
-              />
-            </div>
-
-            {/* Stock */}
-            <div>
-              <label className="block text-sm font-medium text-black-700">
-                Stock
-              </label>
-              <input
-                type="number"
-                placeholder="Stock"
-                className="mt-1 block w-full h-12 rounded-md border-black-300 shadow-sm sm:text-sm bg-gray-100 p-2"
-              />
-            </div>
+            {[
+              {
+                label: "Product Name",
+                name: "name",
+                type: "text",
+                placeholder: "Product Name",
+              },
+              {
+                label: "Price",
+                name: "price",
+                type: "number",
+                placeholder: "Price",
+              },
+              {
+                label: "Description",
+                name: "description",
+                type: "textarea",
+                placeholder: "Description",
+                rows: "3",
+              },
+              {
+                label: "Weight",
+                name: "weight",
+                type: "text",
+                placeholder: "Weight",
+              },
+              {
+                label: "Category",
+                name: "category",
+                type: "text",
+                placeholder: "Category",
+              },
+              // {
+              //   label: "ingredients",
+              //   name: "ingredients",
+              //   type: "text",
+              //   placeholder: "ingredients",
+              // },
+              {
+                label: "Stock",
+                name: "stock",
+                type: "number",
+                placeholder: "Stock",
+              },
+            ].map((field) => (
+              <div key={field.name}>
+                <label className="block text-sm font-medium text-black-700">
+                  {field.label}
+                </label>
+                {field.type === "textarea" ? (
+                  <textarea
+                    value={formData[field.name]}
+                    name={field.name}
+                    onChange={handleInputChange}
+                    placeholder={field.placeholder}
+                    rows={field.rows}
+                    className="mt-1 block w-full rounded-md border-black-300 shadow-sm sm:text-sm bg-gray-100 p-2"
+                  ></textarea>
+                ) : (
+                  <input
+                    type={field.type}
+                    value={formData[field.name]}
+                    name={field.name}
+                    onChange={handleInputChange}
+                    placeholder={field.placeholder}
+                    className="mt-1 block w-full h-12 rounded-md border-black-300 shadow-sm sm:text-sm bg-gray-100 p-2"
+                  />
+                )}
+              </div>
+            ))}
           </div>
 
+          {/* Right column */}
           <div className="space-y-4">
-            {/* Expired Date */}
             <div>
               <label className="block text-sm font-medium text-black-700">
                 Expired Date
               </label>
               <input
                 type="date"
+                name="expiredDate"
+                value={formData.expiredDate}
+                onChange={handleInputChange}
                 className="mt-1 block w-full h-12 rounded-md border-black-300 shadow-sm sm:text-sm bg-gray-100 p-2"
               />
             </div>
 
-            {/* Deals */}
             <div>
               <label className="block text-sm font-medium text-black-700">
                 Deals
               </label>
-              <div className="mt-2 flex items-center">
-                <input
-                  type="radio"
-                  name="deals"
-                  id="dealsYes"
-                  className="text-indigo-600 focus:ring-indigo-500 h-4 w-4"
-                />
-                <label
-                  htmlFor="dealsYes"
-                  className="ml-3 block text-sm font-medium text-black-700"
-                >
-                  Yes
-                </label>
-                <input
-                  type="radio"
-                  name="deals"
-                  id="dealsNo"
-                  className="ml-6 text-indigo-600 focus:ring-indigo-500 h-4 w-4"
-                />
-                <label
-                  htmlFor="dealsNo"
-                  className="ml-3 block text-sm font-medium text-black-700"
-                >
-                  No
-                </label>
+              <div className="mt-2 flex gap-4 items-center">
+                {["Yes", "No"].map((option) => (
+                  <div key={option} className="flex items-center">
+                    <input
+                      type="radio"
+                      name="deals"
+                      value={option.toLowerCase()}
+                      checked={formData.deals === option.toLowerCase()}
+                      onChange={handleInputChange}
+                      className="text-indigo-600 focus:ring-indigo-500 h-4 w-4"
+                    />
+                    <label className="ml-3 block text-sm font-medium text-black-700">
+                      {option}
+                    </label>
+                  </div>
+                ))}
               </div>
             </div>
 
-            {/* Ingredients */}
             <div>
               <label className="block text-sm font-medium text-black-700">
-                Ingredients
+                ingredients
               </label>
               <input
                 type="text"
-                placeholder="Ingredients"
+                name="ingredients"
+                value={formData.ingredients}
+                onChange={handleInputChange}
+                placeholder="ingredients"
                 className="mt-1 block w-full h-12 rounded-md border-black-300 shadow-sm sm:text-sm bg-gray-100 p-2"
               />
             </div>
 
-            {/* Upload Images */}
+            {/* Image Upload Section */}
             <div>
               <label className="block text-sm font-medium text-black-700">
                 Upload images
               </label>
               <div className="mt-2 flex flex-wrap gap-4">
-                {images.map((image, index) => (
-                  <div
-                    key={index}
-                    className="w-32 h-32 bg-black-100 border border-dashed border-black-400 flex items-center justify-center"
-                  >
+                {uploadedImageUrl && (
+                  <div className="w-32 h-32 bg-black-100 border border-dashed border-black-400 flex items-center justify-center">
                     <img
-                      src={image}
-                      alt={`Uploaded ${index + 1}`}
+                      src={uploadedImageUrl}
+                      alt="Uploaded"
                       className="w-full h-full object-cover rounded-md"
                     />
                   </div>
-                ))}
-                {images.length < 6 && (
-                  <div
-                    className="w-32 h-32 bg-black-50 border border-dashed border-black-400 flex items-center justify-center cursor-pointer"
-                    onClick={handleBrowseClick}
-                  >
-                    <button className="text-black text-sm">
-                      <img src={UplodPicture} className="h-12" alt="upload" />
-                      Upload
-                    </button>
-                    <input
-                      type="file"
-                      ref={fileInputRef}
-                      multiple
-                      accept="image/*"
-                      className="hidden"
-                      onChange={handleImageUpload}
-                    />
-                  </div>
                 )}
+
+                <div
+                  className="w-32 h-32 bg-black-50 border border-dashed border-black-400 flex items-center justify-center cursor-pointer"
+                  onClick={handleBrowseClick}
+                >
+                  <img
+                    src={UplodPicture}
+                    className="h-12 text-sm"
+                    alt="upload"
+                  />
+                  Upload
+                  <input
+                    type="file"
+                    ref={fileInputRef}
+                    accept="image/*"
+                    className="hidden"
+                    onChange={handleImageUpload}
+                  />
+                </div>
               </div>
               <p className="mt-2 text-sm text-black-500">
-                You can add up to 6 images. Pay attention to the quality of the
-                pictures you add, comply with the background color standards.
-                Pictures must be in certain dimensions. Notice that the product
-                shows all the details.
+                Add Good quality image for display users!
               </p>
             </div>
           </div>
         </div>
+
 
         {/* Buttons */}
         <div className="pt-8 flex gap-5 flex-col sm:flex-row">

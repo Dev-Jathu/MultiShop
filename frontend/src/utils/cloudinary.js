@@ -26,10 +26,10 @@ const uploadImage = async (file) => {
     }
 
     return {
-      url: data.secure_url,
+      url: data.secure_url, // Debugging
       public_id: data.public_id,
       formData,
-    };
+    }; 
   } catch (error) {
     console.error("Error uploading image:", error);
     throw error;
