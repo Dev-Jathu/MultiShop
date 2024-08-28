@@ -36,8 +36,8 @@ const ProductDetail = () => {
   };
 
   return (
-    <div className='flex flex-col justify-center items-center min-h-[calc(100vh-200px)] pt-[100px]'>
-      <div className='flex flex-col md:flex-row gap-[50px] items-center justify-center max-w-4xl w-full mt-20 lg:mr-10 md:mr-20 md:mb-52'>
+    <div className='flex flex-col justify-center items-center min-h-[calc(130vh-200px)] md:min-h-[calc(96vh-200px)]  lg:min-h-[calc(100vh-200px)] pt-[100px] '>
+      <div className='flex flex-col md:flex-row gap-[50px] items-center justify-center max-w-4xl w-full lg:top-10 md:top-10 top-40'>
         <div className='flex justify-center'>
           <img
             src={image}
