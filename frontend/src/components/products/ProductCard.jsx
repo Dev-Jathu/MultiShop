@@ -21,16 +21,16 @@ const ProductCard = ({ product, displayMode }) => {
     <div className='lg:px-5 px-3'>
       {displayMode === 'simple' ? (
         <div className='flex flex-col items-center justify-center px-4'>
-          <div className='p-2 w-full h-[120px] lg:h-[150px] md:w-[200px] md:h-[150px] bg-black rounded-lg overflow-hidden'>
-            <img
-              src={image}
-              alt={name}
-              className='w-full h-full object-contain'
-            />
-          </div>
-          <div>
-            <p className='text-xs sm:text-lg text-gray-600'>{category}</p>
-          </div>
+            <div className='p-2 w-full h-[120px] lg:h-[150px] md:w-[200px] md:h-[150px] bg-black rounded-lg overflow-hidden'>
+              <img
+                src={image}
+                alt={name}
+                className='w-full h-full object-contain'
+              />
+            </div>
+            <div>
+              <p className='text-xs sm:text-lg text-gray-600'>{category}</p>
+            </div>
         </div>
       ) : (
         <div className='flex gap-4 py-5 sm:flex-row lg:flex-col lg:items-start'>
