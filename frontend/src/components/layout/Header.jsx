@@ -7,7 +7,7 @@ import Categories from "../../assets/images/categories.png";
 function Header() {
   const [showLinks, setShowLinks] = useState(false);
   const { user, role, token } = useContext(authContext);
-  const {  photo } = user || {};
+  const { name, photo } = user || {};
 
   const toggleLinks = () => {
     setShowLinks(!showLinks);
@@ -47,38 +47,7 @@ function Header() {
             </select>
           </div>
         </div>
-        <div className="header fixed z-10 w-full h-40 bg-white shadow-md lg:px-5 md:px-5 px-3">
-          <div className="location pt-14 flex lg:gap-2 md:gap-[45px] items-center justify-between">
-            <div className="location-logo text-black flex gap-3 items-center hover:text-primary"></div>
-            <div>
-              {token && user ? (
-                <div className="user text-black ">
-                  <Link
-                    to={`${
-                      role === "customer"
-                        ? "/my-account"
-                        : role === "admin"
-                        ? "/admin"
-                        : "/home"
-                    }`}
-                    className="flex gap-4 items-center"
-                  >
-                    <img
-                      src={photo || "http://www.gravatar.com/avatar/?d=mp"}
-                      alt="profile"
-                      className="rounded-full w-12"
-                    />
-                  </Link>
-                </div>
-              ) : (
-                <Link to="/login">
-                  <button className="bg-primary px-6 py-2 text-white font-semibold rounded-md">
-                    Login
-                  </button>
-                </Link>
-              )}
-            </div>
-          </div>
+        <div className="header fixed z-10 w-full h-35 bg-white shadow-md lg:px-5 md:px-5 px-3 pt-12">
           <div className="search flex items-center justify-between pt-2 md:gap-5 sm:gap-5">
             <Link to="/" className="w-[170px] text-2xl font-bold">
               Liquor House
@@ -105,13 +74,41 @@ function Header() {
               <Link to="/category">
                 <img
                   src={Categories}
-                  className=" md:h-[30px] md:w-[40px] h-[58px] lg:h-[35px] lg:pt-2 md:pt-1"
+                  className=" md:h-[30px] md:w-[50px] h-[50px] lg:h-[35px] lg:pt-2 md:pt-1"
                   alt="categories"
                 />
               </Link>
               <Link to="/cart">
                 <i className="fa-solid fa-cart-shopping cursor-pointer"></i>
               </Link>
+            </div>
+            <div>
+              {token && user ? (
+                <div className="user text-black ">
+                  <Link
+                    to={`${
+                      role === "customer"
+                        ? "/my-account"
+                        : role === "admin"
+                        ? "/admin"
+                        : "/home"
+                    }`}
+                    className="flex gap-4 items-center"
+                  >
+                    <img
+                      src={photo || "http://www.gravatar.com/avatar/?d=mp"}
+                      alt="profile"
+                      className="rounded-full w-12"
+                    />
+                  </Link>
+                </div>
+              ) : (
+                <Link to="/login">
+                  <button className="bg-primary px-6 py-2 text-white font-semibold rounded-md hidden lg:block md:block">
+                    Login
+                  </button>
+                </Link>
+              )}
             </div>
           </div>
           {showLinks && (
@@ -124,6 +121,11 @@ function Header() {
               </Link>
               <Link to="/cart" onClick={handleLinkClick}>
                 Cart
+              </Link>
+              <Link to="/login" onClick={handleLinkClick}>
+                <button className="bg-primary px-6 py-2 text-white font-semibold rounded-md">
+                  Login
+                </button>
               </Link>
             </div>
           )}
