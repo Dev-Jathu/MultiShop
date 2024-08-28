@@ -27,7 +27,7 @@ const handleViewAll = (dealType) => {
           <i className="fa fa-arrow-right" aria-hidden="true"></i>
         </div>
       </div>
-      <div className="flex lg:flex-wrap md:flex-wrap justify-center gap-4 overflow-x-auto scrollbar-hide sm:overflow-x-visible">
+      <div className="flex lg:flex-wrap md:flex-wrap justify-center overflow-x-auto scrollbar-hide sm:overflow-x-visible">
         {displayedProducts.map((product) => (
           <ProductCard key={product.id} product={product} />
         ))}
