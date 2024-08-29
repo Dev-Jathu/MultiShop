@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import imageData from "../../assets/data/thumbnail"; 
+import imageData from "../../assets/data/thumbnail";
 
 const ImageSlider = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const totalIndicators = imageData.length; 
+  const totalIndicators = imageData.length;
 
   const nextSlide = () => {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % imageData.length);
@@ -20,7 +20,7 @@ const ImageSlider = () => {
 
   return (
     <div className="">
-      <div className="relative md:w-full lg:w-full overflow-hidden pt-[10em]">
+      <div className="relative md:w-full lg:w-full overflow-hidden pt-[7em]">
         <div
           className="flex transition-transform duration-500 ease-in-out"
           style={{ transform: `translateX(-${currentIndex * 100}%)` }}

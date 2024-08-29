@@ -19,10 +19,9 @@ const ProductPage = () => {
     );
 
   // Determine what products to display
-  const productsToDisplay =
-    selectedCategory === 'All'
-      ? initialDisplayProducts
-      : ProductData.filter((product) => product.category === selectedCategory);
+  const productsToDisplay = selectedCategory
+    ? ProductData.filter((product) => product.category === selectedCategory)
+    : initialDisplayProducts;
 
   const handleCategoryClick = (category) => {
     setSelectedCategory(category);
@@ -50,12 +49,12 @@ const ProductPage = () => {
         ))}
       </div>
 
-      <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-7 gap-4 py-5'>
+      <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 py-5'>
         {productsToDisplay.map((product) => (
           <ProductCard
             key={product.id}
             product={product}
-            displayMode={selectedCategory === 'All' ? 'category' : 'detailed'} // Pass the displayMode prop
+            displayMode={selectedCategory ? 'detailed' : 'category'} // Pass the displayMode prop
           />
         ))}
       </div>
