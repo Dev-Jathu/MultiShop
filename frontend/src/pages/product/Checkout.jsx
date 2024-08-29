@@ -121,13 +121,13 @@ const Checkout = () => {
               placeholder='Coupon Code'
               className='border p-2 flex-1'
             />
-            <button className='bg-green-600 text-white px-4 py-2'>
+            <button className='bg-primary text-white px-4 py-2'>
               Apply Coupon
             </button>
           </div>
 
           {/* Place Order Button */}
-          <button className='bg-green-600 text-white px-4 py-2 mt-4 w-full'>
+          <button className='bg-primary text-white px-4 py-2 mt-4 w-full'>
             Place Order
           </button>
         </div>

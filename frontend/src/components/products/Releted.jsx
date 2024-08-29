@@ -31,7 +31,7 @@ const Releted = () => {
         <div className='mb-8'>
           <div className='p-4 rounded-lg shadow-lg flex flex-col w-full sm:w-auto relative'>
             {selectedProduct.discount > 0 && (
-              <div className='absolute top-1 left-1 bg-green-600 text-white text-xs px-2 py-1 rounded-tr-md rounded-bl-md'>
+              <div className='absolute top-1 left-1 bg-primary text-white text-xs px-2 py-1 rounded-tr-md rounded-bl-md'>
                 {selectedProduct.discount}%
               </div>
             )}
@@ -72,13 +72,13 @@ const Releted = () => {
             </Link>
             <div className='flex justify-between mt-2 sm:mt-3 w-full text-[20px] sm:text-[25px] px-2'>
               <button
-                className='text-gray-800 hover:text-green-500'
+                className='text-gray-800 hover:text-primary'
                 aria-label='Add to wishlist'
               >
                 <i className='fa-regular fa-heart'></i>
               </button>
               <button
-                className='text-gray-800 hover:text-green-500'
+                className='text-gray-800 hover:text-primary'
                 aria-label='Add to cart'
               >
                 <i className='fa-solid fa-plus'></i>
@@ -107,7 +107,7 @@ const Releted = () => {
             >
               <div className='p-4 rounded-lg shadow-lg transition-transform transform hover:scale-105 flex flex-col cursor-pointer w-[150px] sm:w-auto relative'>
                 {numericDiscount > 0 && (
-                  <div className='absolute top-1 left-1 bg-green-600 text-white text-xs px-2 py-1 rounded-tr-md rounded-bl-md'>
+                  <div className='absolute top-1 left-1 bg-primary text-white text-xs px-2 py-1 rounded-tr-md rounded-bl-md'>
                     {numericDiscount}%
                   </div>
                 )}
@@ -144,13 +144,13 @@ const Releted = () => {
                 </Link>
                 <div className='flex justify-between mt-2 sm:mt-3 w-full text-[20px] sm:text-[25px] px-2'>
                   <button
-                    className='text-gray-800 hover:text-green-500'
+                    className='text-gray-800 hover:text-primary'
                     aria-label='Add to wishlist'
                   >
                     <i className='fa-regular fa-heart'></i>
                   </button>
                   <button
-                    className='text-gray-800 hover:text-green-500'
+                    className='text-gray-800 hover:text-primary'
                     aria-label='Add to cart'
                   >
                     <i className='fa-solid fa-plus'></i>

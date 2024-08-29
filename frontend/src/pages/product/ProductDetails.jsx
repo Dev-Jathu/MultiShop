@@ -61,7 +61,7 @@ const ProductDetail = () => {
                 ({product.reviews.length} Reviews)
               </span>
             </div>
-            <p className="text-green-600 font-semibold">
+            <p className="text-primary font-semibold">
               {product.stock > 0 ? "In Stock" : "Out of Stock"}
             </p>
             <p className="text-xl md:text-2xl font-bold">{product.price}</p>
@@ -84,7 +84,7 @@ const ProductDetail = () => {
             </button>
             <button
               onClick={handleBuyNow}
-              className="bg-green-600 text-white px-4 py-2 rounded-lg"
+              className="bg-primary text-white px-4 py-2 rounded-lg"
             >
               Buy Now
             </button>

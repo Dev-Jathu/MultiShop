@@ -18,7 +18,7 @@ const Products = () => {
   return (
     <div>
       <div className='p-4 font-bold text-[24px] flex justify-between pt-12'>
-        <p className='p-8'>New Products</p>
+        <p className='lg:p-8'>New Products</p>
         <div
           className='flex items-center gap-2 cursor-pointer'
           onClick={handleViewAll}
@@ -30,7 +30,7 @@ const Products = () => {
           ></i>
         </div>
       </div>
-      <div className='flex lg:flex-wrap md:flex-wrap justify-center gap-4  overflow-x-auto scrollbar-hide sm:overflow-x-visible'>
+      <div className='flex lg:flex-wrap md:flex-wrap justify-center gap-10 lg:gap-4 md:gap-4 overflow-x-auto scrollbar-hide sm:overflow-x-visible'>
         {displayedProducts.map((product) => (
           <ProductCard
             key={product.id}

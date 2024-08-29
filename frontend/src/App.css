@@ -5,10 +5,10 @@
   /* font-family: "Lato"; */
   font-family: 'Roboto', sans-serif;
 }
-.scrollbar-hide::-webkit-scrollbar {
+/* .scrollbar-hide::-webkit-scrollbar {
   display: none;
-}
-.scrollbar-hide {
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
-}
+} */
+/* .scrollbar-hide {
+  -ms-overflow-style: none;  
+  scrollbar-width: none;  
+} */

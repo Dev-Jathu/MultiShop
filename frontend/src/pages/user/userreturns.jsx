@@ -2,8 +2,8 @@ import React from 'react';
 
 const Returns = () => {
   return (
-    <div className="md:p-4 lg:p-0 p-4">
-      <h2 className="text-xl font-semibold text-green-500 mb-4">My Returns</h2>
+    <div className="md:p-4 lg:p-0 p-4 w-[50%]">
+      <h2 className="text-xl font-semibold text-black mb-4">My Returns</h2>
       <table className="min-w-full bg-white">
         <thead>
           <tr>

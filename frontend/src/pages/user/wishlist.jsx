@@ -3,7 +3,7 @@ import React from 'react';
 const Wishlist = () => {
   return (
     <div className='p-6 min-h-[100vh] pt-[200px] flex flex-col'>
-      <h2 className='text-xl font-semibold text-green-500 mb-4 text-center'>
+      <h2 className='text-xl font-semibold text-black mb-4 text-center'>
         My Wishlist (1)
       </h2>
       <div className='flex justify-center'>
@@ -16,7 +16,7 @@ const Wishlist = () => {
             alt='Product'
             className='lg:w-[150px] md:w-[200px] w-[100px] mb-2'
           />
-          <button className='bg-green-500 text-white py-1 px-2 rounded mb-2'>
+          <button className='bg-primary text-white py-1 px-2 rounded mb-2'>
             Add To Cart
           </button>
           <p>Chicken Leg</p>

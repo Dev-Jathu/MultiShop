@@ -22,7 +22,7 @@ function Adduser() {
     <div className="w-[100%] p-6 bg-white">
       <>
         <div className="flex justify-between items-center">
-          <h2 className="text-xl font-semibold text-green-500 mb-4 text-left">
+          <h2 className="text-xl font-semibold text-black mb-4 text-left">
             Add New User
           </h2>
           <div className="flex justify-center items-center">
