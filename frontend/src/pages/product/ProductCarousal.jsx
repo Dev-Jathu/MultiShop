@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import imageData from "../../assets/data/thumbnail"; 
+import imageData from "../../assets/data/thumbnail";
 
 const ImageSlider = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const totalIndicators = imageData.length; 
+  const totalIndicators = imageData.length;
 
   const nextSlide = () => {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % imageData.length);
