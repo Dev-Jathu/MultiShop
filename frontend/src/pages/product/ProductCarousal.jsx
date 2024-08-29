@@ -28,7 +28,7 @@ const ImageSlider = () => {
           {imageData.map((image, index) => (
             <div
               key={index}
-              className="w-full h-[30vh] md:h-[40vh] lg:h-[70vh] flex-shrink-0"
+              className="w-full h-[30vh] md:h-[40vh] lg:h-[85vh] flex-shrink-0"
               style={{
                 backgroundImage: `url(${image})`,
                 backgroundSize: "cover",
@@ -44,7 +44,7 @@ const ImageSlider = () => {
           ))}
         </div>
       </div>
-      <div className="absolute lg:bottom-16 w-full flex justify-center space-x-2 p-2">
+      <div className="absolute lg:bottom-16 w-full flex justify-center space-x-2 -mb-16  md:p-2 p-2">
         {Array.from({ length: totalIndicators }).map((_, index) => (
           <div
             key={index}

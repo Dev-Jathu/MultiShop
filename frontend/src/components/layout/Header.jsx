@@ -71,7 +71,8 @@ function Header() {
                 <i className="fa-regular fa-heart cursor-pointer"></i>
               </Link>
               <Link to="/category">
-                <FaTh className="lg:h-[43px] md:h-[35px]" />
+                <FaTh className="lg:h-[43px] md:h-[35px]  " />
+                
               </Link>
               <Link to="/cart">
                 <i className="fa-solid fa-cart-shopping cursor-pointer"></i>
