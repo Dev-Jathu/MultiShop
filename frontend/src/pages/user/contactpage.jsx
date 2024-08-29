@@ -1,12 +1,25 @@
 import React from "react";
+<<<<<<< HEAD:src/pages/user/contactpage.jsx
+import logo from "../../assets/images/alfies-logo-dark 1.png"
+=======
 import logo from "../../assets/images/alfies-logo-dark 1.png";
+>>>>>>> bdb3422b22ea15de1d3175c430c3bfdb19e718f9:frontend/src/pages/user/contactpage.jsx
 
 const ContactSection = () => {
   return (
     <div className="flex flex-col md:flex-row justify-center items-start p-6 space-y-6 md:space-y-0 md:space-x-10 h-[100vh] md:h-[80vh] lg:h-[80vh] lg:pt-[12%] md:pt-[30%] pt-[45%]">
+<<<<<<< HEAD:src/pages/user/contactpage.jsx
+      {/* Contact Information */}
+
+      <div className="bg-white shadow-md rounded-lg p-6 w-full md:w-1/3">
+          <img src={logo} className="md:h-4 lg:h-14 h-4" />
+        <div className="flex flex-col space-y-4">
+          {/* Call To Us */}
+=======
       <div className="bg-white shadow-md rounded-lg p-6 w-full md:w-1/3">
           <img src={logo} className="md:h-4 lg:h-14 h-4"  alt ="logo"/>
         <div className="flex flex-col space-y-4">
+>>>>>>> bdb3422b22ea15de1d3175c430c3bfdb19e718f9:frontend/src/pages/user/contactpage.jsx
           <div className="flex items-start space-x-4 lg:pt-20 md:pt-5">
             <div className="text-green-500 text-2xl">
               <i className="fas fa-phone-alt"></i>
@@ -21,6 +34,10 @@ const ContactSection = () => {
             </div>
           </div>
           <hr />
+<<<<<<< HEAD:src/pages/user/contactpage.jsx
+          {/* Write To Us */}
+=======
+>>>>>>> bdb3422b22ea15de1d3175c430c3bfdb19e718f9:frontend/src/pages/user/contactpage.jsx
           <div className="flex items-start space-x-4">
             <div className="text-red-500 text-2xl">
               <i className="fas fa-envelope"></i>
@@ -38,6 +55,10 @@ const ContactSection = () => {
         </div>
       </div>
 
+<<<<<<< HEAD:src/pages/user/contactpage.jsx
+      {/* Contact Form */}
+=======
+>>>>>>> bdb3422b22ea15de1d3175c430c3bfdb19e718f9:frontend/src/pages/user/contactpage.jsx
       <div className="bg-white shadow-md rounded-lg p-6 w-full md:w-1/2">
         <form className="space-y-4">
           <input
