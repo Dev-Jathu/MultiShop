@@ -1,59 +1,68 @@
-const dotenv = require("dotenv").config();
 const { OAuth2Client } = require("google-auth-library");
-const User = require("../models/User");
-const jwt = require("jsonwebtoken");
+const User = require("../models/User"); // Assuming you have a User model
+const dotenv = require("dotenv");
 
-// Initialize OAuth client
+dotenv.config();
+
 const oAuth2Client = new OAuth2Client(
   process.env.CLIENT_ID,
   process.env.CLIENT_SECRET,
   "http://127.0.0.1:3000/oauth"
 );
 
-// Generate JWT token
-const generateToken = (id) => {
-  return jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: "1d" });
+// Function to generate Google Auth URL
+const getGoogleAuthURL = (req, res) => {
+  const authorizeUrl = oAuth2Client.generateAuthUrl({
+    access_type: "offline",
+    scope: [
+      "https://www.googleapis.com/auth/userinfo.profile",
+      "https://www.googleapis.com/auth/userinfo.email",
+    ],
+    prompt: "consent",
+  });
+
+  res.json({ url: authorizeUrl });
 };
 
-// Sign-in with Google
+// Function to handle Google Sign-In
 const googleSignIn = async (req, res) => {
-  const code = req.query.code;
-
   try {
+    const { code } = req.query;
+
+    // Get tokens using the code
     const { tokens } = await oAuth2Client.getToken(code);
     oAuth2Client.setCredentials(tokens);
 
-    const response = await fetch(
-      `https://www.googleapis.com/oauth2/v3/userinfo?access_token=${tokens.access_token}`
-    );
-    const userData = await response.json();
+    // Verify ID token
+    const ticket = await oAuth2Client.verifyIdToken({
+      idToken: tokens.id_token,
+      audience: process.env.CLIENT_ID,
+    });
 
-    let user = await User.findOne({ email: userData.email });
+    const { email, name, sub: googleId } = ticket.getPayload();
+
+    // Check if user already exists
+    let user = await User.findOne({ email });
 
     if (!user) {
-      user = await User.create({
-        name: userData.name,
-        email: userData.email,
-        googleId: userData.sub,
-        password: "",
-      });
+      // Create new user if not exists
+      user = await User.create({ email, name, googleId });
+      console.log("New user created:", user);
+    } else {
+      console.log("User already exists:", user);
     }
 
-    const token = generateToken(user._id);
+    // Generate JWT token or any session handling you use
+    const token = generateToken(user._id); // Implement `generateToken` as needed
 
-    res.json({
-      _id: user._id,
-      name: user.name,
-      email: user.email,
-      token,
-      message: "Successfully logged in",
-    });
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: "Server Error" });
+    res.redirect(`http://localhost:3000/success?token=${token}`);
+  } catch (error) {
+    console.error("Error during Google Sign-In:", error);
+    res.status(500).json({ error: "Authentication failed" });
   }
 };
 
 module.exports = {
   googleSignIn,
+  getGoogleAuthURL,
 };

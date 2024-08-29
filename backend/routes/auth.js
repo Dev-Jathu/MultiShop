@@ -1,34 +1,61 @@
 const express = require("express");
-const { googleSignIn } = require("../controllers/auth");
-const { OAuth2Client } = require("google-auth-library");
-const dotenv = require("dotenv");
-
-dotenv.config();
+const passport = require("passport");
+const axios = require("axios");
+const { User } = require("../models/User");
+const { generateToken } = require("../controllers/auth");
 
 const router = express.Router();
 
-// Initialize the OAuth2Client
-const oAuth2Client = new OAuth2Client(
-  process.env.CLIENT_ID,
-  process.env.CLIENT_SECRET,
-  "http://127.0.0.1:3000/oauth"
+router.get(
+  "/google/callback",
+  passport.authenticate("google", {
+    successRedirect: process.env.CLIENT_URL,
+    failureRedirect: `${process.env.CLIENT_URL}/login/faild`,
+  })
 );
 
-// Route to generate the Google OAuth authorization URL
-router.post("/google", (req, res) => {
-  const authorizeUrl = oAuth2Client.generateAuthUrl({
-    access_type: "offline",
-    scope: [
-      "https://www.googleapis.com/auth/userinfo.profile",
-      "https://www.googleapis.com/auth/userinfo.email",
-    ],
-    prompt: "consent",
-  });
-
-  res.json({ url: authorizeUrl });
+router.get("/google", async (req, res) => {
+  try {
+    const response = await axios.get(
+      "https://accounts.google.com/o/oauth2/v2/auth",
+      { params: req.query }
+    );
+    return res.send(response.data);
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ error: "Internal Server Error" });
+  }
 });
 
-// Callback route for Google OAuth
-router.get("/oauth", googleSignIn);
+router.get("/login/success", async (req, res) => {
+  if (!req.user) {
+    return res.status(403).json({ message: "Not Authorized" });
+  }
+
+  const { email, name } = req.user._json;
+  let user = await User.findOne({ email });
+
+  if (!user) {
+    user = await User.create({ name, email });
+  }
+
+  const token = generateToken(user._id);
+
+  return res.status(200).json({
+    user: { ...req.user, isAdmin: user.isAdmin },
+    _id: user._id,
+    token,
+  });
+});
+
+router.get("/login/faild", (req, res) => {
+  res.status(403);
+  throw new Error("Login Failed");
+});
+
+router.get("/logout", (req, res) => {
+  req.logout();
+  res.redirect("/");
+});
 
 module.exports = router;

@@ -3,11 +3,37 @@ import { authContext } from "../../context/authContext.js";
 import { useState, useEffect, useContext } from "react";
 
 import Categories from "../../assets/images/categories.png";
+import { BASE_URL } from "../../config.js";
+import { toast } from "react-toastify";
+import axios from "axios";
 
 function Header() {
   const [showLinks, setShowLinks] = useState(false);
   const { user, role, token } = useContext(authContext);
-  const {  photo } = user || {};
+  const { photo } = user || {};
+  const dispatch = useContext(authContext);
+
+  const getUser = async () => {
+    try {
+      const response = await axios.get(`${BASE_URL}/auth/login/success`, {
+        withCredentials: true,
+      });
+      console.log(response || response.data);
+      dispatch(
+        authContext({
+          ...response.data.user._json,
+          _id: response.data._id,
+          isAdmin: response.data.user.isAdmin,
+        })
+      );
+    } catch (error) {
+      toast.error(error.message);
+    }
+  };
+
+  useEffect(() => {
+    getUser();
+  }, []);
 
   const toggleLinks = () => {
     setShowLinks(!showLinks);
