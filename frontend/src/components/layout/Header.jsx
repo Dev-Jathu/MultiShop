@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { authContext } from "../../context/authContext.js";
 import { useState, useEffect, useContext } from "react";
+import { FaTh } from "react-icons/fa";
 
 import Categories from "../../assets/images/categories.png";
 import { BASE_URL } from "../../config.js";
@@ -73,39 +74,8 @@ function Header() {
             </select>
           </div>
         </div>
-        <div className="header fixed z-10 w-full h-40 bg-white shadow-md lg:px-5 md:px-5 px-3">
-          <div className="location pt-14 flex lg:gap-2 md:gap-[45px] items-center justify-between">
-            <div className="location-logo text-black flex gap-3 items-center hover:text-primary"></div>
-            <div>
-              {token && user ? (
-                <div className="user text-black ">
-                  <Link
-                    to={`${
-                      role === "customer"
-                        ? "/my-account"
-                        : role === "admin"
-                        ? "/admin"
-                        : "/home"
-                    }`}
-                    className="flex gap-4 items-center"
-                  >
-                    <img
-                      src={photo || "http://www.gravatar.com/avatar/?d=mp"}
-                      alt="profile"
-                      className="rounded-full w-12"
-                    />
-                  </Link>
-                </div>
-              ) : (
-                <Link to="/login">
-                  <button className="bg-primary px-6 py-2 text-white font-semibold rounded-md">
-                    Login
-                  </button>
-                </Link>
-              )}
-            </div>
-          </div>
-          <div className="search flex items-center justify-between pt-2 md:gap-5 sm:gap-5">
+        <div className="header fixed z-10 w-full h-[130px] bg-white shadow-md lg:px-5 md:px-5 px-4">
+          <div className="search flex items-center justify-between pt-16 md:gap-4 lg:gap-5 gap-3">
             <Link to="/" className="w-[170px] text-2xl font-bold">
               Liquor House
             </Link>
@@ -129,19 +99,44 @@ function Header() {
                 <i className="fa-regular fa-heart cursor-pointer"></i>
               </Link>
               <Link to="/category">
-                <img
-                  src={Categories}
-                  className=" md:h-[30px] md:w-[40px] h-[58px] lg:h-[35px] lg:pt-2 md:pt-1"
-                  alt="categories"
-                />
+                <FaTh className="lg:h-[43px] md:h-[35px]  " />
+                
               </Link>
               <Link to="/cart">
                 <i className="fa-solid fa-cart-shopping cursor-pointer"></i>
               </Link>
             </div>
+            <div>
+              {token && user ? (
+                <div className="user text-black ">
+                  <Link
+                    to={`${
+                      role === "customer"
+                        ? "/my-account"
+                        : role === "admin"
+                        ? "/admin"
+                        : "/home"
+                    }`}
+                    className="flex gap-4 items-center"
+                  >
+                    <img
+                      src={photo || "http://www.gravatar.com/avatar/?d=mp"}
+                      alt="profile"
+                      className="rounded-full w-12"
+                    />
+                  </Link>
+                </div>
+              ) : (
+                <Link to="/login">
+                  <button className="bg-primary px-6 py-2 text-white font-semibold rounded-md hidden lg:block md:block">
+                    Login
+                  </button>
+                </Link>
+              )}
+            </div>
           </div>
           {showLinks && (
-            <div className="dropdown-links flex flex-col gap-3 mt-3 bg-black text-white p-4 rounded shadow-md absolute top-[93%] right-0 ">
+            <div className="dropdown-links flex flex-col gap-3 mt-2 bg-black text-white p-4 rounded shadow-md absolute top-[93%] right-0 ">
               <Link to="/wishlist" onClick={handleLinkClick}>
                 Wishlist
               </Link>
@@ -151,6 +146,12 @@ function Header() {
               <Link to="/cart" onClick={handleLinkClick}>
                 Cart
               </Link>
+              <Link to="/login" onClick={handleLinkClick}>
+                <button className="bg-primary px-6 py-2 text-white font-semibold rounded-md">
+                  Login
+                </button>
+              </Link>
+            
             </div>
           )}
         </div>

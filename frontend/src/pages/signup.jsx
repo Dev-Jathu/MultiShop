@@ -16,7 +16,7 @@
   const [errors, setErrors] = useState({ password: '', confirmPassword: '' });
   const [passwordValid, setPasswordValid] = useState(false);
 
-  const navigate = useNavigate();
+  const Navigate = useNavigate();
 
   // Password Validation
   const validatePassword = (password) => {
@@ -70,7 +70,7 @@
           throw new Error(message);
         }
 
-        navigate('/my-account');
+        Navigate('/my-account');
         console.log('Registration successful');
       } catch (err) {
         console.error('Registration failed:', err);
@@ -78,18 +78,18 @@
     }
   };
 
-   async function handleGoogleAuth() {
-     try {
-       const response = await fetch(`http://127.0.0.1:5000/api/auth/google`, {
-         method: "POST",
-       });
-       const data = await response.json();
-       window.location.href = data.url;
-     } catch (error) {
-       console.error("Error during authentication:", error);
-       toast.error("Google Authentication failed. Please try again.");
-     }
-   }
+  // google authentication
+  function navigate(url) {
+    window.location.href = url;
+  }
+
+  async function auth() {
+    const response = await fetch(`http://localhost:5000/request`, {
+      method: 'POST',
+    });
+    const data = await response.json();
+    navigate(data.url);
+  }
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
@@ -173,9 +173,9 @@
         </form>
         <div className="flex items-center justify-center mt-4">
           <button
-            type="button"
-            onClick={handleGoogleAuth}
-            className="w-full flex items-center justify-center border border-gray-300 py-2 rounded-lg"
+            onClick={() => auth()}
+            type='submit'
+            className='w-full flex items-center justify-center border border-gray-300 py-2 rounded-lg'
           >
             <img src={Google} alt="Google Icon" className="w-5 h-5 mr-2" />
             Sign up with Google
