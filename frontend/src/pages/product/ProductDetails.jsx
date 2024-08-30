@@ -36,8 +36,8 @@ const ProductDetail = () => {
   };
 
   return (
-    <div className="text-black p-6 w-full min-h-[100vh] flex items-center justify-center lg:pt-[150px] md:pt-[0px] pt-[150px]">
-      <div className="flex flex-col md:flex-row gap-8 items-center justify-center max-w-4xl w-full">
+    <div className="text-black p-6 w-full h-[80vh] flex items-center justify-center ">
+      <div className="flex flex-col md:flex-row gap-8 items-center justify-center max-w-4xl w-full mt-12">
         <div className="flex justify-center w-full md:w-1/2">
           <img
             src={product.image}
