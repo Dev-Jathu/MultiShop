@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useLocation } from "react-router-dom";
 import { ProductData } from "../../assets/data/product";
 import ProductCard from "../../components/products/ProductCard";
@@ -7,10 +7,7 @@ const AllOffers = () => {
   const location = useLocation();
   const dealType = location.state?.dealType || "yes"; // Default to 'yes' if no state is provided
 
-  // Scroll to the top when the component is mounted
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+
 
   // Filter products based on the deal type passed via state
   const filteredProducts = ProductData.filter(

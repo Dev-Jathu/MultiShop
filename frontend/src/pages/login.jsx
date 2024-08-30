@@ -96,7 +96,7 @@ const LoginForm = () => {
     navigate(data.url);
   }
   return (
-    <div className='flex items-center justify-center min-h-screen bg-gray-100'>
+    <div className='flex items-center justify-center lg:min-h-screen md:h-[79vh] h-[90vh] bg-gray-100'>
       <div className='bg-white p-8 rounded-lg shadow-lg max-w-sm w-full'>
         <h2 className='text-2xl font-bold mb-4'>Log in to Exclusive</h2>
         <p className='text-gray-600 mb-6'>Enter your details below</p>

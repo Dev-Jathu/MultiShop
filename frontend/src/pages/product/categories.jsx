@@ -7,6 +7,8 @@ const ProductPage = () => {
   const [selectedCategory, setSelectedCategory] = useState("All");
   const navigate = useNavigate();
 
+
+  
   // Get unique categories from ProductData
   const categories = [
     "All",
@@ -39,42 +41,49 @@ const ProductPage = () => {
     (product) => product.discount || product.discountPrice
   );
 
-  // Filter out discounted products from the main array
   const otherProducts = productsToDisplay.filter(
     (product) => !product.discount && !product.discountPrice
   );
 
-  // Combine discounted products first, then the rest of the products
   productsToDisplay = [...discountedProducts, ...otherProducts];
 
   const handleCategoryClick = (category) => {
     if (selectedCategory === "All") {
-      // Navigate to the related products page only when "All" is selected
       setSelectedCategory(category);
     } else {
-      // Just set the category without navigation
       setSelectedCategory(category);
     }
   };
 
   const handleProductClick = (productId) => {
     if (selectedCategory === "All") {
-      // Navigate to the related products page
       navigate("/releted", { state: { productId } });
     }
   };
 
   return (
-    <div className="p-4 pt-[50px] min-h-screen h-[100vh] overflow-y-auto">
-      <div className="font-bold text-[24px] flex justify-between pt-12">
+    <div
+      className=" pt-[50px] min-h-screen h-[100vh] overflow-y-scroll lg:p-12 md:p-4 p-4"
+      style={{
+        msOverflowStyle: "none", // IE and Edge
+        scrollbarWidth: "none", // Firefox
+      }}
+    >
+      <div className="font-bold lg:text-[24px] flex justify-between pt-12">
         <p>Categories</p>
       </div>
 
-      <div className="flex flex-wrap gap-2 md:gap-3 pt-10">
+      <div
+        className="flex w-full gap-2 md:gap-3 pt-10 overflow-x-auto"
+        style={{
+          msOverflowStyle: "none", // IE and Edge
+          scrollbarWidth: "none", // Firefox
+        }}
+      >
         {categories.map((category) => (
           <button
             key={category}
-            className={`px-3 py-1 text-sm rounded-md md:px-4 md:py-2 md:text-base font-semibold ${
+            className={`px-3 py-1 text-sm rounded-md md:px-4 md:py-2 md:text-base font-semibold w-full h-[40px]  ${
               selectedCategory === category
                 ? "bg-hover text-white"
                 : "bg-primary text-white"
@@ -86,7 +95,7 @@ const ProductPage = () => {
         ))}
       </div>
 
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 py-5">
+      <div className="grid grid-cols-2 lg:flex lg:flex-wrap md:grid md:grid-cols-3 lg:gap-8 lg:justify-start gap-8 py-5 pt-10 ">
         {selectedCategory === "All"
           ? initialDisplayProducts.map((product) => (
               <div
@@ -108,7 +117,6 @@ const ProductPage = () => {
               <ProductCard
                 key={product.id}
                 product={product}
-                // Pass 'detailed' mode when a specific category is selected
                 displayMode="detailed"
               />
             ))}

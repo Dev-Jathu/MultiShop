@@ -1,17 +1,17 @@
 import React from 'react';
-import logo from '../../assets/images/alfies-logo-dark 1.png';
+import logo from '../../assets/images/logos.png';
 
 const ContactSection = () => {
   return (
-    <div className='flex flex-col md:flex-row justify-center items-start p-6 space-y-6 md:space-y-0 md:space-x-10 h-[100vh] md:h-[80vh] lg:h-[80vh] lg:pt-[12%] md:pt-[30%] pt-[45%]'>
-      <div className='bg-white shadow-md rounded-lg p-6 w-full md:w-1/3'>
+    <div className='flex flex-col md:flex-row justify-center items-start p-6 space-y-6 md:space-y-4 md:space-x-10 h-[100vh] md:h-[75.6vh] lg:h-[69.8vh] lg:pt-[10%] md:pt-[30%] pt-[45%] md:mb-10 lfg:mb-0 mb-10'>
+      <div className='rounded-lg p-6 w-full md:w-1/3'>
         <img
           src={logo}
-          className='md:h-4 lg:h-14 h-4'
+          className='md:h-14 lg:w-32 lg:h-32 h-10 hidden lg:block'
           alt='logo'
         />
-        <div className='flex flex-col space-y-4'>
-          <div className='flex items-start space-x-4 lg:pt-20 md:pt-5'>
+        <div className='flex flex-col space-y-4  '>
+          <div className='flex items-start space-x-4  md:pt-5'>
             <div className='text-green-500 text-2xl'>
               <i className='fas fa-phone-alt'></i>
             </div>
@@ -42,7 +42,7 @@ const ContactSection = () => {
         </div>
       </div>
 
-      <div className='bg-white shadow-md rounded-lg p-6 w-full md:w-1/2'>
+      <div className='bg-white shadow-sm rounded-lg p-6 w-full md:w-1/2'>
         <form className='space-y-4'>
           <input
             type='text'

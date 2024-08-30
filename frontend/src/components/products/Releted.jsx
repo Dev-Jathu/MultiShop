@@ -1,5 +1,5 @@
 // Releted Component
-import React from 'react';
+import React  from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { ProductData } from '../../assets/data/product'; // Adjust the path as needed
 
@@ -35,36 +35,35 @@ const Releted = () => {
                 {selectedProduct.discount}%
               </div>
             )}
-              <div className="p-2 lg:w-full h-[120px] lg:h-[150px] md:w-[200px] md:h-[150px] bg-black rounded-t-lg overflow-hidden flex items-center justify-center">
-                <img
-                  src={selectedProduct.image}
-                  alt={selectedProduct.name}
-                  className="w-full h-full object-contain"
-                />
-              </div>
-              <div className="mt-4 text-center lg:text-lg text-[14px] md:text-lg">
-           
-                <p className="text-xs sm:text-lg text-gray-600 mt-1">
-                  {selectedProduct.category}
-                </p>
-                <p className="text-xs sm:text-sm text-gray-600 mt-1">
-                  {selectedProduct.description}
-                </p>
-                <p className="text-xs sm:text-lg text-gray-600 mt-1">
-                  {selectedProduct.rating}
-                </p>
-                <p className="text-xs sm:text-lg text-gray-600 mt-1">
+            <div className="p-2 lg:w-full h-[120px] lg:h-[150px] md:w-[200px] md:h-[150px] bg-black rounded-t-lg overflow-hidden flex items-center justify-center">
+              <img
+                src={selectedProduct.image}
+                alt={selectedProduct.name}
+                className="w-full h-full object-contain"
+              />
+            </div>
+            <div className="mt-4 text-center lg:text-lg text-[14px] md:text-lg">
+              <p className="text-xs sm:text-lg text-gray-600 mt-1">
+                {selectedProduct.category}
+              </p>
+              <p className="text-xs sm:text-sm text-gray-600 mt-1">
+                {selectedProduct.description}
+              </p>
+              <p className="text-xs sm:text-lg text-gray-600 mt-1">
+                {selectedProduct.rating}
+              </p>
+              <p className="text-xs sm:text-lg text-gray-600 mt-1">
                 Available:{selectedProduct.stock}
-                </p>
-
-             
-              </div>
+              </p>
+            </div>
           </div>
         </div>
       )}
 
-      <h2 className="font-bold text-xl mb-4">Related Products</h2>
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+      <h2 className="font-bold text-2xl md:text-2xl text-[20px] mb-4">
+        Related Products
+      </h2>
+      <div className="flex flex-wrap justify-center  gap-6">
         {relatedProducts.map((relatedProduct) => {
           const { id, image, name, price, discount, rating, deals } =
             relatedProduct;
