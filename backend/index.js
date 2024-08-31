@@ -1,26 +1,41 @@
 require("dotenv").config();
 const express = require("express");
 const connectDB = require("./config/db");
-const authRoutes = require("./routes/auth");
 const userRoutes = require("./routes/user");
 const cartRoutes = require("./routes/cart");
 const orderRoutes = require("./routes/order");
 const reviewRoutes = require("./routes/review");
-const requestRoutes = require("./routes/request");
 const paymentRoutes = require("./routes/payment");
 const productRoutes = require("./routes/product");
 const categoryRoutes = require("./routes/category");
 const wishlistRoutes = require("./routes/whishlist");
 const { notFound, errorHandler } = require("./middlewares/error");
 
+const passport = require("./utils/passport");
+const authRoutes = require("./routes/auth");
+
 const app = express();
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
 
 // Middleware
-app.use(cors());
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "http://localhost:3000");
+  next();
+});
+
+app.use(
+  cors({
+    credentials: true,
+    origin: ["http://localhost:3000", "http://localhost:5000"],
+    optionsSuccessStatus: 200,
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+  })
+);
 app.use(express.json());
 app.use(cookieParser());
+passport(app);
 
 const corsOptions = {
   origin: "http://localhost:5000",
@@ -38,8 +53,7 @@ app.use("/api/orders", orderRoutes);
 app.use("/api/reviews", reviewRoutes);
 app.use("/api/payments", paymentRoutes);
 app.use("/api/cart", cartRoutes);
-app.use("/api/auth", authRoutes);
-app.use("/request", requestRoutes);
+app.use("/auth", authRoutes);
 app.use("/api/wishlist", wishlistRoutes);
 app.use("/api/category", categoryRoutes);
 
