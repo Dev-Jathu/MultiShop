@@ -2,40 +2,33 @@ import { Link } from "react-router-dom";
 import { authContext } from "../../context/authContext.js";
 import { useState, useEffect, useContext } from "react";
 import { FaTh } from "react-icons/fa";
-import Logo from "../../assets/images/logos.png"
-
-import Categories from "../../assets/images/categories.png";
-import { BASE_URL } from "../../config.js";
-import { toast } from "react-toastify";
-import axios from "axios";
+import Logo from "../../assets/images/logos.png";
 
 function Header() {
   const [showLinks, setShowLinks] = useState(false);
   const { user, role, token } = useContext(authContext);
   const { photo } = user || {};
-  const dispatch = useContext(authContext);
 
-  const getUser = async () => {
-    try {
-      const response = await axios.get(`${BASE_URL}/auth/login/success`, {
-        withCredentials: true,
-      });
-      console.log(response || response.data);
-      dispatch(
-        authContext({
-          ...response.data.user._json,
-          _id: response.data._id,
-          isAdmin: response.data.user.isAdmin,
-        })
-      );
-    } catch (error) {
-      toast.error(error.message);
-    }
-  };
+  // useEffect(() => {
+  //    const getUser = async () => {
+  //      try {
+  //        const response = await axios.get(`${BASE_URL}/auth/login/success`, {
+  //          withCredentials: true,
+  //        });
+  //        dispatch(
+  //          authContext({
+  //            ...response.data.user._json,
+  //            _id: response.data._id,
+  //            isAdmin: response.data.user.isAdmin,
+  //          })
+  //        );
+  //      } catch (error) {
+  //        toast.error(error.message);
+  //      }
+  //   };
 
-  useEffect(() => {
-    getUser();
-  }, []);
+  //   getUser()
+  // }, [dispatch]);
 
   const toggleLinks = () => {
     setShowLinks(!showLinks);
@@ -77,10 +70,7 @@ function Header() {
         </div>
         <div className="header fixed z-10 top-0 w-full h-[130px] bg-white shadow-md lg:px-5 md:px-5 px-4">
           <div className="search flex items-center justify-between lg:pt-10 md:pt-12 pt-14 md:gap-4 lg:gap-5 gap-3">
-            <Link
-              to="/"
-              className="w-[80px] md:w-[100px] lg:w-[110px]"
-            >
+            <Link to="/" className="w-[80px] md:w-[100px] lg:w-[110px]">
               <img
                 src={Logo}
                 alt="logo"

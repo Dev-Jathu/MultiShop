@@ -1,19 +1,26 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { ProductData } from "../../assets/data/product";
 import ProductCard from "../../components/products/ProductCard";
+import FetchData from "../../hooks/fetchData";
+import { BASE_URL } from "../../config";
 
 const Products = () => {
   const navigate = useNavigate();
+  const { data } = FetchData(`${BASE_URL}/products`);
 
-  const filteredProducts = ProductData.filter(
-    (product) => product.deals === "yes"
+  const products = data;
+
+  if (!products) {
+    return null;
+  }
+
+  const filteredProducts = products.filter(
+    (product) =>  product.deals === "yes"
   );
   const displayedProducts = filteredProducts.slice(0, 14);
-
-const handleViewAll = (dealType) => {
-  navigate("/view-all", { state: { dealType:"yes" } });
-};
+  const handleViewAll = (dealType) => {
+    navigate("/view-all", { state: { dealType: "yes" } });
+  };
 
   return (
     <div>
