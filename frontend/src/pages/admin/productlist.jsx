@@ -1,23 +1,32 @@
 import React, { useState, useEffect } from "react";
-import { ProductData } from "../../assets/data/product";
-
+import FetchData from "../../hooks/fetchData";
+import { BASE_URL } from "../../config";
 const ProductTable = () => {
   const [visibleDetails, setVisibleDetails] = useState(null);
+  const { data } = FetchData(`${BASE_URL}/products`);
+
+  
+
 
   useEffect(() => {
     const handleScroll = () => {
       setVisibleDetails(null);
     };
-
+    
     window.addEventListener("scroll", handleScroll);
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
-
+  
   const toggleDetails = (id) => {
     setVisibleDetails(visibleDetails === id ? null : id);
   };
+  const products = data;
+
+  if (!products) {
+    return null;
+  }
 
   return (
     <div className="overflow-x-auto">
@@ -28,9 +37,7 @@ const ProductTable = () => {
               <thead>
                 <tr className=" border h-[70px] text-gray-600 uppercase text-sm leading-normal">
                   <th className="py-3 px-6 text-left">Product</th>
-                  <th className="py-3 px-6 text-left hidden md:table-cell">
-                    Product ID
-                  </th>
+
                   <th className="py-3 px-6 text-left hidden lg:table-cell">
                     Price
                   </th>
@@ -38,7 +45,10 @@ const ProductTable = () => {
                     Quantity
                   </th>
                   <th className="py-3 px-6 text-left hidden lg:table-cell">
-                    Sale
+                    Discount Price
+                  </th>
+                  <th className="py-3 px-6 text-left hidden lg:table-cell">
+                    expiredDate
                   </th>
                   <th className="py-3 px-6 text-left hidden md:table-cell">
                     Stock
@@ -47,8 +57,8 @@ const ProductTable = () => {
                 </tr>
               </thead>
               <tbody className="text-black font-bold text-md">
-                {ProductData.map((product, index) => (
-                  <React.Fragment key={product.id}>
+                {products.map((product, index) => (
+                  <React.Fragment key={product._id}>
                     <tr
                       className={`border-b border-gray-200 hover:bg-gray-100 ${
                         index % 2 ? "bg-gray-50" : ""
@@ -56,23 +66,24 @@ const ProductTable = () => {
                     >
                       <td className="py-3 px-6 text-left flex items-center">
                         <img
-                          src={product.image}
+                          src={product.images}
                           alt={product.name}
                           className="w-10 h-10 rounded-full mr-3"
                         />
                         <span>{product.name}</span>
                       </td>
                       <td className="py-3 px-6 text-left hidden md:table-cell">
-                        {product.id}
-                      </td>
-                      <td className="py-3 px-6 text-left hidden lg:table-cell">
                         {product.price}
                       </td>
+
                       <td className="py-3 px-6 text-left hidden md:table-cell">
                         {product.stock}
                       </td>
                       <td className="py-3 px-6 text-left hidden lg:table-cell">
                         {product.discount}
+                      </td>
+                      <td className="py-3 px-6 text-left hidden lg:table-cell">
+                        {product.expiredDate}
                       </td>
                       <td className="py-3 px-6 text-left hidden md:table-cell">
                         <span

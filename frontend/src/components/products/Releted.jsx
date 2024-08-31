@@ -1,22 +1,39 @@
-// Releted Component
-import React  from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import { ProductData } from '../../assets/data/product'; // Adjust the path as needed
+import React, { useState, useEffect } from "react";
+import { Link, useParams } from "react-router-dom";
+import { BASE_URL } from "../../config";
+import FetchData from "../../hooks/fetchData";
 
-const Releted = () => {
-  // Get the product ID passed from the ProductPage
-  const location = useLocation();
-  const productId = location.state?.productId;
+const Related = () => {
+  const { id } = useParams();
+  const [relatedProducts, setRelatedProducts] = useState([]);
+  const { data: product } = FetchData(`${BASE_URL}/products/${id}`);
 
-  // Find the clicked product using the productId
-  const selectedProduct = ProductData.find((item) => item.id === productId);
+  useEffect(() => {
+    const fetchRelatedProducts = async () => {
 
-  // Filter related products based on the same category as the selected product
-  const relatedProducts = ProductData.filter(
-    (item) =>
-      item.category === selectedProduct?.category &&
-      item.id !== selectedProduct?.id
-  );
+      try {
+        const response = await fetch(
+          `${BASE_URL}/products?category=${product.category}`
+        );
+        const data = await response.json();
+
+        setRelatedProducts(
+          data.filter(
+            (item) =>
+              item.id !== product._id && item.category === product.category
+          )
+        );
+      } catch (error) {
+        console.error("Error fetching related products:", error);
+      }
+    };
+
+    fetchRelatedProducts();
+  }, [product]);
+
+  if (!product) {
+    return <div>Product not found</div>;
+  }
 
   const calculateDiscountPrice = (price, discount) => {
     return discount > 0
@@ -27,33 +44,33 @@ const Releted = () => {
   return (
     <div className="p-4 mt-20">
       <h2 className="font-bold text-xl mb-4">Selected Product</h2>
-      {selectedProduct && (
+      {product && (
         <div className="mb-8">
           <div className="p-4 rounded-lg shadow-lg flex flex-col w-full sm:w-auto relative">
-            {selectedProduct.discount > 0 && (
+            {product.discount > 0 && (
               <div className="absolute top-1 left-1 bg-primary text-white text-xs px-2 py-1 rounded-tr-md rounded-bl-md">
-                {selectedProduct.discount}%
+                {product.discount}%
               </div>
             )}
             <div className="p-2 lg:w-full h-[120px] lg:h-[150px] md:w-[200px] md:h-[150px] bg-black rounded-t-lg overflow-hidden flex items-center justify-center">
               <img
-                src={selectedProduct.image}
-                alt={selectedProduct.name}
+                src={product.images}
+                alt={product.name}
                 className="w-full h-full object-contain"
               />
             </div>
             <div className="mt-4 text-center lg:text-lg text-[14px] md:text-lg">
               <p className="text-xs sm:text-lg text-gray-600 mt-1">
-                {selectedProduct.category}
+                {product.category}
               </p>
               <p className="text-xs sm:text-sm text-gray-600 mt-1">
-                {selectedProduct.description}
+                {product.description}
               </p>
               <p className="text-xs sm:text-lg text-gray-600 mt-1">
-                {selectedProduct.rating}
+                {product.rating}
               </p>
               <p className="text-xs sm:text-lg text-gray-600 mt-1">
-                Available:{selectedProduct.stock}
+                Available: {product.stock}
               </p>
             </div>
           </div>
@@ -63,9 +80,9 @@ const Releted = () => {
       <h2 className="font-bold text-2xl md:text-2xl text-[20px] mb-4">
         Related Products
       </h2>
-      <div className="flex flex-wrap justify-center  gap-6">
+      <div className="flex flex-wrap justify-center gap-6">
         {relatedProducts.map((relatedProduct) => {
-          const { id, image, name, price, discount, rating, deals } =
+          const { id, images, name, price, discount, rating } =
             relatedProduct;
           const numericPrice = parseFloat(price) || 0;
           const numericDiscount = parseFloat(discount) || 0;
@@ -88,47 +105,33 @@ const Releted = () => {
                 <Link to={`/products/${id}`}>
                   <div className="p-2 lg:w-[180px] h-[120px] lg:h-[150px] md:w-[200px] md:h-[150px] bg-black rounded-t-lg overflow-hidden flex items-center justify-center">
                     <img
-                      src={image}
+                      src={images}
                       alt={name}
                       className="w-full h-full object-contain"
                     />
                   </div>
-                  <div className="mt-4 text-left lg:text-lg text-[14px] md:text-lg">
-                    {deals === "yes" && (
-                      <div className="flex gap-2 sm:gap-5">
-                        <p className="text-sm sm:text-[18px] font-bold text-gray-800 bg-primary w-20 sm:w-24 flex items-center text-center rounded-[5px] px-1">
-                          ${discount_price}
-                        </p>
-                        {numericDiscount > 0 && (
-                          <p className="text-xs sm:text-lg text-gray-600 mt-1 line-through">
-                            ${numericPrice.toFixed(2)}
-                          </p>
-                        )}
-                      </div>
-                    )}
-                    <p className="text-xs sm:text-lg text-gray-600 mt-1">
-                      {name}
-                    </p>
-                    {rating && (
-                      <p className="text-xs sm:text-sm text-gray-600 mt-1">
-                        {rating}
-                      </p>
-                    )}
-                  </div>
                 </Link>
-                <div className="flex justify-between mt-2 sm:mt-3 w-full text-[20px] sm:text-[25px] px-2">
-                  <button
-                    className="text-gray-800 hover:text-primary"
-                    aria-label="Add to wishlist"
-                  >
-                    <i className="fa-regular fa-heart"></i>
-                  </button>
-                  <button
-                    className="text-gray-800 hover:text-primary"
-                    aria-label="Add to cart"
-                  >
-                    <i className="fa-solid fa-plus"></i>
-                  </button>
+                <div className="mt-4 text-center lg:text-lg text-[14px] md:text-lg">
+                  <p className="text-xs sm:text-lg font-bold text-black">
+                    {name}
+                  </p>
+                  {numericDiscount > 0 ? (
+                    <div className="flex justify-center items-center gap-4">
+                      <p className="text-xs sm:text-sm font-semibold line-through text-gray-400">
+                        ${numericPrice}
+                      </p>
+                      <p className="text-xs sm:text-lg font-bold text-green-500">
+                        ${discount_price}
+                      </p>
+                    </div>
+                  ) : (
+                    <p className="text-xs sm:text-lg font-bold text-black">
+                      ${price}
+                    </p>
+                  )}
+                  <p className="text-xs sm:text-sm text-gray-600 mt-1">
+                    {rating}
+                  </p>
                 </div>
               </div>
             </div>
@@ -139,4 +142,4 @@ const Releted = () => {
   );
 };
 
-export default Releted;
+export default Related;

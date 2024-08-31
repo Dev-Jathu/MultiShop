@@ -18,11 +18,13 @@ const ProductDetail = () => {
         const response = await fetch(
           `${BASE_URL}/products?category=${product.category}`
         );
+
+
         const data = await response.json();
         setRelatedProducts(
           data.filter(
             (item) =>
-              item.id !== product._id && item.category !== product.category
+              item.id !== product._id && item.category === product.category
           )
         );
       } catch (error) {

@@ -52,9 +52,9 @@ const ProductForm = () => {
     event.preventDefault();
     try {
       const res = await fetch(`${BASE_URL}/products`, {
-        method: 'POST',
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify(formData),
@@ -63,11 +63,19 @@ const ProductForm = () => {
       const { message } = await res.json();
       if (!res.ok) throw new Error(message);
 
-      toast.success('Product added successfully!');
+      toast.success("Product added successfully!");
+
+      // Clear only the image fields
+      setUploadedImageUrl(null);
+      setFormData((prevFormData) => ({
+        ...prevFormData,
+        images: null,
+      }));
     } catch (error) {
-      toast.error('Something went wrong: ' + error.message);
+      toast.error("Something went wrong: " + error.message);
     }
   };
+
 
   return (
     <div className='mx-auto p-8 w-full sm:w-[95%] bg-white rounded-lg shadow-md sm:h-[90vh]'>
