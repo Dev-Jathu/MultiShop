@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react";
-import UplodPicture from "../../assets/images/uplod (1).png";
+import uploadPicture from "../../assets/images/upload.png";
 import uploadImage from "../../utils/cloudinary";
 import { toast } from "react-toastify";
 import { BASE_URL, token } from "../../config";
@@ -220,7 +220,7 @@ const ProductForm = () => {
                   onClick={handleBrowseClick}
                 >
                   <img
-                    src={UplodPicture}
+                    src={uploadPicture}
                     className="h-12 text-sm"
                     alt="upload"
                   />
