@@ -1,39 +1,61 @@
 const express = require("express");
+const passport = require("passport");
+const axios = require("axios");
+const { User } = require("../models/User");
+const { generateToken } = require("../controllers/auth");
+
 const router = express.Router();
-const dotenv = require("dotenv");
-dotenv.config();
-const { OAuth2Client } = require("google-auth-library");
 
-async function getUserData(access_token) {
-  const response = await fetch(
-    `https://www.googleapis.com/oauth2/v3/userinfo?access_token${access_token} `
-  );
-  const data = await response.json();
-  console.log("data", data);
-}
+router.get(
+  "/google/callback",
+  passport.authenticate("google", {
+    successRedirect: process.env.CLIENT_URL,
+    failureRedirect: `${process.env.CLIENT_URL}/login/faild`,
+  })
+);
 
-// Routes
-router.get("/", async function (req, res, next) {
-  const code = req.query.code;
+router.get("/google", async (req, res) => {
   try {
-    const redirectUrl = "http://127.0.0.1:3000/oauth";
-    const oAuth2Client = new OAuth2Client(
-      process.env.CLIENT_ID,
-      process.env.CLIENT_SECRET,
-      redirectUrl
+    const response = await axios.get(
+      "https://accounts.google.com/o/oauth2/v2/auth",
+      { params: req.query }
     );
-    const res = await oAuth2Client.getToken(code);
-
-    await oAuth2Client.setCredentials9res(res.tokens);
-    console.log("Token Acquired");
-
-    const user = oAuth2Client.credentials;
-    console.log("user : ", user);
-
-    await getUserData(user.access_token);
+    return res.send(response.data);
   } catch (error) {
-    console.log(error);
+    console.error(error);
+    return res.status(500).json({ error: "Internal Server Error" });
   }
+});
+
+router.get("/login/success", async (req, res) => {
+  if (!req.user) {
+    return res.status(403).json({ message: "Not Authorized" });
+  }
+
+  const { email, name } = req.user._json;
+  let user = await User.findOne({ email });
+
+  if (!user) {
+    user = await User.create({ name, email });
+  }
+
+  const token = generateToken(user._id);
+
+  return res.status(200).json({
+    user: { ...req.user, isAdmin: user.isAdmin },
+    _id: user._id,
+    token,
+  });
+});
+
+router.get("/login/faild", (req, res) => {
+  res.status(403);
+  throw new Error("Login Failed");
+});
+
+router.get("/logout", (req, res) => {
+  req.logout();
+  res.redirect("/");
 });
 
 module.exports = router;

@@ -1,8 +1,9 @@
-  import React from "react";
-import { Link } from "react-router-dom";
+import React from 'react';
+import { Link } from 'react-router-dom';
 
 const ProductCard = ({ product, displayMode }) => {
-  const { id, image, name, price, discount, rating, deals, category } = product;
+  const { _id, images, name, price, discount, rating, deals, category } =
+    product;
 
   const numericPrice = parseFloat(price) || 0;
   const numericDiscount = parseFloat(discount) || 0;
@@ -15,22 +16,20 @@ const ProductCard = ({ product, displayMode }) => {
 
   const discount_price = calculateDiscountPrice(numericPrice, numericDiscount);
 
-
-
   return (
     <div className='lg:px-5 px-3'>
       {displayMode === 'simple' ? (
         <div className='flex flex-col items-center justify-center px-4'>
-            <div className='p-2 w-full h-[120px] lg:h-[150px] md:w-[200px] md:h-[150px] bg-black rounded-lg overflow-hidden'>
-              <img
-                src={image}
-                alt={name}
-                className='w-full h-full object-contain'
-              />
-            </div>
-            <div>
-              <p className='text-xs sm:text-lg text-gray-600'>{category}</p>
-            </div>
+          <div className='p-2 w-full h-[120px] lg:h-[150px] md:w-[200px] md:h-[150px] bg-black rounded-lg overflow-hidden'>
+            <img
+              src={images}
+              alt={name}
+              className='w-full h-full object-contain'
+            />
+          </div>
+          <div>
+            <p className='text-xs sm:text-lg text-gray-600'>{category}</p>
+          </div>
         </div>
       ) : (
         <div className='flex gap-4 py-5 sm:flex-row lg:flex-col lg:items-start'>
@@ -41,10 +40,10 @@ const ProductCard = ({ product, displayMode }) => {
               </div>
             )}
             <div>
-              <Link to={`/products/${id}`}>
+              <Link to={`/products/${_id}`}>
                 <div className='p-2 lg:w-[180px] h-[120px] lg:h-[150px] md:w-[200px] md:h-[150px] bg-black rounded-t-lg overflow-hidden flex items-center justify-center'>
                   <img
-                    src={image}
+                    src={images}
                     alt={name}
                     className='w-full h-full object-contain'
                   />

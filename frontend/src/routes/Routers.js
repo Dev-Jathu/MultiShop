@@ -6,14 +6,14 @@ import Wishlist from "../pages/user/wishlist";
 import Login from "../pages/login";
 import Signup from "../pages/signup";
 import Contact from "../pages/user/contactpage";
-import Myaccount from "../pages/user/account";
+import MyAccount from "../pages/user/account";
 import Cart from "../pages/user/cart.jsx";
 import Admin from "../pages/admin/dashboard.jsx";
 import Checkout from "../pages/product/Checkout.jsx";
 import ProtectedRoute from "./protectedRoutes.js";
 import ViewAll from "../components/products/ViewAll.jsx"
 import Category from '../pages/product/categories.jsx'
-import Releted from "../components/products/Releted.jsx";
+import Related from "../components/products/Releted.jsx";
 
 function App() {
   return (
@@ -68,7 +68,7 @@ function App() {
       />
       <Route
         path='/releted'
-        element={<Releted />}
+        element={<Related />}
       />
 
       {/* ---------Protected Routes--------- */}
@@ -84,7 +84,7 @@ function App() {
         path='/my-account'
         element={
           <ProtectedRoute allowRoles={['customer']}>
-            <Myaccount />
+            <MyAccount />
           </ProtectedRoute>
         }
       />
