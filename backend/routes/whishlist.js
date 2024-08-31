@@ -4,7 +4,7 @@ const {
   addToWishlist,
   getWishlist,
   removeFromWishlist,
-} = require('../controllers/whishlist');
+} = require('../controllers/whishList');
 const { protect } = require('../middlewares/auth');
 
 router.post('/', protect, addToWishlist);

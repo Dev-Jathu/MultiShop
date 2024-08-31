@@ -37,7 +37,7 @@ const LoginForm = () => {
     if (validateForm()) {
       setLoading(true);
       try {
-        const res = await fetch(`${BASE_URL}/users/login`, {
+        const res = await fetch(`${BASE_URL}/auth/login`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
