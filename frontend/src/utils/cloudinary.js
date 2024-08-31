@@ -1,33 +1,31 @@
-const upload_preset = process.env.REACT_APP_PRESET_NAME || 'Multi-Shop';
-const cloud_name = 'dnzobt3pg';
+ const cloud_name = 'dnzobt3pg';
 
 const uploadImage = async (file) => {
+  if (!file) {
+    throw new Error('No file provided for upload');
+  }
+
   const formData = new FormData();
   formData.append('file', file);
-  formData.append('upload_preset', upload_preset);
-  formData.append('crop');
-  formData.append('remove_background', 'true');
-  formData.append('gravity', 'center');
-  formData.append('width', 500);
-  formData.append('height', 500);
+  formData.append('upload_preset', 'Multi-Shop');
 
   try {
-    const res = await fetch(
+    const response = await fetch(
       `https://api.cloudinary.com/v1_1/${cloud_name}/image/upload`,
       {
         method: 'POST',
         body: formData,
+      },
+      {
+        params: {
+          transformation: [{ effect: 'remove_bg' }],
+        },
       }
     );
-
-    const data = await res.json();
-
-    if (!res.ok) {
-      throw new Error(data.error?.message || 'Failed to upload image');
-    }
+    const data = await response.json();
 
     return {
-      url: data.secure_url, // Debugging
+      url: data.secure_url,
       public_id: data.public_id,
       formData,
     };
