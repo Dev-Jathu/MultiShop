@@ -22,7 +22,7 @@ const ProductDetail = () => {
         setRelatedProducts(
           data.filter(
             (item) =>
-              item.id !== product._id && item.category !== product.category
+              item.id !== product._id && item.category === product.category
           )
         );
       } catch (error) {
@@ -111,6 +111,7 @@ const ProductDetail = () => {
                   ${relatedProduct.price}
                 </p>
               </div>
+              <p>{relatedProduct.category}</p>
             </Link>
           ))}
         </div>
