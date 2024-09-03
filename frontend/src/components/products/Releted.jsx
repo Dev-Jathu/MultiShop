@@ -63,7 +63,7 @@ const Related = () => {
       {product && (
         <div className="mb-8">
           <div className="p-4 rounded-lg shadow-lg flex flex-col w-full sm:w-auto relative">
-            <div className="p-2 lg:w-full h-[120px] lg:h-[150px] md:w-[200px] md:h-[150px] bg-black rounded-t-lg overflow-hidden flex items-center justify-center">
+            <div className="p-2 lg:w-full h-[120px] lg:h-[150px] md:w-full md:h-[150px] bg-black rounded-t-lg overflow-hidden flex items-center justify-center">
               <img
                 src={images}
                 alt={name}
@@ -128,7 +128,7 @@ const Related = () => {
                       <p className="text-xs sm:text-sm font-semibold line-through text-gray-400">
                         ${numericPrice}
                       </p>
-                      <p className="text-xs sm:text-lg font-bold text-green-500">
+                      <p className="text-xs sm:text-lg font-bold text-primary">
                         ${discount_price}
                       </p>
                     </div>

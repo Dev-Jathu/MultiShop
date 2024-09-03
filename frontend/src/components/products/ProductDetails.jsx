@@ -156,7 +156,7 @@ const ProductInfo = ({
         <span className='text-gray-500 line-through ml-2'>${discount}</span>
       )}
     </p>
-    <div className='w-[400px]'>
+    <div className='w-[380px]'>
       <p className='text-gray-500 text-left overflow-hidden'>
         {description}
       </p>

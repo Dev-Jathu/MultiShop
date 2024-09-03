@@ -39,7 +39,7 @@ const ProductCard = ({ product, displayMode }) => {
                 {numericDiscount}%
               </div>
             )}
-            <div className='h-[220px]'>
+            <div className='lg:h-[220px]'>
               <Link to={`/products/${_id}`}>
                 <div className='p-2 lg:w-[180px] h-[120px] lg:h-[150px] md:w-[200px] md:h-[150px] bg-black rounded-t-lg overflow-hidden flex items-center justify-center'>
                   <img
