@@ -68,7 +68,7 @@ function Header() {
             </select>
           </div>
         </div>
-        <div className="header fixed z-10 top-0 w-full h-[130px] bg-white shadow-md lg:px-5 md:px-5 px-4">
+        <div className="header fixed z-20 top-0 w-full h-[130px] bg-white shadow-md lg:px-5 md:px-5 px-4">
           <div className="search flex items-center justify-between lg:pt-10 md:pt-12 pt-14 md:gap-4 lg:gap-5 gap-3">
             <Link to="/" className="w-[80px] md:w-[100px] lg:w-[110px]">
               <img
