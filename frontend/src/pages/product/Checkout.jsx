@@ -1,5 +1,7 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
+import FetchData from "../../hooks/fetchData";
+import { BASE_URL } from "../../config";
 
 const Checkout = () => {
   const location = useLocation();

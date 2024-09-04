@@ -74,7 +74,7 @@ const ProductTable = () => {
   }
 
   return (
-    <div className="overflow-x-auto">
+    <div className="overflow-x-auto w-full">
       <div className="min-w-screen bg-white flex items-center justify-center">
         <div className="w-full lg:w-4/5">
           <div className="overflow-x-auto bg-white shadow-md rounded my-6">

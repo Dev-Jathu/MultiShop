@@ -1,5 +1,4 @@
 import React, { useState,useEffect } from "react";
-import { User } from "../../assets/data/user";
 import FetchData from "../../hooks/fetchData";
 import { BASE_URL} from "../../config";
 
@@ -7,13 +6,13 @@ import { BASE_URL} from "../../config";
 const UserTable = () => {
   const [visibleDetails, setVisibleDetails] = useState(null);
     const [data, setData] = useState([]);
-    const { data: productData } = FetchData(`${BASE_URL}/products`);
+    const { data: users } = FetchData(`${BASE_URL}/users`);
 
     useEffect(() => {
-      if (productData) {
-        setData(productData);
+      if (users) {
+        setData(users);
       }
-    }, [productData]);
+    }, [users]);
 
   if (!data.length) {
     return <p>Loading...</p>;
@@ -37,24 +36,22 @@ const UserTable = () => {
             </tr>
           </thead>
           <tbody>
-            {data.map((userItem, index) => (
-              <React.Fragment key={userItem._id}>
+            {data.map((user, index) => (
+              <React.Fragment key={index}>
                 <tr className="border-t text-center">
                   <td className="p-4">
                     <div className="flex justify-center items-center space-x-2">
                       <img
-                        src={userItem.images}
-                        alt={userItem.Name}
+                        src={user.images}
+                        alt={user.name}
                         className="h-12 w-12 rounded-lg object-cover"
                       />
                     </div>
                   </td>
-                  <td className="p-4">{userItem.Name}</td>
-                  <td className="p-4 hidden lg:table-cell">{userItem.Email}</td>
-                  <td className="p-4 hidden lg:table-cell">{userItem.Phone}</td>
-                  <td className="p-4 hidden lg:table-cell">
-                    {userItem.Address}
-                  </td>
+                  <td className="p-4">{user.name}</td>
+                  <td className="p-4 hidden lg:table-cell">{user.email}</td>
+                  <td className="p-4 hidden lg:table-cell">{user.phone}</td>
+                  <td className="p-4 hidden lg:table-cell">{user.address}</td>
                   <td className="p-4">
                     <div className="flex justify-center space-x-2">
                       <button
@@ -71,13 +68,13 @@ const UserTable = () => {
                     <td colSpan="6" className="p-4 text-left lg:hidden">
                       <div className="space-y-2">
                         <p>
-                          <strong>Email:</strong> {userItem.Email}
+                          <strong>Email:</strong> {user.email}
                         </p>
                         <p>
-                          <strong>Phone:</strong> {userItem.Phone}
+                          <strong>Phone:</strong> {user.phone}
                         </p>
                         <p>
-                          <strong>Address:</strong> {userItem.Address}
+                          <strong>Address:</strong> {user.address}
                         </p>
                       </div>
                     </td>
@@ -87,10 +84,10 @@ const UserTable = () => {
                     >
                       <div className="space-y-2">
                         <p>
-                          <strong>Phone:</strong> {userItem.Phone}
+                          <strong>Phone:</strong> {user.phone}
                         </p>
                         <p>
-                          <strong>Email:</strong> {userItem.Email}
+                          <strong>Email:</strong> {user.email}
                         </p>
                       </div>
                     </td>

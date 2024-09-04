@@ -24,7 +24,6 @@ import Categorylist from "./categorylist";
 // import NewCategory from "./NewCategory";
 import Orderdetails from "./orderdetails";
 import Users from "./users";
-import Addusers from "./Adduser";
 import Maindashboard from "./maindashboard";
 import AdminProfile from './profile'
 
@@ -46,14 +45,11 @@ const AdminPanel = () => {
         return <Addproduct />;
       case "Categories":
         return <Categorylist />;
-      // case "NewCategory":
-      //   return <NewCategory />;
       case "OrderList":
         return <Orderdetails />;
       case "AllUsers":
         return <Users />;
-      case "Addusers":
-        return <Addusers />;
+    
       case "Gallery":
         return (
           <div>
@@ -82,7 +78,7 @@ const AdminPanel = () => {
       >
         <div className='p-4 flex items-center justify-between'>
           <span className={`font-bold text-xl ${!isSidebarOpen && 'hidden'}`}>
-            <Link to='/'>Alfies</Link>
+            <Link to='/'>Liquor House</Link>
           </span>
           <button
             className='text-gray-600'
@@ -129,13 +125,7 @@ const AdminPanel = () => {
           <SidebarItem
             icon={faUser}
             label='User'
-            submenu={[
-              { label: 'All user', onClick: () => setActivePage('AllUsers') },
-              {
-                label: 'Add New User',
-                onClick: () => setActivePage('Addusers'),
-              },
-            ]}
+            onClick={() => setActivePage('AllUsers')}
             isSidebarOpen={isSidebarOpen}
           />
           <SidebarItem
