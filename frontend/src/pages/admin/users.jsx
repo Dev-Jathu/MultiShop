@@ -1,9 +1,23 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { User } from "../../assets/data/user";
+import FetchData from "../../hooks/fetchData";
+import { BASE_URL} from "../../config";
+
 
 const UserTable = () => {
   const [visibleDetails, setVisibleDetails] = useState(null);
+    const [data, setData] = useState([]);
+    const { data: productData } = FetchData(`${BASE_URL}/products`);
 
+    useEffect(() => {
+      if (productData) {
+        setData(productData);
+      }
+    }, [productData]);
+
+  if (!data.length) {
+    return <p>Loading...</p>;
+  }
   const toggleDetails = (index) => {
     setVisibleDetails(visibleDetails === index ? null : index);
   };
@@ -23,13 +37,13 @@ const UserTable = () => {
             </tr>
           </thead>
           <tbody>
-            {User.map((userItem, index) => (
-              <React.Fragment key={index}>
+            {data.map((userItem, index) => (
+              <React.Fragment key={userItem._id}>
                 <tr className="border-t text-center">
                   <td className="p-4">
                     <div className="flex justify-center items-center space-x-2">
                       <img
-                        src={userItem.image}
+                        src={userItem.images}
                         alt={userItem.Name}
                         className="h-12 w-12 rounded-lg object-cover"
                       />

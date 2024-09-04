@@ -17,7 +17,7 @@ const ProductCard = ({ product, displayMode }) => {
   const discount_price = calculateDiscountPrice(numericPrice, numericDiscount);
 
   return (
-    <div className='lg:px-5 px-3'>
+    <div className='lg:px-3 px-3'>
       {displayMode === 'simple' ? (
         <div className='flex flex-col items-center justify-center px-4'>
           <div className='p-2 w-full h-[120px] lg:h-[150px] md:w-[200px] md:h-[150px] bg-black rounded-lg overflow-hidden'>
