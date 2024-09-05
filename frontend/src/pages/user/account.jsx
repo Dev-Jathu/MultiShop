@@ -24,66 +24,56 @@ const AdminPage = () => {
   };
 
   return (
-    <div className='flex flex-col lg:flex-row h-screen pt-[180px]'>
-      <div className='lg:w-[200px] w-full h-auto p-4 bg-white-300 text-black flex lg:flex-col md:flex-row sm:flex-row md:gap-[140px] gap-3 items-center '>
-        <ul className='flex lg:flex-col flex-row justify-between  w-full lg:w-auto md:text-[26px] lg:text-[18px]  md:gap-10 lg:gap-5 gap-3 pt-3'>
-          <li>
-            <button
-              className={`${
-                activeTab === 'profile' ? 'text-graylight' : ''
-               } font-semibold`}
-              onClick={() => setActiveTab('profile')}
-            >
-              Profile
-            </button>
-          </li>
-          <li>
-            <button
-              className={`${
-                activeTab === 'payment' ? 'text-gray-800' : ''
-              } font-semibold`}
-              onClick={() => setActiveTab('payment')}
-            >
-              Payment
-            </button>
-          </li>
-          <li>
-            <button
-              className={`${
-                activeTab === 'returns' ? 'text-graylight' : ''
-              } font-semibold`}
-              onClick={() => setActiveTab('returns')}
-            >
-              Returns
-            </button>
-          </li>
-          <li>
-            <button
-              className={`${
-                activeTab === 'wishlist' ? 'text-graylight' : ''
-              } font-semibold`}
-              onClick={() => setActiveTab('wishlist')}
-            >
-              Wishlist
-            </button>
-          </li>
-        </ul>
-        <div className='  lg:w-full  w-full lg:pt-[110px] md:pt-0'>
+    <div className="flex h-[100vh] bg-gray-100 justify-center items-center p-4">
+      {/* Container */}
+      <div className="flex h-[70vh] w-full max-w-5xl bg-white shadow-lg rounded-lg overflow-hidden">
+        {/* Sidebar */}
+        <div className="w-56 bg-gray-800 text-white flex flex-col justify-between p-4">
+          {/* User Info */}
+          <div className="flex flex-col items-center py-6">
+            <div className="w-16  bg-gray-600 rounded-full mb-4"></div>
+            <h2 className="text-lg font-semibold">Name Surname</h2>
+            <p className="text-sm">Lorem Ipsum</p>
+          </div>
+
+          {/* Navigation Links */}
+          <ul className="flex-grow space-y-3">
+            {["profile", "payment", "returns", "wishlist"].map((tab) => (
+              <li key={tab}>
+                <button
+                  className={`w-full text-left px-4 py-2 rounded-md ${
+                    activeTab === tab
+                      ? "bg-blue-500 text-white"
+                      : "text-gray-300"
+                  }`}
+                  onClick={() => setActiveTab(tab)}
+                >
+                  {tab.charAt(0).toUpperCase() + tab.slice(1)}
+                </button>
+              </li>
+            ))}
+          </ul>
+
+          {/* Logout Button */}
           <button
             onClick={handleLogout}
-            className='flex bg-red-600 h-[40px] hover:bg-red-700 text-white font-semibold px-6 py-2 rounded-md md:text-[24px]  items-center text-center '
+            className="bg-red-600 hover:bg-red-700 text-white font-semibold py-2 rounded-md mt-4"
           >
             Log-out
           </button>
         </div>
-      </div>
 
-      {/* Content */}
-      <div className='flex-1 bg-white'>
-        {activeTab === 'profile' && <Profile />}
-        {activeTab === 'payment' && <Payment />}
-        {activeTab === 'returns' && <Returns />}
-        {activeTab === 'wishlist' && <Wishlist />}
+        {/* Main Content */}
+        <div className="flex-1 p-4">
+          
+          {/* Tab Content */}
+          <div className="bg-white rounded-md p-4">
+            {activeTab === "profile" && <Profile />}
+            {activeTab === "payment" && <Payment />}
+            {activeTab === "returns" && <Returns />}
+            {activeTab === "wishlist" && <Wishlist />}
+          </div>
+        </div>
       </div>
     </div>
   );

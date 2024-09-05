@@ -11,9 +11,10 @@ import Cart from "../pages/user/cart.jsx";
 import Admin from "../pages/admin/dashboard.jsx";
 import Checkout from "../pages/product/Checkout.jsx";
 import ProtectedRoute from "./protectedRoutes.js";
-import ViewAll from "../components/products/ViewAll.jsx"
-import Category from '../pages/product/categories.jsx'
+import ViewAll from "../components/products/ViewAll.jsx";
+import Category from "../pages/product/categories.jsx";
 import Related from "../components/products/Releted.jsx";
+import EmailVerify from "../components/Email/emailVerify.jsx";
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
       <Route path="/view-all" element={<ViewAll />} />
       <Route path="/category" element={<Category />} />
       <Route path="/related/:id" element={<Related />} />
+      <Route path="/auth/:id/verify/:token" element={<EmailVerify />} />
 
       {/* ---------Protected Routes--------- */}
       <Route

@@ -2,15 +2,15 @@ import React from 'react';
 
 const Wishlist = () => {
   return (
-    <div className='md:p-4 lg:p-0 p-4 w-[50%]'>
+    <div className='md:p-4 lg:p-0 p-4 '>
       <h2 className='text-xl font-semibold text-black mb-4 text-left'>
         My Wishlist (4)
       </h2>
-      <div className='flex flex-wrap justify-between gap-4'>
+      <div className='flex flex-wrap justify-between  gap-2'>
         {[1, 2, 3, 4, 5, 6].map((item, index) => (
           <div
             key={index}
-            className='relative text-center items-center'
+            className='relative text-center items-start'
           >
             <button className='absolute top-0 right-0 text-red-500 mt-2 mr-2'>
               <i className='fas fa-trash'></i>

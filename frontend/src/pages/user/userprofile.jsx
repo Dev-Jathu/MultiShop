@@ -1,26 +1,44 @@
 import React, { useState, useEffect } from "react";
 import FetchData from "../../hooks/fetchData";
-import { BASE_URL } from "../../config";
+import { BASE_URL, token } from "../../config";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const Profile = () => {
   const [selectedImage, setSelectedImage] = useState(
     "https://via.placeholder.com/200"
   );
   const { data: user } = FetchData(`${BASE_URL}/users/profile`);
-  const [data, setData] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  // const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+  const [password, setPassword] = useState("");
+  const navigate = useNavigate();
+
+  const [formData, setFormData] = useState({
+    name: user?.name || "",
+    email: user?.email || "",
+    password: user?.password || "",
+    role: user?.role || "",
+    phone: user?.phone || "",
+  });
 
   useEffect(() => {
     if (user) {
-      setData(user);
+      setFormData({
+        name: user.name || "",
+        email: user.email || "",
+        phone: user.phone || "",
+        password: user?.password || "",
+        role: user?.role || "",
+      });
     }
   }, [user]);
 
-  if (!data) {
-    return <p>Loading...</p>;
-  }
+  const handleInputChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
 
   const handleImageUpload = (event) => {
     const file = event.target.files[0];
@@ -30,26 +48,41 @@ const Profile = () => {
     }
   };
 
-  const handleSaveClick = (event) => {
-    event.preventDefault();
-    setIsModalOpen(true); // Open the modal
+  const handleOpen = async (event) => {
+    await event.preventDefault();
+    setIsModalOpen(true);
   };
 
-  const handleConfirmPassword = () => {
-    if (confirmPassword) {
-      // Handle save logic here (e.g., API call to update the profile)
-      console.log("Profile saved successfully!");
-      setIsModalOpen(false); // Close the modal
-    } else {
-      alert("Please enter your password to confirm.");
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      const res = await fetch(`${BASE_URL}/users/profile`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const result = await res.json();
+
+      if (!res.ok) {
+        throw new Error(result.message || "Failed to update profile");
+      }
+
+      toast.success("Successfully updated!");
+      navigate(`/users/profile/me`);
+    } catch (error) {
+      console.log(error);
     }
   };
 
   return (
-    <div className="md:p-4 lg:p-0 p-4 w-[50%]">
+    <form className="md:p-4 lg:p-0 p-4 w-[730px]">
       <div className="flex justify-between items-center mb-5">
         <h2 className="text-xl font-semibold text-black">Edit Your Profile</h2>
-        <div className="w-20 h-20 rounded-full overflow-hidden border-4 border-gray-300">
+        <div className="w-20 h-20 flex rounded-full overflow-hidden border-4 border-gray-300">
           <img
             className="w-full h-full object-cover cursor-pointer"
             src={selectedImage}
@@ -65,59 +98,72 @@ const Profile = () => {
           onChange={handleImageUpload}
         />
       </div>
-      <form className="space-y-4" onSubmit={handleSaveClick}>
-        <div className=" ">
+      <div className="space-y-[26.5px] w-[730px]">
+        <div>
           <input
             type="text"
             placeholder="First Name"
             className="border p-2 rounded w-full"
-            value={data.name || ""}
+            name="name"
+            value={formData.name}
+            onChange={handleInputChange}
           />
-   
         </div>
         <input
           type="email"
           placeholder="Email"
           className="border p-2 rounded w-full"
-          value={data.email || ""}
+          name="email"
+          value={formData.email}
+          onChange={handleInputChange}
         />
         <input
           type="text"
           placeholder="Street Address*"
           className="border p-2 rounded w-full"
-          value={data.address?.street || ""}
+          name="address"
+          value={formData.address}
+          onChange={handleInputChange}
         />
         <input
           type="text"
           placeholder="City/Province"
           className="border p-2 rounded w-full"
-          value={data.address?.city || ""}
+          name="addressCity"
+          value={formData.addressCity}
+          onChange={handleInputChange}
         />
         <input
           type="text"
           placeholder="State"
           className="border p-2 rounded w-full"
-          value={data.address?.state || ""}
+          name="addressState"
+          value={formData.addressState}
+          onChange={handleInputChange}
         />
         <input
           type="text"
           placeholder="Zipcode"
           className="border p-2 rounded w-full"
-          value={data.address?.zipCode || ""}
+          name="addressZipcode"
+          value={formData.addressZipcode}
+          onChange={handleInputChange}
         />
         <input
           type="text"
           placeholder="Country"
           className="border p-2 rounded w-full"
-          value={data.address?.country || ""}
+          name="addressCountry"
+          value={formData.addressCountry}
+          onChange={handleInputChange}
         />
         <button
-          type="submit"
+          onClick={handleOpen}
           className="w-full bg-graylight text-white font-bold py-2 px-4 rounded hover:bg-black focus:outline-none focus:ring-2 focus:ring-primary"
         >
           Save
         </button>
-      </form>
+      </div>
 
       {/* Modal for Password Confirmation */}
       {isModalOpen && (
@@ -128,8 +174,8 @@ const Profile = () => {
               type="password"
               placeholder="Enter your password"
               className="border p-2 rounded w-full mb-4"
-              value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
             />
             <div className="flex justify-end space-x-4">
               <button
@@ -139,8 +185,9 @@ const Profile = () => {
                 Cancel
               </button>
               <button
+                type="submit"
+                onClick={handleSubmit}
                 className="bg-primary text-white font-bold py-2 px-4 rounded hover:bg-secondary"
-                onClick={handleConfirmPassword}
               >
                 Confirm
               </button>
@@ -148,7 +195,7 @@ const Profile = () => {
           </div>
         </div>
       )}
-    </div>
+    </form>
   );
 };
 

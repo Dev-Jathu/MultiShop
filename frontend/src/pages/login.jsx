@@ -74,6 +74,7 @@ const LoginForm = () => {
           Navigate('/admin');
         } else {
           Navigate('/my-account');
+          window.location.reload()
         }
       } catch (error) {
         setErrors({ email: 'Login failed. Please try again.' });
@@ -95,6 +96,11 @@ const LoginForm = () => {
     const data = await response.json();
     navigate(data.url);
   }
+
+
+
+
+
   return (
     <div className='flex items-center justify-center lg:min-h-screen md:h-[79vh] h-[90vh] bg-gray-100'>
       <div className='bg-white p-8 rounded-lg shadow-lg max-w-sm w-full'>
