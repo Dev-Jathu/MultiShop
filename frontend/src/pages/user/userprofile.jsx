@@ -73,13 +73,13 @@ const Profile = () => {
 
       toast.success("Successfully updated!");
       navigate(`/users/profile/me`);
-    } catch (error) {
+    } catch (error) {                                                                                                                                                
       console.log(error);
     }
   };
 
   return (
-    <form className="md:p-4 lg:p-0 p-4 w-[730px]">
+    <form className="md:p-4 lg:p-0 p-4 w-[730px] ">
       <div className="flex justify-between items-center mb-5">
         <h2 className="text-xl font-semibold text-black">Edit Your Profile</h2>
         <div className="w-20 h-20 flex rounded-full overflow-hidden border-4 border-gray-300">

@@ -24,7 +24,7 @@ const AdminPage = () => {
   };
 
   return (
-    <div className="flex h-[100vh] bg-gray-100 justify-center items-center p-4">
+    <div className="flex h-[100vh] bg-gray-100 justify-center items-center p-4 mt-14 ">
       {/* Container */}
       <div className="flex h-[70vh] w-full max-w-5xl bg-white shadow-lg rounded-lg overflow-hidden">
         {/* Sidebar */}
@@ -65,7 +65,6 @@ const AdminPage = () => {
 
         {/* Main Content */}
         <div className="flex-1 p-4">
-          
           {/* Tab Content */}
           <div className="bg-white rounded-md p-4">
             {activeTab === "profile" && <Profile />}
